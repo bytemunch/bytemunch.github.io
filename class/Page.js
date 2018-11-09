@@ -77,7 +77,7 @@ class Page {
 
                 frame.scrolling = 'no';
                 frame.style.borderWidth = linew;
-                frame.src = 'https://'+rooturi+'/doodles/scribbler';
+                frame.src = './doodles/scribbler';
                 main.appendChild(frame);
 
                 //DOODLE NAV
@@ -127,7 +127,7 @@ class Page {
 
                 nav.drop.addEventListener('change', e => {
                     //console.log(this);
-                    frame.src = 'https://'+rooturi+'doodles/'+nav.drop.value;
+                    frame.src = './doodles/'+nav.drop.value;
                 });
 
                 //next/prev
