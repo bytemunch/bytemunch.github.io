@@ -127,7 +127,7 @@ class Page {
 
                 nav.drop.addEventListener('change', e => {
                     //console.log(this);
-                    frame.src = '//'+rooturi+'doodles/'+nav.drop.value;
+                    frame.src = '//'+rooturi+'/doodles/'+nav.drop.value;
                 });
 
                 //next/prev
