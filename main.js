@@ -4,6 +4,8 @@ const frameRate = 30;
 let width = window.innerWidth;
 let height = window.innerHeight;
 
+const rooturi = window.location.hostname;
+
 const canvas = document.createElement('canvas');
 canvas.height = height;
 canvas.width = width;
