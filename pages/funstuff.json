@@ -1,0 +1,9 @@
+{
+    "main": {
+        "title": "doodles",
+        "text": "pointless stuff i make for no reason"
+    },
+    "images": {
+        "one": "./img/play.png"
+    }
+}

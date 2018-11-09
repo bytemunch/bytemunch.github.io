@@ -1,0 +1,14 @@
+{
+    "scribbler": {
+        "link": "scribbler",
+        "desc": "wiggly crayon lines ft. random jitter. move mouse for follows"
+    },
+    "perspective": {
+        "link": "3dplay",
+        "desc": "a rough perspective implementation. scroll for interactiveness."
+    },
+    "plants": {
+        "link": "seed",
+        "desc": "click to plant. then it grows a bit"
+    }
+}
