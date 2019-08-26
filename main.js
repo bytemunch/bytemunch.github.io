@@ -1,14 +1,10 @@
 // Canvas setup
 let frameCount = 0;
 const frameRate = 30;
-let width = window.innerWidth;
-let height = window.innerHeight;
 
 const rooturi = window.location.hostname;
 
 const canvas = document.createElement('canvas');
-canvas.height = height;
-canvas.width = width;
 
 canvas.style.position = 'absolute';
 canvas.style.zIndex = 0;
@@ -21,15 +17,15 @@ document.body.appendChild(canvas);
 let links = [];
 let lineRunners = [];
 
-function getPage(page) {
-    return fetch('./pages/'+page+'.json')
-    .then(res => res.json())
+async function getPage(page) {
+    const res = await fetch('./pages/' + page + '.json')
+    return res.json();
 }
 
-function reRange(val,min1,max1,min2,max2) {
-    let percent = (val-min1)/(max1-min1);
+function reRange(val, min1, max1, min2, max2) {
+    let percent = (val - min1) / (max1 - min1);
 
-    let newVal = min2+((max2-min2)*percent);
+    let newVal = min2 + ((max2 - min2) * percent);
 
     return newVal;
 }
@@ -41,45 +37,23 @@ let pages = {
     home: new Page('home')
 }; //TODO loopme
 
-
 links.push(new Link("./img/about.png", "#about", "me"));
 links.push(new Link("./img/work.png", "#portfolio", "work"));
 links.push(new Link("./img/play.png", "#funstuff", "play"));
 
-// variablesss
-let linew;
-width > height ? linew = height * 0.01 : linew = width * 0.01;
-linew = Math.floor(linew);
 const scale = 1;
-const maxw = (width / 4) * scale;
-const maxh = (height / 4) * scale;
 
-const minw = (width / 6) * scale;
-const minh = (height / 6) * scale;
+// variablesss
+let width;
+let height;
+let linew;
+let maxw;
+let maxh;
+let minw;
+let minh;
 
 // animationstuff
 let drawLoopId;
-
-// add title
-let headerWidth = width < height ? width * 0.7 : width * 0.55;
-let headerPos = {
-    x: -linew*2,
-    y: -linew*2,
-    width: headerWidth,
-    height: headerWidth*0.1
-}
-let header = newDiv(headerPos, './img/home.png', '#home');
-
-document.body.appendChild(header);
-
-//set color
-header.firstChild.style.backgroundColor = 'white';
-//add class
-header.firstChild.classList.add('home');
-//remove overlay
-header.firstChild.removeChild(header.firstChild.firstChild);
-
-openPage('home');
 
 addAllRunners();
 
@@ -89,8 +63,8 @@ function addAllRunners(cb) {
     for (let box of boxes) {
         let bb = box.getBoundingClientRect();
         //modify to fit
-        bb.width -= 2*linew;
-        bb.height -= 2*linew;
+        bb.width -= 2 * linew;
+        bb.height -= 2 * linew;
         addRunners(bb, box);
     }
     if (cb) cb();
@@ -118,5 +92,54 @@ function addRunners(pos, parent) {
 }
 
 setTimeout(() => {
-    fadeIn([document.body],0.05);
-},150);
+    fadeIn([document.body], 0.05);
+}, 150);
+
+function resetCanvas() {
+    console.log('cnvreset');
+    
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.height = height;
+    canvas.width = width;
+
+    width > height ? linew = height * 0.01 : linew = width * 0.01;
+    linew = Math.floor(linew);
+    maxw = (width / 4) * scale;
+    maxh = (height / 4) * scale;
+
+    minw = (width / 6) * scale;
+    minh = (height / 6) * scale;
+
+    let oldHeader = document.querySelector('#header');
+    if (oldHeader) oldHeader.parentElement.removeChild(oldHeader);
+
+    // add title
+    let headerWidth = width < height ? width * 0.7 : width * 0.55;
+    let headerPos = {
+        x: -linew * 2,
+        y: -linew * 2,
+        width: headerWidth,
+        height: headerWidth * 0.1
+    }
+    let header = newDiv(headerPos, './img/home.png', '#home');
+
+    document.body.appendChild(header);
+
+    //set color
+    header.firstChild.style.backgroundColor = 'white';
+    //add class
+    header.firstChild.classList.add('home');
+
+
+    header.id = 'header'
+    //remove overlay
+    header.firstChild.removeChild(header.firstChild.firstChild);
+
+
+    openPage(location.hash.replace('#', ''));
+}
+
+window.addEventListener('resize', resetCanvas);
+document.addEventListener('DOMContentLoaded', resetCanvas);

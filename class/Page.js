@@ -4,18 +4,20 @@ class Page {
 
         this.complexity = 4;
 
-        getPage(name)
-            .then(res => {
-                this.main = res.main || 'empty';
-                this.images = res.images || 'empty';
-            });
     }
 
-    render() {
+    async render() {
+        await getPage(this.name)
+        .then(res => {
+            this.main = res.main || 'empty';
+            this.images = res.images || 'empty';
+        });
+
         let divs = [];
 
         // MAIN DIV
         if (this.main && this.main !== 'empty') {
+
             let mainpos = findSpace(width / 1.5, width / 1.7, height / 1.5, height / 2);
 
             mainpos = {
