@@ -1,7 +1,7 @@
 {
     "main": {
         "title": "portfolio",
-        "text": "this is where links to my other works go TODO some sort of link browser?"
+        "text": "this is where links to my other works go. Site is WIP"
     },
     "images": {
         "example": "./img/work.png"
