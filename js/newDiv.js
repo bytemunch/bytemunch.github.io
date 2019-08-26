@@ -2,9 +2,22 @@
 function newDiv(pos, img, link, txt) {
     if (pos) {
         let div = document.createElement('div');
-        let color = pickColor();
+        let color = '';
 
-
+        switch (txt) {
+            case 'me':
+                color = 'blue';
+                break;
+            case 'work':
+                color = 'red';
+                break;
+            case 'play':
+                color = 'yellow';
+                break;
+            default:
+                color = pickColor();
+                break;
+        }
 
         div.style.left = pos.x;
         div.style.top = pos.y;
@@ -68,9 +81,9 @@ function newDiv(pos, img, link, txt) {
 
             div.addEventListener('mousemove', e => {
 
-                let newPos = (e.layerX / div.style.width.replace('px',''))*100;
+                let newPos = (e.layerX / div.style.width.replace('px', '')) * 100;
 
-                newPos = reRange(newPos,0,100,40,60);
+                newPos = reRange(newPos, 0, 100, 40, 60);
 
                 div.style.backgroundPositionX = newPos + '%';
 

@@ -40,7 +40,6 @@ function getDist(p1, p2) {
     b = Math.abs(p1.y - p2.y);
 
     return (Math.sqrt(a ^ 2 + b ^ 2));
-
 }
 
 
@@ -55,10 +54,6 @@ function setSeedPoints(amt) {
         ay = height / 2 + Math.floor(Math.sin(a) * mag);
         seedPoints.push(new Point(ax, ay))
     }
-
-    // for (let i = 0; i < amt; i++) {
-    //     seedPoints.push(new Point(getRand(0, width * 0.9), getRand(0, height * 0.9)))
-    // }
 
     currentPoint = randomPointInShape();
 
@@ -87,6 +82,9 @@ function addHalfwayPoint(target) {
     currentPoint = newPoint;
 }
 
+// SAM this is why you need code comments what the hell is this
+// from 8 months ago ToT
+
 function findHalf(p1, p2) {
     let nx, ny;
     p1.x < p2.x ? nx = ((p2.x - p1.x) / 2) + p1.x : nx = ((p1.x - p2.x) / 2) + p2.x;
@@ -111,15 +109,11 @@ function startDrawLoop() {
 
             for (let i = 0; i < 1000; i++) {
 
-                //ctx.fillStyle = '#000';
-                // ctx.fillRect(0, 0, width, height);
                 for (let point of seedPoints) {
                     point.draw();
                 }
 
-                // for (let point of usedPoints) {
-                //     point.draw();
-                // }
+
 
                 currentPoint.draw();
                 //pick target seed point
