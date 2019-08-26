@@ -138,7 +138,7 @@ function resetCanvas() {
     header.firstChild.removeChild(header.firstChild.firstChild);
 
 
-    openPage(location.hash.replace('#', ''));
+    openPage(location.hash.replace('#', '')||'home');
 }
 
 window.addEventListener('resize', resetCanvas);
