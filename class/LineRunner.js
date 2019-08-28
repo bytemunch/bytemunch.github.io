@@ -6,7 +6,7 @@ class LineRunner {
         this.height = linew;
         this.axis = axis;
         this.direction = direction;
-        this.speed = linew;
+        this.speed = linew*2;
         this.dead = false;
         this.color = "#FF0000";
         this.parent = parent;
