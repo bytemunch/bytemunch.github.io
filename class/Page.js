@@ -39,17 +39,16 @@ class Page {
                 titlediv.classList.add('maintitle');
                 titlediv.style.width = 'calc(100% - '+(linew*2)+'px)';
                 titlediv.style.height = '20%';
-                titlediv.style.position = 'absolute';
+                titlediv.style.position = 'relative';
                 titlediv.style.marginLeft = -linew;
                 titlediv.style.marginTop = -linew;
+                titlediv.style.marginBottom = linew;
                 titlediv.style.borderWidth = linew;
                 titlediv.style.paddingLeft = linew;
                 titlediv.style.paddingRight = linew;
 
                 titlediv.style.backgroundColor = 'white';
                 
-
-
                 main.classList.add(this.main.title.replace(' ', '-'));
                 title.textContent = this.main.title || 'TITLE 404';
                 text.textContent = this.main.text || 'TEXT 404';
@@ -61,6 +60,23 @@ class Page {
 
                 divs.push(main);
                 document.body.appendChild(main);
+            }
+
+            if (this.name == 'portfolio') {
+                let drinkLink = document.createElement('a');
+                drinkLink.textContent = 'Drink!';
+                drinkLink.href = 'https://drink-with.us';
+                drinkLink.target = '_blank';
+
+                drinkLink.style.margin = linew;
+
+                if (main.color !== 'white') {
+                    drinkLink.style.color = 'white';
+                } else {
+                    drinkLink.style.color = 'black';
+                }
+
+                main.appendChild(drinkLink);
             }
 
             if (this.name == 'funstuff') {

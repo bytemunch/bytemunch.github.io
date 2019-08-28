@@ -4,6 +4,6 @@
         "text": "pointless stuff i make for no reason"
     },
     "images": {
-        "one": "./img/play.png"
+        "current": "./img/play.png"
     }
 }

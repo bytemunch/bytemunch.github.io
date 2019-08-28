@@ -1,9 +1,9 @@
 {
     "main": {
         "title": "portfolio",
-        "text": "this is where links to my other works go. Site is WIP"
+        "text": "This is where links to my other works go. The links will be prettier, more plentiful, described and repositories will be available once this site's up and running. For now they're just boring text."
     },
     "images": {
-        "example": "./img/work.png"
+        "current": "./img/work.png"
     }
 }
