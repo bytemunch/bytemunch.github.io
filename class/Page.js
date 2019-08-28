@@ -70,7 +70,9 @@ class Page {
 
                 drinkLink.style.margin = linew;
 
-                if (main.color !== 'white') {
+                console.log(main);
+
+                if (main.style.backgroundColor !== 'white' && main.style.backgroundColor !== 'yellow') {
                     drinkLink.style.color = 'white';
                 } else {
                     drinkLink.style.color = 'black';
