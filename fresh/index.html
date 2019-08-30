@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fresh Decorators</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div id='nav-bar'>
+        <img id='nav-logo' src='./img/logo_basic.png' onclick="scrollToDiv('home')" />
+        <img id='nav-menu' src='./img/menu_icon.png' onclick="document.querySelector('#nav-list').toggleState()" />
+        <ul id='nav-list' is='ce-nav-list'>
+            <li class='nav-link odd' onclick="scrollToDiv('home'); document.querySelector('#nav-list').toggleState()">
+                Home</li>
+            <li class='nav-link even'
+                onclick="scrollToDiv('portfolio'); document.querySelector('#nav-list').toggleState()">Portfolio</li>
+            <li class='nav-link odd'
+                onclick="scrollToDiv('contact'); document.querySelector('#nav-list').toggleState()">Contact</li>
+            <li class='nav-link even' onclick="scrollToDiv('about'); document.querySelector('#nav-list').toggleState()">
+                About</li>
+        </ul>
+    </div>
+    <div class='page-block' id='page-home'>
+        <div class='textbox'>
+            <h1>Fresh Decorators</h1>
+            <p>sussex</p>
+        </div>
+
+        <div class="imagebox"></div>
+    </div>
+    <div class='page-block' id='page-portfolio'>
+        <div class='textbox'>
+            <h1>Our Portfolio</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo adipisci sequi magni! Velit, eveniet
+                quidem
+                fugiat aut rerum minima rem eius adipisci. Temporibus non doloribus quam maiores, corrupti itaque iste?
+            </p>
+        </div>
+    </div>
+    <div class='page-block' id='page-contact'>
+        <div class='textbox'>
+            <h1>Contact Us</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo adipisci sequi magni! Velit, eveniet
+                quidem
+                fugiat aut rerum minima rem eius adipisci. Temporibus non doloribus quam maiores, corrupti itaque iste?
+            </p>
+        </div>
+    </div>
+    <div class='page-block' id='page-about'>
+        <div class='textbox'>
+            <h1>About Us</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo adipisci sequi magni! Velit, eveniet
+                quidem
+                fugiat aut rerum minima rem eius adipisci. Temporibus non doloribus quam maiores, corrupti itaque iste?
+            </p>
+        </div>
+    </div>
+    <div is='ce-next-page'></div>
+</body>
+
+</html>
