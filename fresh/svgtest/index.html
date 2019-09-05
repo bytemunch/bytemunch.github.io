@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVGTEST</title>
+    <script src="svgtest.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background: rgb(180, 180, 180);
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .test {
+            width: 50%;
+            height: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            border: 1px solid red;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class='test svg-border'>
+        <h3>content</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae error obcaecati tempora possimus ullam!
+            Quam soluta ea mollitia at quia adipisci quo dolore maiores libero, amet et quis tempora cupiditate! </p>
+    </div>
+
+</body>
+
+</html>

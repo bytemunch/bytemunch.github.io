@@ -1,0 +1,44 @@
+/* TO BE INLINED IN SVG */
+
+.border {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.border path {
+    stroke-dasharray: 2427;
+    stroke-dashoffset: 2427;
+    animation: hideBorder 0.8s ease-in-out alternate;
+}
+
+.border:hover path {
+    stroke-dashoffset: 0;
+
+    /* animation: drawBorder 0.8s ease-in-out alternate; */
+    animation: fadeIn 0.4s ease-in alternate;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes drawBorder {
+    from {
+        stroke-dashoffset: 2427;
+    } to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes hideBorder {
+    from {
+        stroke-dashoffset: 0;
+    } to {
+        stroke-dashoffset: 2427;
+    }
+}
