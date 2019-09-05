@@ -7,31 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fresh Decorators</title>
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
+    <script src="js/functions/addBorderSvg.js"></script>
+    <script src="js/class/CeNextPage.js"></script>
+    <script src="js/class/CeNavList.js"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
-    <div id='nav-bar'>
+    <div id='bg-filter' class='frosted-glass'></div>
+    <div id='nav-bar' class='frosted-glass'>
         <img id='nav-logo' src='./img/logo_basic.png' onclick="scrollToDiv('home')" />
         <img id='nav-menu' src='./img/menu_icon.png' onclick="document.querySelector('#nav-list').toggleState()" />
-        <ul id='nav-list' is='ce-nav-list'>
-            <li class='nav-link odd' onclick="scrollToDiv('home'); document.querySelector('#nav-list').toggleState()">
-                Home</li>
-            <li class='nav-link even'
-                onclick="scrollToDiv('portfolio'); document.querySelector('#nav-list').toggleState()">Portfolio</li>
-            <li class='nav-link odd'
-                onclick="scrollToDiv('contact'); document.querySelector('#nav-list').toggleState()">Contact</li>
-            <li class='nav-link even' onclick="scrollToDiv('about'); document.querySelector('#nav-list').toggleState()">
-                About</li>
-        </ul>
-    </div>
-    <div class='page-block' id='page-home'>
-        <div class='textbox'>
-            <h1>Fresh Decorators</h1>
-            <p>sussex</p>
+        <div id='nav-list' is='ce-nav-list'>
+            <div id='nav-off-click-catcher' onclick="document.querySelector('#nav-list').toggleState()"></div>
+            <div class='nav-link svg-border'
+                onclick="scrollToDiv('home'); document.querySelector('#nav-list').toggleState()">
+                Home</div>
+            <div class='nav-link svg-border'
+                onclick="scrollToDiv('portfolio'); document.querySelector('#nav-list').toggleState()">Portfolio</div>
+            <div class='nav-link svg-border'
+                onclick="scrollToDiv('contact'); document.querySelector('#nav-list').toggleState()">Contact</div>
+            <div class='nav-link svg-border'
+                onclick="scrollToDiv('about'); document.querySelector('#nav-list').toggleState()">
+                About</div>
         </div>
-
-        <div class="imagebox"></div>
+    </div>
+    <div class='page-block' id='page-home' onclick="document.querySelector('#next-page').click()">
+        <object class='landing-logo' data="./img/logo_basic_text_as_path_animated.svg" type="image/svg+xml"
+            style='pointer-events: none'>
+            <img class='landing-logo' src='./img/logo_basic_text_fallback.png'
+                onclick="document.querySelector('#next-page').click()" />
+        </object>
     </div>
     <div class='page-block' id='page-portfolio'>
         <div class='textbox'>
