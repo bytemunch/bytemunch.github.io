@@ -156,3 +156,14 @@ body {
     display: none;
   }
 }
+@media screen and (max-width: 320px) {
+  body {
+    background: none;
+  }
+  #nav-bar {
+    display: none;
+  }
+  #next-page {
+    display: none;
+  }
+}
