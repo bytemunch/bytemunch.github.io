@@ -64,11 +64,18 @@ class Page {
 
             if (this.name == 'portfolio') {
                 let drinkLink = document.createElement('a');
-                drinkLink.textContent = 'Drink!';
+                drinkLink.textContent = 'Drink! WIP';
                 drinkLink.href = 'https://drink-with.us';
                 drinkLink.target = '_blank';
 
                 drinkLink.style.margin = linew;
+
+                let freshLink = document.createElement('a');
+                freshLink.textContent = 'FreshDecorators WIP';
+                freshLink.href = 'https://sam.edelsten.me/fresh/index.html';
+                freshLink.target = '_blank';
+
+                freshLink.style.margin = linew;
 
                 console.log(main);
 
