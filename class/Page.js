@@ -78,7 +78,7 @@ class Page {
                 freshLink.style.margin = linew;
 
                 // TODO srsly an array of links and then loop through. pub time tho
-                
+
 
                 console.log(main);
 
@@ -96,6 +96,7 @@ class Page {
 
 
                 main.appendChild(drinkLink);
+                main.appendChild(freshLink);
             }
 
             if (this.name == 'funstuff') {
