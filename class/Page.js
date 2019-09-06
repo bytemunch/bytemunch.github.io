@@ -77,13 +77,23 @@ class Page {
 
                 freshLink.style.margin = linew;
 
+                // TODO srsly an array of links and then loop through. pub time tho
+                
+
                 console.log(main);
+
+                if (main.style.backgroundColor !== 'white' && main.style.backgroundColor !== 'yellow') {
+                    freshLink.style.color = 'white';
+                } else {
+                    freshLink.style.color = 'black';
+                }
 
                 if (main.style.backgroundColor !== 'white' && main.style.backgroundColor !== 'yellow') {
                     drinkLink.style.color = 'white';
                 } else {
                     drinkLink.style.color = 'black';
                 }
+
 
                 main.appendChild(drinkLink);
             }
