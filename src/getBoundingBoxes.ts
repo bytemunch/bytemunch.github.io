@@ -1,11 +1,14 @@
 function getBoundingBoxes() {
-    var divs = document.querySelectorAll('.linkbox');
-    var bbs = [];
-    var divbb;
-    for (var _i = 0, divs_1 = divs; _i < divs_1.length; _i++) {
-        var div = divs_1[_i];
+    let divs = document.querySelectorAll('.linkbox');
+    let bbs = [];
+    let divbb;
+
+
+    //@ts-ignore
+    // NodeList is iterable why you say no
+    for (let div of divs) {
         divbb = div.getBoundingClientRect();
-        var stripped = {
+        let stripped = {
             x: divbb.x -= linew,
             y: divbb.y -= linew,
             width: divbb.width += linew,
@@ -13,5 +16,6 @@ function getBoundingBoxes() {
         };
         bbs.push(stripped);
     }
+
     return bbs;
 }

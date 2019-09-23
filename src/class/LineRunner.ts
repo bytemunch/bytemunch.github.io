@@ -1,12 +1,28 @@
+///<reference path="./Line.ts" />
+///<reference path="../main.ts" />
+///<reference path="../checkCollision.ts" />
+
 class LineRunner {
-    constructor(x, y, axis, direction, parent) {
+    x;
+    y;
+    width;
+    height;
+    axis;
+    direction;
+    speed;
+    dead;
+    color;
+    parent;
+    line;
+
+    constructor(x, y, axis, direction, parent?) {
         this.x = x;
         this.y = y;
         this.width = linew;
         this.height = linew;
         this.axis = axis;
         this.direction = direction;
-        this.speed = linew*2;
+        this.speed = linew * 2;
         this.dead = false;
         this.color = "#FF0000";
         this.parent = parent;
@@ -44,8 +60,10 @@ class LineRunner {
             height: this.height - 1
         };
 
+        //@ts-ignore
+        // Dunno why this is flagging more research needed
         for (let div of document.querySelectorAll('.linkbox')) {
-            let box2 = div.getBoundingClientRect();
+            let box2 = div.getBoundingClientRect() as DOMRect;
             box2.y += linew;
             box2.width -= linew;
             box2.height -= linew * 2;
@@ -102,7 +120,7 @@ class LineRunner {
         this.dead = false;
     }
 
-    die(obstacle, nested = false) {
+    die(obstacle?, nested = false) {
         if (obstacle) {
             // trim line to fit
             let offset = linew / 2;

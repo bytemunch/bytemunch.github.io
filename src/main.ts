@@ -1,4 +1,8 @@
+/// <reference path='./class/Link.ts'/>
+/// <reference path='./openPage.ts'/>
+
 // Canvas setup
+//@ts-ignore
 let frameCount = 0;
 const frameRate = 30;
 
@@ -7,7 +11,7 @@ const rooturi = window.location.hostname;
 const canvas = document.createElement('canvas');
 
 canvas.style.position = 'absolute';
-canvas.style.zIndex = 0;
+canvas.style.zIndex = '0';
 
 let ctx = canvas.getContext("2d");
 
@@ -58,10 +62,11 @@ let drawLoopId;
 addAllRunners();
 
 // add linerunners whole page
-function addAllRunners(cb) {
+function addAllRunners(cb?) {
     let boxes = document.querySelectorAll('.linkbox');
+    //@ts-ignore
     for (let box of boxes) {
-        let bb = box.getBoundingClientRect();
+        let bb = box.getBoundingClientRect() as DOMRect;
         //modify to fit
         bb.width -= 2 * linew;
         bb.height -= 2 * linew;
@@ -97,7 +102,7 @@ setTimeout(() => {
 
 function resetCanvas() {
     console.log('cnvreset');
-    
+
     width = window.innerWidth;
     height = window.innerHeight;
 
@@ -125,20 +130,21 @@ function resetCanvas() {
     }
     let header = newDiv(headerPos, './img/home.png', '#home');
 
-    document.body.appendChild(header);
+    if (header) {
+        document.body.appendChild(header);
 
-    //set color
-    header.firstChild.style.backgroundColor = 'white';
-    //add class
-    header.firstChild.classList.add('home');
-
-
-    header.id = 'header'
-    //remove overlay
-    header.firstChild.removeChild(header.firstChild.firstChild);
+        //set color
+        (<HTMLElement>header.firstChild).style.backgroundColor = 'white';
+        //add class
+        (<HTMLElement>header.firstChild).classList.add('home');
 
 
-    openPage(location.hash.replace('#', '')||'home');
+        header.id = 'header'
+        //remove overlay
+        header.firstChild.removeChild(header.firstChild.firstChild);
+    }
+
+    openPage(location.hash.replace('#', '') || 'home');
 }
 
 window.addEventListener('resize', resetCanvas);

@@ -1,4 +1,14 @@
 class Line {
+    x;
+    y;
+    startx;
+    starty;
+    axis;
+    direction;
+    color;
+    width;
+    height;
+
     constructor(runner) {
         this.x = runner.x;
         this.y = runner.y;
@@ -14,6 +24,6 @@ class Line {
 
     draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x,this.y,this.width,this.height);
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }

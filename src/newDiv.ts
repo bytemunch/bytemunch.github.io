@@ -1,6 +1,10 @@
-function newDiv(pos, img, link, txt) {
-    var div = document.createElement('div');
-    var color = '';
+/// <reference path='./pickColor.ts' />
+/// <reference path='./sizeText.ts' />
+
+function newDiv(pos, img?, link?, txt?) {
+    let div = document.createElement('div');
+    let color = '';
+
     switch (txt) {
         case 'me':
             color = 'blue';
@@ -15,6 +19,7 @@ function newDiv(pos, img, link, txt) {
             color = pickColor();
             break;
     }
+
     div.style.left = pos.x;
     div.style.top = pos.y;
     div.style.width = pos.width;
@@ -22,16 +27,24 @@ function newDiv(pos, img, link, txt) {
     div.style.borderWidth = linew;
     div.style.backgroundColor = color;
     div.style.overflow = 'hidden';
+    //div.style.opacity = 0;
     div.classList.add('linkbox');
+
     if (txt) {
-        var title = document.createElement('h2');
+        let title = document.createElement('h2');
         title.textContent = txt.toUpperCase();
+
         title.className = 'linktext';
+
         title.style.fontSize = '0';
+
         sizeText(title, pos.width, pos.height);
+
         title.style.width = '100%';
         title.style.height = '100%';
+
         title.style.zIndex = '1';
+
         switch (color) {
             case 'white':
             case 'yellow':
@@ -42,11 +55,14 @@ function newDiv(pos, img, link, txt) {
                 title.style.color = 'white';
                 break;
         }
+
         div.appendChild(title);
         div.classList.add('linkbox');
+
     }
+
     if (img) {
-        var overlay = document.createElement('div');
+        let overlay = document.createElement('div');
         overlay.style.width = '150%';
         overlay.style.height = '150%';
         overlay.classList.add('overlay');
@@ -56,27 +72,58 @@ function newDiv(pos, img, link, txt) {
         overlay.style.top = '0';
         overlay.style.left = '0';
         div.appendChild(overlay);
+
         div.style.backgroundImage = "url('" + img + "')";
         div.style.backgroundPositionX = 'center';
-        div.addEventListener('mousemove', function (e) {
-            var newPos = (e.layerX / Number(div.style.width.replace('px', ''))) * 100;
+
+        // mousey moving TODO this is shit
+        // something to do with image aspects rather than container?
+        // offset from center by portion of layerX layerY
+
+        div.addEventListener('mousemove', e => {
+
+            //@ts-ignore
+            // "Property 'layerX' does not exist on type 'MouseEvent'." yes, again, it does
+            let newPos = (e.layerX / Number(div.style.width.replace('px', ''))) * 100;
+
             newPos = reRange(newPos, 0, 100, 40, 60);
+
             div.style.backgroundPositionX = newPos + '%';
+
         });
-        div.addEventListener('mouseout', function (e) {
+
+        div.addEventListener('mouseout', e => {
+            // console.log(e);+ pos.width/2)
+            // div.style.backgroundPosition = '50%';
+
+            // TODO spring back nicely
+            // setTimeout(() => {
+            //     startX = 0;
+            //     startY = 0;
+            // },333);
+
+            // startX = e.layerX;
+            // startY = e.layerY;
+
         });
     }
+
+    // Append to body here or return div?
     if (link) {
-        var a = document.createElement('a');
+        let a = document.createElement('a');
         a.href = link;
         a.classList.add('link');
+        //a.style.border = 'none';
         a.appendChild(div);
-        a.addEventListener('click', function (e) {
+
+        a.addEventListener('click', e => {
             openPage(link);
         });
+
         return a;
-    }
-    else {
+    } else {
         return div;
     }
 }
+
+

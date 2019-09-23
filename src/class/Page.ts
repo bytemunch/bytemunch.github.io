@@ -1,17 +1,20 @@
 class Page {
+    name;
+    complexity;
+    main;
+    images;
+
     constructor(name) {
         this.name = name;
-
         this.complexity = 4;
-
     }
 
     async render() {
         await getPage(this.name)
-        .then(res => {
-            this.main = res.main || 'empty';
-            this.images = res.images || 'empty';
-        });
+            .then(res => {
+                this.main = res.main || 'empty';
+                this.images = res.images || 'empty';
+            });
 
         let divs = [];
 
@@ -37,18 +40,18 @@ class Page {
 
                 titlediv.classList.add('linkbox');
                 titlediv.classList.add('maintitle');
-                titlediv.style.width = 'calc(100% - '+(linew*2)+'px)';
+                titlediv.style.width = 'calc(100% - ' + (linew * 2) + 'px)';
                 titlediv.style.height = '20%';
                 titlediv.style.position = 'relative';
-                titlediv.style.marginLeft = -linew;
-                titlediv.style.marginTop = -linew;
+                titlediv.style.marginLeft = -linew + '';
+                titlediv.style.marginTop = -linew + '';
                 titlediv.style.marginBottom = linew;
                 titlediv.style.borderWidth = linew;
                 titlediv.style.paddingLeft = linew;
                 titlediv.style.paddingRight = linew;
 
                 titlediv.style.backgroundColor = 'white';
-                
+
                 main.classList.add(this.main.title.replace(' ', '-'));
                 title.textContent = this.main.title || 'TITLE 404';
                 text.textContent = this.main.text || 'TEXT 404';
@@ -63,40 +66,53 @@ class Page {
             }
 
             if (this.name == 'portfolio') {
-                let drinkLink = document.createElement('a');
-                drinkLink.textContent = 'Drink! WIP';
-                drinkLink.href = 'https://drink-with.us';
-                drinkLink.target = '_blank';
+                let links = [
+                    {
+                        text: 'Drink!',
+                        link: 'https://drink-with.us',
+                        desc: 'A multiplayer realtime drinking game app. In active development.'
+                    },
+                    {
+                        text: 'Fresh Decorators',
+                        link: 'https://sam.edelsten.me/fresh/index.html',
+                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work'
+                    },
+                    {
+                        text: 'Meme Man Facebook App',
+                        link: 'https://meme-man-test.web.app/',
+                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs'
+                    },
+                ]
 
-                drinkLink.style.margin = linew;
-
-                let freshLink = document.createElement('a');
-                freshLink.textContent = 'FreshDecorators WIP';
-                freshLink.href = 'https://sam.edelsten.me/fresh/index.html';
-                freshLink.target = '_blank';
-
-                freshLink.style.margin = linew;
-
-                // TODO srsly an array of links and then loop through. pub time tho
-
-
-                console.log(main);
-
-                if (main.style.backgroundColor !== 'white' && main.style.backgroundColor !== 'yellow') {
-                    freshLink.style.color = 'white';
-                } else {
-                    freshLink.style.color = 'black';
+                let linkColor = 'white';
+                if (main.style.backgroundColor === 'white' || main.style.backgroundColor === 'yellow') {
+                    linkColor = 'black';
                 }
 
-                if (main.style.backgroundColor !== 'white' && main.style.backgroundColor !== 'yellow') {
-                    drinkLink.style.color = 'white';
-                } else {
-                    drinkLink.style.color = 'black';
+                for (let link of links) {
+                    let linkDiv = document.createElement('div');
+
+                    let desc = document.createElement('p');
+                    desc.textContent = link.desc;
+                    desc.style.color = linkColor;
+                    desc.style.marginLeft = (linew * 2) + '';
+                    desc.style.marginBottom = (linew * 2) + '';
+
+                    let htmlLink = document.createElement('a');
+                    htmlLink.textContent = link.text;
+                    htmlLink.href = link.link;
+                    htmlLink.target = '_blank';
+
+                    htmlLink.style.margin = linew;
+
+                    htmlLink.style.color = linkColor;
+                    htmlLink.style.fontWeight = 'bold';
+
+                    linkDiv.appendChild(htmlLink);
+                    linkDiv.appendChild(desc);
+
+                    main.appendChild(linkDiv);
                 }
-
-
-                main.appendChild(drinkLink);
-                main.appendChild(freshLink);
             }
 
             if (this.name == 'funstuff') {
@@ -104,18 +120,18 @@ class Page {
                 main.style.backgroundColor = 'transparent';
 
                 let frame = document.createElement('iframe');
-                frame.style.height = 'calc(80% - '+linew+'px)';
-                frame.style.top = 'calc(20% + '+linew+'px)';
+                frame.style.height = 'calc(80% - ' + linew + 'px)';
+                frame.style.top = 'calc(20% + ' + linew + 'px)';
                 frame.style.width = '100%';
-                frame.style.marginLeft = -linew;
-                frame.style.marginTop = -linew;
+                frame.style.marginLeft = -linew + '';
+                frame.style.marginTop = -linew + '';
                 frame.style.borderWidth = linew;
 
                 frame.classList.add('linkbox');
 
                 frame.scrolling = 'no';
                 frame.style.borderWidth = linew;
-                frame.src = '//'+rooturi+'/doodles/scribbler';
+                frame.src = '//' + rooturi + '/doodles/scribbler';
                 main.appendChild(frame);
 
                 //DOODLE NAV
@@ -126,18 +142,18 @@ class Page {
                 }
 
                 let doodles = [];
-                
-                fetch('./doodles/index.json')
-                .then(res => res.json())
-                .then(doodles => {
-                    for (let doodle in doodles) {
-                        let opt = document.createElement('option');
-                        opt.value = doodles[doodle].link;
-                        opt.textContent = doodle;
 
-                        nav.drop.appendChild(opt);
-                    }
-                })
+                fetch('./doodles/index.json')
+                    .then(res => res.json())
+                    .then(doodles => {
+                        for (let doodle in doodles) {
+                            let opt = document.createElement('option');
+                            opt.value = doodles[doodle].link;
+                            opt.textContent = doodle;
+
+                            nav.drop.appendChild(opt);
+                        }
+                    })
 
                 // for projects in doodles
                 // doodles.json?
@@ -151,7 +167,7 @@ class Page {
                 nav.drop.style.position = 'absolute';
                 nav.drop.style.top = '5px';
                 nav.drop.style.right = '105px';
-                
+
                 let titlediv = document.querySelector('.maintitle');
                 titlediv.appendChild(nav.drop);
 
@@ -165,7 +181,7 @@ class Page {
 
                 nav.drop.addEventListener('change', e => {
                     //console.log(this);
-                    frame.src = '//'+rooturi+'/doodles/'+nav.drop.value;
+                    frame.src = '//' + rooturi + '/doodles/' + nav.drop.value;
                 });
 
                 //next/prev
@@ -175,10 +191,10 @@ class Page {
                         nav[btn].style.position = 'absolute';
                         nav[btn].style.top = '5px';
                         nav[btn].style.right = ((i * 35) + 5) + 'px';
-    
+
                         nav[btn].textContent = btn;
                         titlediv.appendChild(nav[btn]);
-    
+
                         i++;
                     }
                 }
