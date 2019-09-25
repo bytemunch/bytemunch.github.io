@@ -29,9 +29,20 @@ class Page {
 				width: width / 1.5,
 				height: height / 1.5
 			}
+
+			// MIN WIDTH 280px
+			if (mainpos.width < 260) {
+				mainpos.width = 260;
+				mainpos.x = 5;
+				mainpos.y = 25;
+			}
 			//TODO minmax
 
 			let main = newDiv(mainpos);
+
+			main.style.overflowX = 'hidden';
+			main.style.overflowY = 'auto';
+			
 
 			if (main) {
 				let titlediv = document.createElement('div');
@@ -41,7 +52,6 @@ class Page {
 				titlediv.classList.add('linkbox');
 				titlediv.classList.add('maintitle');
 				titlediv.style.width = 'calc(100% - ' + (linew * 2) + 'px)';
-				titlediv.style.height = '20%';
 				titlediv.style.position = 'relative';
 				titlediv.style.marginLeft = -linew + '';
 				titlediv.style.marginTop = -linew + '';
