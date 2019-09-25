@@ -70,17 +70,20 @@ class Page {
                     {
                         text: 'Drink!',
                         link: 'https://drink-with.us',
-                        desc: 'A multiplayer realtime drinking game app. In active development.'
+                        desc: 'A multiplayer realtime drinking game app. In active development.',
+                        repo: ''
                     },
                     {
                         text: 'Fresh Decorators',
                         link: 'https://sam.edelsten.me/fresh/index.html',
-                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work'
+                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work',
+                        repo: ''
                     },
                     {
                         text: 'Meme Man Facebook App',
                         link: 'https://meme-man-test.web.app/',
-                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs'
+                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs',
+                        repo: 'https://github.com/bytemunch/meme-man-test'
                     },
                 ]
 
@@ -98,17 +101,39 @@ class Page {
                     desc.style.marginLeft = (linew * 2) + '';
                     desc.style.marginBottom = (linew * 2) + '';
 
+                    let titleDiv = document.createElement('div');
+
                     let htmlLink = document.createElement('a');
                     htmlLink.textContent = link.text;
                     htmlLink.href = link.link;
                     htmlLink.target = '_blank';
 
                     htmlLink.style.margin = linew;
-
                     htmlLink.style.color = linkColor;
                     htmlLink.style.fontWeight = 'bold';
 
-                    linkDiv.appendChild(htmlLink);
+                    let linkImg = document.createElement('img');
+                    linkImg.src = linkColor == 'black' ? './img/link-24px.png' : './img/link-24px-light.png';
+                    linkImg.classList.add('linkimg');
+
+                    htmlLink.appendChild(linkImg);
+
+                    titleDiv.appendChild(htmlLink);
+
+                    if (link.repo) {
+                        let githubLink = document.createElement('a');
+                        githubLink.href = link.repo;
+                        githubLink.target = '_blank';
+    
+                        let githubImg = document.createElement('img');
+                        githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png':'./img/GitHub-Mark-Light-32px.png';
+                        githubImg.classList.add('linkimg');
+    
+                        githubLink.appendChild(githubImg);
+                        titleDiv.appendChild(githubLink);
+                    }
+
+                    linkDiv.appendChild(titleDiv);
                     linkDiv.appendChild(desc);
 
                     main.appendChild(linkDiv);

@@ -1,8 +1,9 @@
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -40,7 +41,7 @@ var Page = (function () {
     }
     Page.prototype.render = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var divs, mainpos, main, titlediv, title, text, links_3, linkColor, _i, links_1, link, linkDiv, desc, htmlLink, frame_1, nav_1, doodles, titlediv, i_1, btn, _a, links_2, l, pos, div, i_2, ipos, image, space, i, pos, div;
+            var divs, mainpos, main, titlediv, title, text, links_3, linkColor, _i, links_1, link, linkDiv, desc, titleDiv, htmlLink, linkImg, githubLink, githubImg, frame_1, nav_1, doodles, titlediv, i_1, btn, _a, links_2, l, pos, div, i_2, ipos, image, space, i, pos, div;
             var _this = this;
             return __generator(this, function (_b) {
                 switch (_b.label) {
@@ -91,17 +92,20 @@ var Page = (function () {
                                     {
                                         text: 'Drink!',
                                         link: 'https://drink-with.us',
-                                        desc: 'A multiplayer realtime drinking game app. In active development.'
+                                        desc: 'A multiplayer realtime drinking game app. In active development.',
+                                        repo: ''
                                     },
                                     {
                                         text: 'Fresh Decorators',
                                         link: 'https://sam.edelsten.me/fresh/index.html',
-                                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work'
+                                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work',
+                                        repo: ''
                                     },
                                     {
                                         text: 'Meme Man Facebook App',
                                         link: 'https://meme-man-test.web.app/',
-                                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs'
+                                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs',
+                                        repo: 'https://github.com/bytemunch/meme-man-test'
                                     },
                                 ];
                                 linkColor = 'white';
@@ -116,6 +120,7 @@ var Page = (function () {
                                     desc.style.color = linkColor;
                                     desc.style.marginLeft = (linew * 2) + '';
                                     desc.style.marginBottom = (linew * 2) + '';
+                                    titleDiv = document.createElement('div');
                                     htmlLink = document.createElement('a');
                                     htmlLink.textContent = link.text;
                                     htmlLink.href = link.link;
@@ -123,7 +128,22 @@ var Page = (function () {
                                     htmlLink.style.margin = linew;
                                     htmlLink.style.color = linkColor;
                                     htmlLink.style.fontWeight = 'bold';
-                                    linkDiv.appendChild(htmlLink);
+                                    linkImg = document.createElement('img');
+                                    linkImg.src = linkColor == 'black' ? './img/link-24px.png' : './img/link-24px-light.png';
+                                    linkImg.classList.add('linkimg');
+                                    htmlLink.appendChild(linkImg);
+                                    titleDiv.appendChild(htmlLink);
+                                    if (link.repo) {
+                                        githubLink = document.createElement('a');
+                                        githubLink.href = link.repo;
+                                        githubLink.target = '_blank';
+                                        githubImg = document.createElement('img');
+                                        githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png' : './img/GitHub-Mark-Light-32px.png';
+                                        githubImg.classList.add('linkimg');
+                                        githubLink.appendChild(githubImg);
+                                        titleDiv.appendChild(githubLink);
+                                    }
+                                    linkDiv.appendChild(titleDiv);
                                     linkDiv.appendChild(desc);
                                     main.appendChild(linkDiv);
                                 }
