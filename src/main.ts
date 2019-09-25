@@ -22,23 +22,23 @@ let links = [];
 let lineRunners = [];
 
 async function getPage(page) {
-    const res = await fetch('./pages/' + page + '.json')
-    return res.json();
+	const res = await fetch('./pages/' + page + '.json')
+	return res.json();
 }
 
 function reRange(val, min1, max1, min2, max2) {
-    let percent = (val - min1) / (max1 - min1);
+	let percent = (val - min1) / (max1 - min1);
 
-    let newVal = min2 + ((max2 - min2) * percent);
+	let newVal = min2 + ((max2 - min2) * percent);
 
-    return newVal;
+	return newVal;
 }
 
 let pages = {
-    about: new Page('about'),
-    funstuff: new Page('funstuff'),
-    portfolio: new Page('portfolio'),
-    home: new Page('home')
+	about: new Page('about'),
+	funstuff: new Page('funstuff'),
+	portfolio: new Page('portfolio'),
+	home: new Page('home')
 }; //TODO loopme
 
 links.push(new Link("./img/about.png", "#about", "me"));
@@ -63,88 +63,88 @@ addAllRunners();
 
 // add linerunners whole page
 function addAllRunners(cb?) {
-    let boxes = document.querySelectorAll('.linkbox');
-    //@ts-ignore
-    for (let box of boxes) {
-        let bb = box.getBoundingClientRect() as DOMRect;
-        //modify to fit
-        bb.width -= 2 * linew;
-        bb.height -= 2 * linew;
-        addRunners(bb, box);
-    }
-    if (cb) cb();
+	let boxes = document.querySelectorAll('.linkbox');
+	//@ts-ignore
+	for (let box of boxes) {
+		let bb = box.getBoundingClientRect() as DOMRect;
+		//modify to fit
+		bb.width -= 2 * linew;
+		bb.height -= 2 * linew;
+		addRunners(bb, box);
+	}
+	if (cb) cb();
 }
 
 // add linerunners
 function addRunners(pos, parent) {
-    //x y w h 
-    //TL UP
-    lineRunners.push(new LineRunner(pos.x, pos.y, 'y', -1, parent));
-    //TL L
-    lineRunners.push(new LineRunner(pos.x, pos.y, 'x', -1, parent));
-    //TR UP
-    lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y, 'y', -1, parent));
-    //TR R
-    lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y, 'x', 1, parent));
-    //BL DOWN
-    lineRunners.push(new LineRunner(pos.x, pos.y + pos.height + linew, 'y', 1, parent));
-    //BL L
-    lineRunners.push(new LineRunner(pos.x, pos.y + pos.height + linew, 'x', -1, parent));
-    //BR DOWN
-    lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y + pos.height + linew, 'y', 1, parent));
-    //BR R
-    lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y + pos.height + linew, 'x', 1, parent));
+	//x y w h 
+	//TL UP
+	lineRunners.push(new LineRunner(pos.x, pos.y, 'y', -1, parent));
+	//TL L
+	lineRunners.push(new LineRunner(pos.x, pos.y, 'x', -1, parent));
+	//TR UP
+	lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y, 'y', -1, parent));
+	//TR R
+	lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y, 'x', 1, parent));
+	//BL DOWN
+	lineRunners.push(new LineRunner(pos.x, pos.y + pos.height + linew, 'y', 1, parent));
+	//BL L
+	lineRunners.push(new LineRunner(pos.x, pos.y + pos.height + linew, 'x', -1, parent));
+	//BR DOWN
+	lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y + pos.height + linew, 'y', 1, parent));
+	//BR R
+	lineRunners.push(new LineRunner(pos.x + pos.width + linew, pos.y + pos.height + linew, 'x', 1, parent));
 }
 
 setTimeout(() => {
-    fadeIn([document.body], 0.05);
+	fadeIn([document.body], 0.05);
 }, 150);
 
 function resetCanvas() {
-    console.log('cnvreset');
+	console.log('cnvreset');
 
-    width = window.innerWidth;
-    height = window.innerHeight;
+	width = window.innerWidth;
+	height = window.innerHeight;
 
-    canvas.height = height;
-    canvas.width = width;
+	canvas.height = height;
+	canvas.width = width;
 
-    width > height ? linew = height * 0.01 : linew = width * 0.01;
-    linew = Math.floor(linew);
-    maxw = (width / 4) * scale;
-    maxh = (height / 4) * scale;
+	width > height ? linew = height * 0.01 : linew = width * 0.01;
+	linew = Math.floor(linew);
+	maxw = (width / 4) * scale;
+	maxh = (height / 4) * scale;
 
-    minw = (width / 6) * scale;
-    minh = (height / 6) * scale;
+	minw = (width / 6) * scale;
+	minh = (height / 6) * scale;
 
-    let oldHeader = document.querySelector('#header');
-    if (oldHeader) oldHeader.parentElement.removeChild(oldHeader);
+	let oldHeader = document.querySelector('#header');
+	if (oldHeader) oldHeader.parentElement.removeChild(oldHeader);
 
-    // add title
-    let headerWidth = width < height ? width * 0.7 : width * 0.55;
-    let headerPos = {
-        x: -linew * 2,
-        y: -linew * 2,
-        width: headerWidth,
-        height: headerWidth * 0.1
-    }
-    let header = newDiv(headerPos, './img/home.png', '#home');
+	// add title
+	let headerWidth = width < height ? width * 0.7 : width * 0.55;
+	let headerPos = {
+		x: -linew * 2,
+		y: -linew * 2,
+		width: headerWidth,
+		height: headerWidth * 0.1
+	}
+	let header = newDiv(headerPos, './img/home.png', '#home');
 
-    if (header) {
-        document.body.appendChild(header);
+	if (header) {
+		document.body.appendChild(header);
 
-        //set color
-        (<HTMLElement>header.firstChild).style.backgroundColor = 'white';
-        //add class
-        (<HTMLElement>header.firstChild).classList.add('home');
+		//set color
+		(<HTMLElement>header.firstChild).style.backgroundColor = 'white';
+		//add class
+		(<HTMLElement>header.firstChild).classList.add('home');
 
 
-        header.id = 'header'
-        //remove overlay
-        header.firstChild.removeChild(header.firstChild.firstChild);
-    }
+		header.id = 'header'
+		//remove overlay
+		header.firstChild.removeChild(header.firstChild.firstChild);
+	}
 
-    openPage(location.hash.replace('#', '') || 'home');
+	openPage(location.hash.replace('#', '') || 'home');
 }
 
 window.addEventListener('resize', resetCanvas);
