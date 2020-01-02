@@ -85,7 +85,7 @@ class Page {
 					},
 					{
 						text: 'Fresh Decorators',
-						link: 'https://sam.edelsten.me/fresh/index.html',
+						link: 'https://bytemunch.github.io/fresh/index.html',
 						desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work',
 						repo: ''
 					},
