@@ -49,10 +49,7 @@ const getCrawl = () => {
 }
 
 const currentPubId = () => {
-    if (previousLocations[0]) {
-        return previousLocations[previousLocations.length - 1].id.split('-')[0];
-    }
-    return newId();
+    return previousLocations[previousLocations.length - 1].id.split('-')[0] || undefined;
 }
 
 const openPage = pageId => {
@@ -214,7 +211,7 @@ const getLocation = async () => {
 
 const loaded = async () => {
 
-    document.querySelector('#home-link').href = location.href;
+    document.querySelectorAll('.home-link').forEach(el=>{el.href = location.href;})
 
     getCrawl();
 

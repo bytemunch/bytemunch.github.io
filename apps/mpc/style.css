@@ -51,6 +51,10 @@ button {
     background-color: rgb(201, 53, 53);
 }
 
+#clear-crawl {
+    background-color: rgb(201, 53, 53);
+}
+
 #list-nearby {
     width: 100%;
 }

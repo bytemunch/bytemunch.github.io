@@ -18,7 +18,7 @@
 
 <body>
 
-    <p id='version'>my-pub-crawl prototype 0.0.0</p>
+    <p id='version'>my-pub-crawl prototype 0.0.2</p>
 
     <div id='page-home' class='page'>
         <button id='checkin' disabled>Looking for nearby pubs...</button>
@@ -29,7 +29,7 @@
     <div id='page-map' class='page'>
         <div id='map' style='width: 95%; height: 300px; margin:0 auto;'></div>
         <p>Crawl Count: <p id='count'>0</p></p>
-        <a id='home-link' href='javascript:void(0)'>Back</a>
+        <a class='home-link' href='javascript:void(0)'>Back</a>
 
         <button id='clear-crawl'>Clear Crawl</button>
     </div>
@@ -40,7 +40,7 @@
     </div>
 
     <div id='page-add-pub' class='page'>
-            <p style='margin-bottom: 50px; display: block;'>
+            <p style='margin-bottom: 50px; margin-top:20px; display: block;'>
                 This pub may be added to this app publicly at your current location. Please ask permission from the owner.
             </p>
 
@@ -52,6 +52,10 @@
 
 
             <button id='add-pub-here'>Add Pub at this location</button>
+
+            <br/>
+            <a class='home-link' href='javascript:void(0)'>Back</a>
+
         </form>
     </div>
 
