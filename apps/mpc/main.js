@@ -323,6 +323,6 @@ document.querySelector('#add-pub-here').addEventListener('click', async e => {
 
 document.querySelector('#clear-crawl').addEventListener('click', async e=>{
     localStorage.removeItem('previousLocations');
-    document.querySelector('#home-link').click();
+    document.querySelector('.home-link').click();
 })
 
