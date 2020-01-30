@@ -49,7 +49,10 @@ const getCrawl = () => {
 }
 
 const currentPubId = () => {
-    return previousLocations[previousLocations.length - 1].id.split('-')[0] || undefined;
+    if (previousLocations[0]) {
+        return previousLocations[previousLocations.length - 1].id.split('-')[0];
+    }
+    return 'no';
 }
 
 const openPage = pageId => {
