@@ -633,7 +633,6 @@ class ProductSlot extends Button {
             // empty
             this.type = 'empty';
             this.draggable = false;
-            this.resetImg();
             this.count = 0;
             this.color = '#ffffff00';
         }
@@ -729,8 +728,8 @@ class AdButton extends Button {
         else {
             ctx.fillStyle = '#00000077';
             ctx.fillRect(this.x, this.y, this.width, this.height - (this.height * (this.runtime / AdManifest[this.type].runtime)));
-            ctx.drawImage(this.targetImg, 0, 0, this.targetImg.height, this.targetImg.height, this.x - 8 + this.width / 2, this.y - 16, 16, 16);
         }
+        ctx.drawImage(this.targetImg, 0, 0, this.targetImg.height, this.targetImg.height, this.x - 8 + this.width / 2, this.y - 16, 16, 16);
     }
 }
 class Bank {
