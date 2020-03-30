@@ -629,12 +629,13 @@ class ProductSlot extends Button {
     }
     update() {
         super.update();
-        if (this.count <= 0) {
+        if (this.count <= 0 && this.type !== 'empty') {
             // empty
             this.type = 'empty';
             this.draggable = false;
             this.count = 0;
             this.color = '#ffffff00';
+            this.resetImg();
         }
         else {
             // we have an ad
