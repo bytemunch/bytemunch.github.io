@@ -1,0 +1,44 @@
+#logo-splash {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    cursor: pointer;
+}
+
+#text-splash {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+#splash {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+#content {
+    width: 100%;
+    height: 100%;
+    background: rgb(220,220,220);
+    background: radial-gradient(circle, rgba(220,220,220,1) 0%, rgba(187,187,187,1) 80%, rgba(106,106,106,1) 100%);
+}
+
+.ani-fadeOut {
+    animation: fadeOut 330ms normal forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}

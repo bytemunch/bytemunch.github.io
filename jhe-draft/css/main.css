@@ -1,0 +1,6 @@
+#page-container {
+    width: 100%;
+    height: -webkit-fill-available;
+    background: rgb(220,220,220);
+    background: radial-gradient(circle, rgba(220,220,220,1) 0%, rgba(187,187,187,1) 90%, rgba(187,187,187,1) 100%);
+}
