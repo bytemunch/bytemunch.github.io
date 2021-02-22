@@ -13,35 +13,61 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 //@ts-ignore
 window.svgClickHandler = e => {
-    openHome();
+    openPage('home');
 };
 const contentDiv = document.querySelector('#content');
-export const openHome = () => {
+export const openPage = pageId => {
+    if (document.querySelector('jhe-nav'))
+        document.querySelector('jhe-nav').close();
+    const pageManifest = {
+        'home': HomePage,
+        'about': AboutPage,
+        'contact': ContactPage
+    };
+    if (!pageManifest[pageId]) {
+        console.error('Invalid page!');
+        return;
+    }
+    if (document.querySelector('#page-container'))
+        document.querySelector('#page-container').innerHTML = '';
+    if (pageId == 'home') {
+        openHome();
+        return;
+    }
+    let newPage = new pageManifest[pageId];
+    document.querySelector('#page-container').appendChild(newPage);
+    newPage.classList.add('ani-fadeIn');
+};
+const openHome = () => {
     if (!splashClosed) {
         splashClosed = true;
         document.removeEventListener('click', openHome);
         document.querySelector('#splash').classList.add('ani-fadeOut');
         setTimeout(() => {
             document.querySelector('#splash').parentElement.removeChild(document.querySelector('#splash'));
-        }, 1000);
+        }, 330);
     }
+    const navBar = new NavBar;
     if (!document.querySelector('jhe-nav'))
-        contentDiv.appendChild(new NavBar);
+        contentDiv.appendChild(navBar);
+    navBar.classList.add('ani-fadeIn');
     if (!document.querySelector('#page-container')) {
         const pc = document.createElement('div');
         pc.id = 'page-container';
         contentDiv.appendChild(pc);
     }
-    document.querySelector('#page-container').innerHTML = '';
-    document.querySelector('#page-container').appendChild(new HomePage);
-};
-export const openAbout = () => {
-    document.querySelector('#page-container').innerHTML = '';
-    document.querySelector('#page-container').appendChild(new AboutPage);
-};
-export const openContact = () => {
-    document.querySelector('#page-container').innerHTML = '';
-    document.querySelector('#page-container').appendChild(new ContactPage);
+    if (!document.querySelector('#floating-logo')) {
+        const fl = document.createElement('object');
+        fl.id = 'floating-logo';
+        fl.data = './img/logo.svg';
+        fl.type = 'image/svg+xml';
+        contentDiv.appendChild(fl);
+        fl.classList.add('ani-fadeIn');
+    }
+    const newPage = new HomePage;
+    document.querySelector('#page-container').appendChild(newPage);
+    newPage.classList.add('ani-fadeIn');
+    //TODO not DRY
 };
 
 //# sourceMappingURL=../maps/main.js.map

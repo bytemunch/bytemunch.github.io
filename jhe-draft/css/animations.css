@@ -1,0 +1,16 @@
+.ani-fadeOut {
+    animation: fadeOut 330ms normal forwards;
+}
+
+.ani-fadeIn {
+    animation: fadeOut 330ms reverse forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
