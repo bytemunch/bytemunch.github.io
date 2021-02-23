@@ -2,6 +2,7 @@ import { AboutPage } from "./components/AboutPage.js";
 import { ContactPage } from "./components/ContactPage.js";
 import { HomePage } from "./components/HomePage.js";
 import { NavBar } from "./components/NavBar.js";
+import { ServicesPage } from "./components/ServicesPage.js";
 console.log('Hello, PWA!');
 async function preload() {
     // preload all required assets here
@@ -22,7 +23,8 @@ export const openPage = pageId => {
     const pageManifest = {
         'home': HomePage,
         'about': AboutPage,
-        'contact': ContactPage
+        'contact': ContactPage,
+        'services': ServicesPage,
     };
     if (!pageManifest[pageId]) {
         console.error('Invalid page!');

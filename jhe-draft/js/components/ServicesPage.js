@@ -1,17 +1,14 @@
-import { Carousel } from "./Carousel.js";
-export class HomePage extends HTMLElement {
+export class ServicesPage extends HTMLElement {
     constructor() {
         super();
     }
     connectedCallback() {
         this.classList.add('page');
-        let carousel = new Carousel({ sourceFolder: './img/homeCarousel', count: 5 });
-        this.appendChild(carousel);
         let txtDiv = document.createElement('div');
         txtDiv.classList.add('page-text');
         let headline = document.createElement('h2');
         headline.classList.add('page-headline');
-        headline.textContent = 'Headline that sounds c-o-o-l...';
+        headline.textContent = 'What we can do for you:';
         txtDiv.appendChild(headline);
         let flavourText = document.createElement('p');
         flavourText.classList.add('flavour-text');
@@ -20,6 +17,6 @@ export class HomePage extends HTMLElement {
         this.appendChild(txtDiv);
     }
 }
-customElements.define('jhe-home', HomePage);
+customElements.define('jhe-services', ServicesPage);
 
-//# sourceMappingURL=../../maps/components/HomePage.js.map
+//# sourceMappingURL=../../maps/components/ServicesPage.js.map

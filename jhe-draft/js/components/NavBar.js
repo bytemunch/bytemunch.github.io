@@ -32,29 +32,22 @@ export class NavBar extends HTMLElement {
         logo.type = "image/svg+xml";
         logo.style.float = "left";
         linksDiv.appendChild(logo);
-        const homeLink = document.createElement('a');
-        homeLink.textContent = 'HOME';
-        homeLink.classList.add('nav-link');
-        homeLink.id = 'nav-link-home';
-        homeLink.href = '#';
-        homeLink.addEventListener('click', () => openPage('home'));
-        linksDiv.appendChild(homeLink);
-        const aboutLink = document.createElement('a');
-        aboutLink.textContent = 'ABOUT';
-        aboutLink.classList.add('nav-link');
-        aboutLink.href = '#';
-        aboutLink.addEventListener('click', () => openPage('about'));
-        linksDiv.appendChild(aboutLink);
-        const contactLink = document.createElement('a');
-        contactLink.textContent = 'CONTACT';
-        contactLink.classList.add('nav-link');
-        contactLink.href = '#';
-        contactLink.addEventListener('click', () => openPage('contact'));
-        linksDiv.appendChild(contactLink);
+        linksDiv.appendChild(linkFactory('home', 'HOME'));
+        linksDiv.appendChild(linkFactory('about', 'ABOUT'));
+        linksDiv.appendChild(linkFactory('services', 'SERVICES'));
+        linksDiv.appendChild(linkFactory('contact', 'CONTACT'));
         this.appendChild(linksDiv);
         window.addEventListener('resize', this.close.bind(this));
     }
 }
+const linkFactory = (id, text) => {
+    const newLink = document.createElement('a');
+    newLink.textContent = text;
+    newLink.classList.add('nav-link');
+    newLink.href = '#' + id;
+    newLink.addEventListener('click', () => openPage(id));
+    return newLink;
+};
 customElements.define('jhe-nav', NavBar);
 
 //# sourceMappingURL=../../maps/components/NavBar.js.map

@@ -11,20 +11,28 @@ export class ContactPage extends HTMLElement {
         headline.style.textAlign = 'center';
         headline.textContent = 'Contact us, anytime!';
         this.appendChild(headline);
-        let phoneLine = document.createElement('div');
-        phoneLine.style.width = '100%';
-        phoneLine.style.padding = '0 10%';
-        let phoneNumber = document.createElement('p');
-        phoneNumber.classList.add('phone-number');
-        phoneNumber.textContent = '07474744747';
-        phoneLine.appendChild(phoneNumber);
+        const phoneLine = contactLineFactory('07764292985', 'phone');
         this.appendChild(phoneLine);
-        let phoneIcon = document.createElement('img');
-        phoneIcon.classList.add('icon-phone');
-        phoneIcon.src = './img/phone.svg';
-        phoneLine.appendChild(phoneIcon);
+        const linkedEmail = document.createElement('a');
+        linkedEmail.href = 'mailto:exampple@example.com';
+        const emailLine = contactLineFactory('quotes@jhe-electrical.co.uk', 'email');
+        linkedEmail.appendChild(emailLine);
+        this.appendChild(linkedEmail);
     }
 }
+const contactLineFactory = (text, icon) => {
+    let newLine = document.createElement('div');
+    newLine.classList.add('contact-line');
+    let phoneIcon = document.createElement('img');
+    phoneIcon.classList.add('contact-icon', `icon-${icon}`);
+    phoneIcon.src = `./img/${icon}.svg`;
+    newLine.appendChild(phoneIcon);
+    let lineTxt = document.createElement('p');
+    lineTxt.classList.add('contact-text');
+    lineTxt.textContent = text;
+    newLine.appendChild(lineTxt);
+    return newLine;
+};
 customElements.define('jhe-contact', ContactPage);
 
 //# sourceMappingURL=../../maps/components/ContactPage.js.map

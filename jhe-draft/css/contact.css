@@ -11,22 +11,26 @@ jhe-contact {
     box-shadow: black 0px 0px 5px 0px;
 }
 
-.phone-number {
+.contact-line {
+    width: fit-content;
+    clear: both;
+    margin: 0 auto;
+}
+
+.contact-text {
     font-size: x-large;
     text-align: center;
     padding: 0;
     margin: 0;
     display: block;
     float: left;
-    width: 100%;
+    width: auto;
 }
 
-.icon-phone {
+.contact-icon {
     width: 32px;
     height: 32px;
-    display: inline-block;
+    display: block;
     float: left;
     position: relative;
-    top: -32px;
-    left: calc(50% - 120px);
 }
