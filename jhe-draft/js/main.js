@@ -20,6 +20,7 @@ const contentDiv = document.querySelector('#content');
 export const openPage = pageId => {
     if (document.querySelector('jhe-nav'))
         document.querySelector('jhe-nav').close();
+    document.querySelectorAll('.nav-l2-div').forEach(v => v.classList.remove('open'));
     const pageManifest = {
         'home': HomePage,
         'about': AboutPage,
@@ -69,7 +70,7 @@ const openHome = () => {
     const newPage = new HomePage;
     document.querySelector('#page-container').appendChild(newPage);
     newPage.classList.add('ani-fadeIn');
-    //TODO not DRY
+    //TODO DRY
 };
 
 //# sourceMappingURL=../maps/main.js.map
