@@ -41,17 +41,17 @@ var Page = (function () {
     }
     Page.prototype.render = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var divs, mainpos, main, titlediv, title, text, links_3, linkColor, _i, links_1, link, linkDiv, desc, titleDiv, htmlLink, linkImg, githubLink, githubImg, frame_1, nav_1, doodles, titlediv, i_1, btn, _a, links_2, l, pos, div, i_2, ipos, image, space, i, pos, div;
+            var divs, mainpos, main, titlediv, title, text, links_4, linkColor, _i, links_1, link, linkDiv, desc, titleDiv, htmlLink, linkImg, githubLink, githubImg, links_5, linkColor, _a, links_2, link, linkDiv, desc, titleDiv, htmlLink, linkImg, githubLink, githubImg, _b, links_3, l, pos, div, i_1, ipos, image, space, i, pos, div;
             var _this = this;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0: return [4, getPage(this.name)
                             .then(function (res) {
                             _this.main = res.main || 'empty';
                             _this.images = res.images || 'empty';
                         })];
                     case 1:
-                        _b.sent();
+                        _c.sent();
                         divs = [];
                         if (this.main && this.main !== 'empty') {
                             mainpos = findSpace(width / 1.5, width / 1.7, height / 1.5, height / 2);
@@ -94,31 +94,31 @@ var Page = (function () {
                                 document.body.appendChild(main);
                             }
                             if (this.name == 'portfolio') {
-                                links_3 = [
+                                links_4 = [
+                                    {
+                                        text: 'JHE Electrical',
+                                        link: 'https://bytemunch.github.io/jhe-draft/',
+                                        desc: 'A draft site for a friend. I didn\'t design the logo, but did add the animations.',
+                                        repo: 'https://github.com/bytemunch/jhe'
+                                    },
                                     {
                                         text: 'Drink!',
-                                        link: 'https://drink-with.us',
-                                        desc: 'A multiplayer realtime drinking game app. In active development.',
+                                        link: 'https://ring-of-fire-5d1a4.web.app/',
+                                        desc: 'A multiplayer realtime drinking game app. In active (eternal) development.',
                                         repo: ''
                                     },
                                     {
                                         text: 'Fresh Decorators',
-                                        link: 'https://sam.edelsten.me/fresh/index.html',
-                                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work',
+                                        link: 'https://bytemunch.github.io/fresh/index.html',
+                                        desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work!',
                                         repo: ''
-                                    },
-                                    {
-                                        text: 'Meme Man Facebook App',
-                                        link: 'https://meme-man-test.web.app/',
-                                        desc: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs',
-                                        repo: 'https://github.com/bytemunch/meme-man-test'
                                     },
                                 ];
                                 linkColor = 'white';
                                 if (main.style.backgroundColor === 'white' || main.style.backgroundColor === 'yellow') {
                                     linkColor = 'black';
                                 }
-                                for (_i = 0, links_1 = links_3; _i < links_1.length; _i++) {
+                                for (_i = 0, links_1 = links_4; _i < links_1.length; _i++) {
                                     link = links_1[_i];
                                     linkDiv = document.createElement('div');
                                     desc = document.createElement('p');
@@ -155,64 +155,69 @@ var Page = (function () {
                                 }
                             }
                             if (this.name == 'funstuff') {
-                                main.style.backgroundColor = 'transparent';
-                                frame_1 = document.createElement('iframe');
-                                frame_1.style.height = 'calc(80% - ' + linew + 'px)';
-                                frame_1.style.top = 'calc(20% + ' + linew + 'px)';
-                                frame_1.style.width = '100%';
-                                frame_1.style.marginLeft = -linew + '';
-                                frame_1.style.marginTop = -linew + '';
-                                frame_1.style.borderWidth = linew;
-                                frame_1.classList.add('linkbox');
-                                frame_1.scrolling = 'no';
-                                frame_1.style.borderWidth = linew;
-                                frame_1.src = '//' + rooturi + '/doodles/scribbler';
-                                main.appendChild(frame_1);
-                                nav_1 = {
-                                    next: document.createElement('a'),
-                                    prev: document.createElement('a'),
-                                    drop: document.createElement('select')
-                                };
-                                doodles = [];
-                                fetch('./doodles/index.json')
-                                    .then(function (res) { return res.json(); })
-                                    .then(function (doodles) {
-                                    for (var doodle in doodles) {
-                                        var opt = document.createElement('option');
-                                        opt.value = doodles[doodle].link;
-                                        opt.textContent = doodle;
-                                        nav_1.drop.appendChild(opt);
+                                links_5 = [
+                                    {
+                                        text: 'Shitty Ball Game',
+                                        link: 'https://bytemunch.github.io/apps/shitty-ball-game',
+                                        desc: 'September 2021. Does what it says on the tin, it\'s another shitty ball game!.',
+                                        repo: ''
+                                    },
+                                    {
+                                        text: 'Advertising Game',
+                                        link: 'https://bytemunch.github.io/apps/advert',
+                                        desc: 'March 2020. My take on an idle game. Not sure where I was going with it, but I got halfway there! Wherever there is...',
+                                        repo: ''
+                                    },
+                                    {
+                                        text: 'Meme Man Facebook App',
+                                        link: 'https://meme-man-test.web.app/',
+                                        desc: 'March 2020. A zero effort facebook test. Made one morning to get a better handle on Facebook APIs',
+                                        repo: 'https://github.com/bytemunch/meme-man-test'
+                                    },
+                                ];
+                                linkColor = 'white';
+                                if (main.style.backgroundColor === 'white' || main.style.backgroundColor === 'yellow') {
+                                    linkColor = 'black';
+                                }
+                                for (_a = 0, links_2 = links_5; _a < links_2.length; _a++) {
+                                    link = links_2[_a];
+                                    linkDiv = document.createElement('div');
+                                    desc = document.createElement('p');
+                                    desc.textContent = link.desc;
+                                    desc.style.color = linkColor;
+                                    desc.style.marginLeft = (linew * 2) + '';
+                                    desc.style.marginBottom = (linew * 2) + '';
+                                    titleDiv = document.createElement('div');
+                                    htmlLink = document.createElement('a');
+                                    htmlLink.textContent = link.text;
+                                    htmlLink.href = link.link;
+                                    htmlLink.target = '_blank';
+                                    htmlLink.style.margin = linew;
+                                    htmlLink.style.color = linkColor;
+                                    htmlLink.style.fontWeight = 'bold';
+                                    linkImg = document.createElement('img');
+                                    linkImg.src = linkColor == 'black' ? './img/link-24px.png' : './img/link-24px-light.png';
+                                    linkImg.classList.add('linkimg');
+                                    htmlLink.appendChild(linkImg);
+                                    titleDiv.appendChild(htmlLink);
+                                    if (link.repo) {
+                                        githubLink = document.createElement('a');
+                                        githubLink.href = link.repo;
+                                        githubLink.target = '_blank';
+                                        githubImg = document.createElement('img');
+                                        githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png' : './img/GitHub-Mark-Light-32px.png';
+                                        githubImg.classList.add('linkimg');
+                                        githubLink.appendChild(githubImg);
+                                        titleDiv.appendChild(githubLink);
                                     }
-                                });
-                                nav_1.drop.style.position = 'absolute';
-                                nav_1.drop.style.top = '5px';
-                                nav_1.drop.style.right = '105px';
-                                titlediv = document.querySelector('.maintitle');
-                                titlediv.appendChild(nav_1.drop);
-                                nav_1.next.addEventListener('click', function () {
-                                    console.log('nclicky');
-                                });
-                                nav_1.prev.addEventListener('click', function () {
-                                    console.log('pclicky');
-                                });
-                                nav_1.drop.addEventListener('change', function (e) {
-                                    frame_1.src = '//' + rooturi + '/doodles/' + nav_1.drop.value;
-                                });
-                                i_1 = 0;
-                                for (btn in nav_1) {
-                                    if (btn !== 'drop') {
-                                        nav_1[btn].style.position = 'absolute';
-                                        nav_1[btn].style.top = '5px';
-                                        nav_1[btn].style.right = ((i_1 * 35) + 5) + 'px';
-                                        nav_1[btn].textContent = btn;
-                                        titlediv.appendChild(nav_1[btn]);
-                                        i_1++;
-                                    }
+                                    linkDiv.appendChild(titleDiv);
+                                    linkDiv.appendChild(desc);
+                                    main.appendChild(linkDiv);
                                 }
                             }
                         }
-                        for (_a = 0, links_2 = links; _a < links_2.length; _a++) {
-                            l = links_2[_a];
+                        for (_b = 0, links_3 = links; _b < links_3.length; _b++) {
+                            l = links_3[_b];
                             if (l.link.replace('#', '') !== this.name) {
                                 pos = findSpace(maxw, minw, maxh, minh);
                                 div = newDiv(pos, l.img, l.link, l.txt);
@@ -223,9 +228,9 @@ var Page = (function () {
                             }
                         }
                         if (this.images !== 'empty') {
-                            for (i_2 in this.images) {
+                            for (i_1 in this.images) {
                                 ipos = findSpace(maxw, minw, maxh, minh);
-                                image = newDiv(ipos, this.images[i_2]);
+                                image = newDiv(ipos, this.images[i_1]);
                                 if (image) {
                                     divs.push(image);
                                     document.body.appendChild(image);
