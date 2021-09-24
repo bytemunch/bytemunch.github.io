@@ -171,7 +171,7 @@ var Page = (function () {
                                     {
                                         text: 'Meme Man Facebook App',
                                         link: 'https://meme-man-test.web.app/',
-                                        desc: 'March 2020. A zero effort facebook test. Made one morning to get a better handle on Facebook APIs',
+                                        desc: 'March 2020. A zero effort facebook test. Made one morning to get a better handle on Facebook APIs. Since removed Facebook APIs because apparently the app was "too low quality" or something.',
                                         repo: 'https://github.com/bytemunch/meme-man-test'
                                     },
                                 ];
