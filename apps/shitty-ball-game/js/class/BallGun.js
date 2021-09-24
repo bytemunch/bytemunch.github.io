@@ -9,7 +9,6 @@ export class BallGun {
         this.target = new Vector({ a: Math.PI * 1.5, m: this.size / 2 });
         this.reloadSpeed = 60;
         this.reloadProgress = 60;
-        this.forceStop = false;
     }
     setTarget(x, y) {
         if (this.firing)
@@ -37,11 +36,6 @@ export class BallGun {
             return;
         this.firing = true;
         this.reloadProgress = 0;
-        if (this.forceStop) {
-            this.forceStop = false;
-            this.firing = false;
-            return;
-        }
         if (game.ballBank.use(1)) {
             ballArray.push(new Ball({
                 x: this.pos.x + this.target.x,

@@ -15,7 +15,6 @@ export let timestep = 0;
 export let frameCount = 0;
 export class BallGame {
     constructor() {
-        this.clearForceStopNextFrame = false;
         this.timeFactor = 1;
         this.level = 0;
         this.naturalGameBB = {
@@ -131,7 +130,8 @@ export class BallGame {
     }
     async loadLevel() {
         this.balls.forEach(b => b.health = 0);
-        this.ballGun.forceStop = true;
+        this.actionQueue = [];
+        this.ballGun.firing = false;
         let levelsPerDifficulty = {
             easy: 3,
             medium: 2,
@@ -260,10 +260,6 @@ export class BallGame {
         this.actionQueue.push({ trigger, cb, args });
     }
     async loop(t) {
-        if (this.clearForceStopNextFrame) {
-            this.ballGun.forceStop = false;
-            this.clearForceStopNextFrame = false;
-        }
         frameCount++;
         deltaTime = (t - prevFrameTime) / 20;
         timestep = deltaTime * this.timeFactor;
@@ -273,7 +269,6 @@ export class BallGame {
         if (this.blocks.length == 0) {
             this.level++;
             await this.loadLevel();
-            this.clearForceStopNextFrame = true;
         }
         for (let i = this.actionQueue.length - 1; i >= 0; i--) {
             let fn = this.actionQueue[i];
