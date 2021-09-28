@@ -160,7 +160,7 @@ var Page = (function () {
                                         text: 'Shitty Ball Game',
                                         link: 'https://bytemunch.github.io/apps/shitty-ball-game',
                                         desc: 'September 2021. Does what it says on the tin, it\'s another shitty ball game!.',
-                                        repo: ''
+                                        repo: 'https://github.com/bytemunch/shitty-ball-game'
                                     },
                                     {
                                         text: 'Advertising Game',
