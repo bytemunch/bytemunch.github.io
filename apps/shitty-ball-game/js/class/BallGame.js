@@ -13,6 +13,9 @@ let deltaTime = 0;
 export let prevFrameTime = 0;
 export let timestep = 0;
 export let frameCount = 0;
+BigInt.prototype.toJSON = function (b) {
+    return this.toString() + "n";
+};
 export class BallGame {
     constructor() {
         this.timeFactor = 1;
@@ -33,6 +36,7 @@ export class BallGame {
         this.containerDiv = document.querySelector('#ball-game');
         this.touchTarget = document.querySelector('#touch-target');
         this.pauseMenu = document.querySelector('#pause-menu');
+        this.splashScreen = document.querySelector('#splash');
         this.cnv = document.createElement('canvas');
         this.cnv.id = 'game-canvas';
         this.ctx = this.cnv.getContext('2d');
@@ -45,7 +49,6 @@ export class BallGame {
         window.addEventListener('resize', e => {
             this.onResize();
         });
-        this.score = 0n;
         this.balls = [];
         this.walls = [];
         this.blocks = [];
@@ -127,8 +130,25 @@ export class BallGame {
             }
         });
         this.pauseMenu.querySelector('#resume').addEventListener('click', this.unpause.bind(this));
+        this.pauseMenu.querySelector('#save-quit').addEventListener('click', this.btnSaveQuit.bind(this));
+        this.splashScreen.querySelector('#play').addEventListener('click', this.startGame.bind(this));
+        this.splashScreen.querySelector('#clear-data').addEventListener('click', this.btnClearData.bind(this));
+    }
+    postInit() {
+        this.ballBank = new BallBank({ x: 256 });
+        this.cashBank = new CashBank({ x: 16 });
+        this.bounceUpgrade = new BounceUpgrade({ x: 82 });
+        this.damageUpgrade = new DamageUpgrade({ x: 136 });
+        this.floorUpgrade = new FloorUpgrade({ x: 190 });
+        this.loadData();
+        this.loopHandle = requestAnimationFrame(this.loop.bind(this));
     }
     async loadLevel() {
+        if (this.loading)
+            return;
+        this.loading = true;
+        this.saveData();
+        this.blocks = [];
         this.balls.forEach(b => b.health = 0);
         this.actionQueue = [];
         this.ballGun.firing = false;
@@ -172,12 +192,83 @@ export class BallGame {
                         this.blocks.push(new Block({ x: bg(i), y: bg(j), health: bh }));
                     }
                 }
+                this.blocks.push(new Floor());
                 res(0);
             };
             oimg.src = `./levels/${difficulty}/${lvl}.png`;
         });
-        this.blocks.push(new Floor());
-        return levelLoaded;
+        await levelLoaded;
+        this.loading = false;
+        return;
+    }
+    parseBigInts(o) {
+        const regex = str => str.match(/^\d*n$/) != undefined;
+        const deepSearch = (o) => {
+            for (let prop in o) {
+                if (typeof o[prop] == 'string' && regex(o[prop])) {
+                    o[prop] = BigInt(o[prop].slice(0, o[prop].length - 1));
+                    continue;
+                }
+                if (typeof o[prop] == 'object') {
+                    deepSearch(o[prop]);
+                    continue;
+                }
+            }
+            return o;
+        };
+        return deepSearch(o);
+    }
+    clearData() {
+        const emptySaveData = {
+            upgrades: {
+                cashDropped: 1,
+                ballDamage: 1n,
+                bounces: 2,
+                floorHealth: 10n
+            },
+            balls: 200n,
+            cash: 0n,
+            level: 0
+        };
+        localStorage.setItem('save-data', JSON.stringify(emptySaveData));
+        this.loadData();
+        console.log(this.parseBigInts(JSON.parse(JSON.stringify(emptySaveData))));
+    }
+    saveData() {
+        const saveData = {
+            upgrades: this.upgrades,
+            balls: this.ballBank.count,
+            cash: this.cashBank.count,
+            level: this.level
+        };
+        localStorage.setItem('save-data', JSON.stringify(saveData));
+    }
+    loadData() {
+        const data = this.parseBigInts(JSON.parse(localStorage.getItem('save-data')));
+        if (data) {
+            this.upgrades = data.upgrades;
+            this.ballBank.count = data.balls;
+            this.cashBank.count = data.cash;
+            this.level = data.level;
+            this.loadLevel();
+        }
+        else {
+            this.clearData();
+        }
+    }
+    btnClearData() {
+        this.clearData();
+        console.log('data cleared!');
+    }
+    btnSaveQuit() {
+        this.saveData();
+        console.log('saved, now quit.');
+        this.splashScreen.style.display = 'block';
+        this.pauseMenu.style.display = 'none';
+    }
+    startGame() {
+        this.splashScreen.style.display = 'none';
+        this.unpause();
     }
     pause() {
         for (let fn of this.actionQueue) {
@@ -238,14 +329,6 @@ export class BallGame {
         this.cnv.height = this.containerBB.height;
         rh.ratio = this.containerBB.width / this.naturalGameBB.width;
     }
-    postInit() {
-        this.ballBank = new BallBank({ x: 256 });
-        this.cashBank = new CashBank({ x: 16 });
-        this.bounceUpgrade = new BounceUpgrade({ x: 82 });
-        this.damageUpgrade = new DamageUpgrade({ x: 136 });
-        this.floorUpgrade = new FloorUpgrade({ x: 190 });
-        this.loopHandle = requestAnimationFrame(this.loop.bind(this));
-    }
     get allObjects() {
         return [...this.walls, ...this.blocks, ...this.balls, this.ballGun];
     }
@@ -266,7 +349,7 @@ export class BallGame {
         prevFrameTime = t;
         if (this.blocks.length == 1 && this.blocks[0].constructor.name == 'Floor')
             this.blocks = [];
-        if (this.blocks.length == 0) {
+        if (!this.loading && this.blocks.length == 0) {
             this.level++;
             await this.loadLevel();
         }
