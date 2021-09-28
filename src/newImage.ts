@@ -1,5 +1,8 @@
+import { LineRunner } from "./class/LineRunner.js";
+import { lineRunners, linew } from "./main.js";
+
 // constructor function WHOOOOOO
-function newImage(x, y, w, h, src, link) {
+export function newImage(x, y, w, h, src, link) {
 	let image = document.createElement('img');
 	if (src[0] == '.') {
 		image.src = src;

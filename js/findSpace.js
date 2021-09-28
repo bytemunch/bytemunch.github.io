@@ -1,6 +1,9 @@
-function findSpace(maxw, minw, maxh, minh) {
-    var overlap = true;
-    var rw, rh, rx, ry, i = 0;
+import { checkCollision } from "./checkCollision.js";
+import { height, linew, width } from "./main.js";
+import { getBoundingBoxes } from './getBoundingBoxes.js';
+export function findSpace(maxw, minw, maxh, minh) {
+    let overlap = true;
+    let rw, rh, rx, ry, i = 0;
     while (overlap && i < 1000) {
         i++;
         rw = Math.random() * (maxw - minw) + minw;
@@ -8,10 +11,9 @@ function findSpace(maxw, minw, maxh, minh) {
         rx = Math.floor(Math.random() * (width - rw - linew * 2));
         ry = Math.floor(Math.random() * (height - rh - linew * 2));
         overlap = false;
-        var bbs = getBoundingBoxes();
-        for (var _i = 0, bbs_1 = bbs; _i < bbs_1.length; _i++) {
-            var bb = bbs_1[_i];
-            var thisBb = { x: rx, y: ry, width: rw, height: rh };
+        let bbs = getBoundingBoxes();
+        for (let bb of bbs) {
+            let thisBb = { x: rx, y: ry, width: rw, height: rh };
             if (checkCollision(bb, thisBb)) {
                 overlap = true;
                 break;
@@ -23,3 +25,4 @@ function findSpace(maxw, minw, maxh, minh) {
     }
     return { x: rx, y: ry, width: rw, height: rh };
 }
+//# sourceMappingURL=findSpace.js.map

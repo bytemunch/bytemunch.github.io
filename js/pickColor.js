@@ -1,5 +1,5 @@
-function pickColor() {
-    var n = Math.random();
+export function pickColor() {
+    let n = Math.random();
     if (n < 0.25)
         return 'yellow';
     if (n < 0.5)
@@ -13,3 +13,4 @@ function pickColor() {
         return 'black';
     return 'red';
 }
+//# sourceMappingURL=pickColor.js.map

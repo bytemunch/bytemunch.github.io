@@ -1,6 +1,10 @@
-function newDiv(pos, img, link, txt) {
-    var div = document.createElement('div');
-    var color = '';
+import { linew, reRange } from './main.js';
+import { openPage } from './openPage.js';
+import { pickColor } from './pickColor.js';
+import { sizeText } from './sizeText.js';
+export function newDiv(pos, img, link, txt) {
+    let div = document.createElement('div');
+    let color = '';
     switch (txt) {
         case 'me':
             color = 'blue';
@@ -24,7 +28,7 @@ function newDiv(pos, img, link, txt) {
     div.style.overflow = 'hidden';
     div.classList.add('linkbox');
     if (txt) {
-        var title = document.createElement('h2');
+        let title = document.createElement('h2');
         title.textContent = txt.toUpperCase();
         title.className = 'linktext';
         title.style.fontSize = '0';
@@ -46,7 +50,7 @@ function newDiv(pos, img, link, txt) {
         div.classList.add('linkbox');
     }
     if (img) {
-        var overlay = document.createElement('div');
+        let overlay = document.createElement('div');
         overlay.style.width = '150%';
         overlay.style.height = '150%';
         overlay.classList.add('overlay');
@@ -58,20 +62,20 @@ function newDiv(pos, img, link, txt) {
         div.appendChild(overlay);
         div.style.backgroundImage = "url('" + img + "')";
         div.style.backgroundPositionX = 'center';
-        div.addEventListener('mousemove', function (e) {
-            var newPos = (e.layerX / Number(div.style.width.replace('px', ''))) * 100;
+        div.addEventListener('mousemove', e => {
+            let newPos = (e.layerX / Number(div.style.width.replace('px', ''))) * 100;
             newPos = reRange(newPos, 0, 100, 40, 60);
             div.style.backgroundPositionX = newPos + '%';
         });
-        div.addEventListener('mouseout', function (e) {
+        div.addEventListener('mouseout', e => {
         });
     }
     if (link) {
-        var a = document.createElement('a');
+        let a = document.createElement('a');
         a.href = link;
         a.classList.add('link');
         a.appendChild(div);
-        a.addEventListener('click', function (e) {
+        a.addEventListener('click', e => {
             openPage(link);
         });
         return a;
@@ -80,3 +84,4 @@ function newDiv(pos, img, link, txt) {
         return div;
     }
 }
+//# sourceMappingURL=newDiv.js.map

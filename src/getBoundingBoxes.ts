@@ -1,4 +1,6 @@
-function getBoundingBoxes() {
+import { linew } from "./main.js";
+
+export function getBoundingBoxes() {
 	let divs = document.querySelectorAll('.linkbox');
 	let bbs = [];
 	let divbb;

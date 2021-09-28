@@ -1,5 +1,6 @@
-var Line = (function () {
-    function Line(runner) {
+import { ctx, linew } from '../main.js';
+export class Line {
+    constructor(runner) {
         this.x = runner.x;
         this.y = runner.y;
         this.startx = runner.x;
@@ -10,9 +11,9 @@ var Line = (function () {
         this.width = linew;
         this.height = linew;
     }
-    Line.prototype.draw = function () {
+    draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-    };
-    return Line;
-}());
+    }
+}
+//# sourceMappingURL=Line.js.map

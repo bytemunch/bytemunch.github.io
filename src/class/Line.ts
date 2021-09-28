@@ -1,4 +1,6 @@
-class Line {
+import {ctx, linew} from '../main.js';
+
+export class Line {
 	x;
 	y;
 	startx;

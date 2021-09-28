@@ -1,8 +1,21 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
-        "outDir": "./js",
-        "removeComments": true
+        "module": "ES6",
+        "target": "ESNext",
+        "noImplicitAny": false,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outDir": "./js/",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true
     },
-    "include": ["./src/**/*.ts"],
-    "exclude": ["./js/*.js"]
+    "include": [
+        "./src/main.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
 }

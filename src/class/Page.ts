@@ -1,6 +1,11 @@
 // Goooood I'm not looking forward to this refactor...
 
-class Page {
+import { addAllRunners, getPage, height, linew, links, maxh, maxw, minh, minw, width } from "../main.js";
+import { findSpace } from "../findSpace.js";
+import {newDiv} from '../newDiv.js';
+import { fadeIn, drawLines, finishedAnimation } from "../animations.js";
+
+export class Page {
 	name;
 	complexity;
 	main;

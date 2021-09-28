@@ -1,10 +1,11 @@
+import { clearLineRunners, ctx, height, lineRunners, width } from "./main.js";
 
 // animation
-function finishedAnimation() {
+export function finishedAnimation() {
 	// console.log('done thoooooo');
 }
 
-function fadeOut(elements, speed, cb) {
+export function fadeOut(elements, speed, cb) {
 	if (!elements[0]) {
 		// console.log('no elements, failing through...');
 		cb();
@@ -31,7 +32,7 @@ function fadeOut(elements, speed, cb) {
 	}
 }
 
-function fadeIn(elements, speed, cb?) {
+export function fadeIn(elements, speed, cb?) {
 	let o = parseFloat(elements[0].style.opacity) || 0;
 	o += speed;
 
@@ -48,7 +49,7 @@ function fadeIn(elements, speed, cb?) {
 	}
 }
 
-function drawLines(cb) {
+export function drawLines(cb) {
 	ctx.clearRect(0, 0, width, height);
 	let live = false;
 
@@ -70,7 +71,7 @@ function drawLines(cb) {
 	}
 }
 
-function retractLines(cb) {
+export function retractLines(cb) {
 	ctx.clearRect(0, 0, width, height);
 	let live = false;
 
@@ -89,13 +90,13 @@ function retractLines(cb) {
 			retractLines(cb);
 		});
 	} else {
-		lineRunners = []; //clear array to setup for next page
+		clearLineRunners();
 
 		if (cb) cb();
 	}
 }
 
-function fadeBoxesOut(cb) {
+export function fadeBoxesOut(cb) {
 	//@ts-ignore
 	// "Property 'from' does not exist on type 'ArrayConstructor'." uh yeah it does?
 	let boxes = Array.from(document.querySelectorAll('.linkbox'));

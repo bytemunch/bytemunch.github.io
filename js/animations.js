@@ -1,24 +1,23 @@
-function finishedAnimation() {
+import { clearLineRunners, ctx, height, lineRunners, width } from "./main.js";
+export function finishedAnimation() {
 }
-function fadeOut(elements, speed, cb) {
+export function fadeOut(elements, speed, cb) {
     if (!elements[0]) {
         cb();
     }
     else {
-        var o = parseFloat(elements[0].style.opacity) || 1;
+        let o = parseFloat(elements[0].style.opacity) || 1;
         o -= speed;
-        for (var _i = 0, elements_1 = elements; _i < elements_1.length; _i++) {
-            var element = elements_1[_i];
+        for (let element of elements) {
             element.style.opacity = o;
         }
         if (o > 0) {
-            window.requestAnimationFrame(function (ts) {
+            window.requestAnimationFrame(ts => {
                 fadeOut(elements, speed, cb);
             });
         }
         else {
-            for (var _a = 0, elements_2 = elements; _a < elements_2.length; _a++) {
-                var el = elements_2[_a];
+            for (let el of elements) {
                 el.parentElement.tagName == 'A' ?
                     el.parentElement.parentElement.removeChild(el.parentElement) :
                     el.parentElement.removeChild(el);
@@ -28,15 +27,14 @@ function fadeOut(elements, speed, cb) {
         }
     }
 }
-function fadeIn(elements, speed, cb) {
-    var o = parseFloat(elements[0].style.opacity) || 0;
+export function fadeIn(elements, speed, cb) {
+    let o = parseFloat(elements[0].style.opacity) || 0;
     o += speed;
-    for (var _i = 0, elements_3 = elements; _i < elements_3.length; _i++) {
-        var element = elements_3[_i];
+    for (let element of elements) {
         element.style.opacity = o;
     }
     if (o < 1) {
-        window.requestAnimationFrame(function (ts) {
+        window.requestAnimationFrame(ts => {
             fadeIn(elements, speed, cb);
         });
     }
@@ -45,11 +43,10 @@ function fadeIn(elements, speed, cb) {
             cb();
     }
 }
-function drawLines(cb) {
+export function drawLines(cb) {
     ctx.clearRect(0, 0, width, height);
-    var live = false;
-    for (var _i = 0, lineRunners_1 = lineRunners; _i < lineRunners_1.length; _i++) {
-        var lr = lineRunners_1[_i];
+    let live = false;
+    for (let lr of lineRunners) {
         lr.line.draw();
         if (!lr.dead) {
             live = true;
@@ -57,7 +54,7 @@ function drawLines(cb) {
         }
     }
     if (live) {
-        window.requestAnimationFrame(function (ts) {
+        window.requestAnimationFrame(ts => {
             drawLines(cb);
         });
     }
@@ -66,11 +63,10 @@ function drawLines(cb) {
             cb();
     }
 }
-function retractLines(cb) {
+export function retractLines(cb) {
     ctx.clearRect(0, 0, width, height);
-    var live = false;
-    for (var _i = 0, lineRunners_2 = lineRunners; _i < lineRunners_2.length; _i++) {
-        var lr = lineRunners_2[_i];
+    let live = false;
+    for (let lr of lineRunners) {
         lr.revive();
         lr.retract();
         if (!lr.dead) {
@@ -79,18 +75,19 @@ function retractLines(cb) {
         }
     }
     if (live) {
-        window.requestAnimationFrame(function (ts) {
+        window.requestAnimationFrame(ts => {
             retractLines(cb);
         });
     }
     else {
-        lineRunners = [];
+        clearLineRunners();
         if (cb)
             cb();
     }
 }
-function fadeBoxesOut(cb) {
-    var boxes = Array.from(document.querySelectorAll('.linkbox'));
+export function fadeBoxesOut(cb) {
+    let boxes = Array.from(document.querySelectorAll('.linkbox'));
     boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
     fadeOut(boxes, 0.05, cb);
 }
+//# sourceMappingURL=animations.js.map

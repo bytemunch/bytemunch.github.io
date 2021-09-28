@@ -1,5 +1,8 @@
-var LineRunner = (function () {
-    function LineRunner(x, y, axis, direction, parent) {
+import { ctx, height, lineRunners, linew, width } from "../main.js";
+import { Line } from "./Line.js";
+import { checkCollision } from "../checkCollision.js";
+export class LineRunner {
+    constructor(x, y, axis, direction, parent) {
         this.x = x;
         this.y = y;
         this.width = linew;
@@ -12,7 +15,7 @@ var LineRunner = (function () {
         this.parent = parent;
         this.line = new Line(this);
     }
-    LineRunner.prototype.update = function () {
+    update() {
         if (this.axis == 'x') {
             this.x += this.direction * this.speed;
             this.line.width += this.speed;
@@ -30,15 +33,14 @@ var LineRunner = (function () {
         if (this.x > width || this.x < 0 || this.y > height || this.y < 0) {
             this.die();
         }
-        var box1 = {
+        let box1 = {
             x: this.x - 1,
             y: this.y - 1,
             width: this.width - 1,
             height: this.height - 1
         };
-        for (var _i = 0, _a = document.querySelectorAll('.linkbox'); _i < _a.length; _i++) {
-            var div = _a[_i];
-            var box2 = div.getBoundingClientRect();
+        for (let div of document.querySelectorAll('.linkbox')) {
+            let box2 = div.getBoundingClientRect();
             box2.y += linew;
             box2.width -= linew;
             box2.height -= linew * 2;
@@ -49,11 +51,10 @@ var LineRunner = (function () {
             else {
             }
         }
-        for (var _b = 0, lineRunners_1 = lineRunners; _b < lineRunners_1.length; _b++) {
-            var lr = lineRunners_1[_b];
+        for (let lr of lineRunners) {
             if (lr != this && lr.axis != this.axis) {
-                var line = lr.line;
-                var box2 = {
+                let line = lr.line;
+                let box2 = {
                     x: line.x - 1,
                     y: line.y - 1,
                     width: line.width - 1,
@@ -63,8 +64,8 @@ var LineRunner = (function () {
                     this.die(box2);
             }
         }
-    };
-    LineRunner.prototype.retract = function () {
+    }
+    retract() {
         if (this.axis == 'x') {
             this.x -= this.direction * this.speed;
             this.line.width -= this.speed;
@@ -82,14 +83,13 @@ var LineRunner = (function () {
         if (this.line.width <= 0 || this.line.height <= 0) {
             this.die();
         }
-    };
-    LineRunner.prototype.revive = function () {
+    }
+    revive() {
         this.dead = false;
-    };
-    LineRunner.prototype.die = function (obstacle, nested) {
-        if (nested === void 0) { nested = false; }
+    }
+    die(obstacle, nested = false) {
         if (obstacle) {
-            var offset = linew / 2;
+            let offset = linew / 2;
             if (nested) {
                 if (this.direction == 1) {
                     if (this.axis == 'x') {
@@ -127,10 +127,10 @@ var LineRunner = (function () {
             }
         }
         this.dead = true;
-    };
-    LineRunner.prototype.draw = function () {
+    }
+    draw() {
         ctx.fillStyle = this.color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
-    };
-    return LineRunner;
-}());
+    }
+}
+//# sourceMappingURL=LineRunner.js.map

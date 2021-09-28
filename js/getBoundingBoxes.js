@@ -1,11 +1,11 @@
-function getBoundingBoxes() {
-    var divs = document.querySelectorAll('.linkbox');
-    var bbs = [];
-    var divbb;
-    for (var _i = 0, divs_1 = divs; _i < divs_1.length; _i++) {
-        var div = divs_1[_i];
+import { linew } from "./main.js";
+export function getBoundingBoxes() {
+    let divs = document.querySelectorAll('.linkbox');
+    let bbs = [];
+    let divbb;
+    for (let div of divs) {
         divbb = div.getBoundingClientRect();
-        var stripped = {
+        let stripped = {
             x: divbb.x -= linew,
             y: divbb.y -= linew,
             width: divbb.width += linew,
@@ -15,3 +15,4 @@ function getBoundingBoxes() {
     }
     return bbs;
 }
+//# sourceMappingURL=getBoundingBoxes.js.map

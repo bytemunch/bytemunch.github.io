@@ -1,8 +1,12 @@
-/// <reference path='./class/Link.ts'/>
-/// <reference path='./openPage.ts'/>
+import { Page } from './class/Page.js';
+import { Link } from './class/Link.js';
+import { LineRunner } from './class/LineRunner.js';
+import { fadeIn } from './animations.js';
+import { openPage } from './openPage.js';
+import { newDiv } from './newDiv.js';
 
 // Canvas setup
-//@ts-ignore
+
 let frameCount = 0;
 const frameRate = 30;
 
@@ -13,20 +17,22 @@ const canvas = document.createElement('canvas');
 canvas.style.position = 'absolute';
 canvas.style.zIndex = '0';
 
-let ctx = canvas.getContext("2d");
+export let ctx = canvas.getContext("2d");
 
 document.body.appendChild(canvas);
 
 //data structures
-let links = [];
-let lineRunners = [];
+export let links = [];
+export let lineRunners = [];
 
-async function getPage(page) {
+export const clearLineRunners = () => { lineRunners = [] }
+
+export async function getPage(page) {
 	const res = await fetch('./pages/' + page + '.json')
 	return res.json();
 }
 
-function reRange(val, min1, max1, min2, max2) {
+export function reRange(val, min1, max1, min2, max2) {
 	let percent = (val - min1) / (max1 - min1);
 
 	let newVal = min2 + ((max2 - min2) * percent);
@@ -34,7 +40,7 @@ function reRange(val, min1, max1, min2, max2) {
 	return newVal;
 }
 
-let pages = {
+export let pages = {
 	about: new Page('about'),
 	funstuff: new Page('funstuff'),
 	portfolio: new Page('portfolio'),
@@ -48,13 +54,13 @@ links.push(new Link("./img/play.png", "#funstuff", "play"));
 const scale = 1;
 
 // variablesss
-let width;
-let height;
-let linew;
-let maxw;
-let maxh;
-let minw;
-let minh;
+export let width;
+export let height;
+export let linew;
+export let maxw;
+export let maxh;
+export let minw;
+export let minh;
 
 // animationstuff
 let drawLoopId;
@@ -62,7 +68,7 @@ let drawLoopId;
 addAllRunners();
 
 // add linerunners whole page
-function addAllRunners(cb?) {
+export function addAllRunners(cb?) {
 	let boxes = document.querySelectorAll('.linkbox');
 	//@ts-ignore
 	for (let box of boxes) {

@@ -1,8 +1,8 @@
-var Link = (function () {
-    function Link(img, link, txt) {
+export class Link {
+    constructor(img, link, txt) {
         this.img = img;
         this.link = link;
         this.txt = txt;
     }
-    return Link;
-}());
+}
+//# sourceMappingURL=Link.js.map

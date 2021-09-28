@@ -1,4 +1,4 @@
-function pickColor() {
+export function pickColor() {
 	//DEBUG
 	//return 'transparent';
 

@@ -1,4 +1,4 @@
-function sizeText(text, maxWidth, maxHeight) {
+export function sizeText(text, maxWidth, maxHeight) {
 	document.querySelector("#invisible").appendChild(text);
 	let bb = text.getBoundingClientRect();
 	let currentWidth = bb.width;

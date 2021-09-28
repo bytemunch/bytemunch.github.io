@@ -1,8 +1,8 @@
-///<reference path="./Line.ts" />
-///<reference path="../main.ts" />
-///<reference path="../checkCollision.ts" />
+import { ctx, height, lineRunners, linew, width } from "../main.js";
+import { Line } from "./Line.js";
+import { checkCollision } from "../checkCollision.js";
 
-class LineRunner {
+export class LineRunner {
 	x;
 	y;
 	width;

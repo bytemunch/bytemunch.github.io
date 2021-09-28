@@ -1,4 +1,8 @@
-function findSpace(maxw, minw, maxh, minh) {
+import { checkCollision } from "./checkCollision.js";
+import { height, linew, width } from "./main.js";
+import {getBoundingBoxes} from './getBoundingBoxes.js';
+
+export function findSpace(maxw, minw, maxh, minh) {
 	//TODO positioning, collisions, etc should be done serverside
 	let overlap = true;
 

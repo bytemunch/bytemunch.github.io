@@ -1,7 +1,9 @@
-/// <reference path='./pickColor.ts' />
-/// <reference path='./sizeText.ts' />
+import { linew, reRange } from './main.js';
+import { openPage } from './openPage.js';
+import { pickColor } from './pickColor.js';
+import { sizeText } from './sizeText.js';
 
-function newDiv(pos, img?, link?, txt?) {
+export function newDiv(pos, img?, link?, txt?) {
 	let div = document.createElement('div');
 	let color = '';
 

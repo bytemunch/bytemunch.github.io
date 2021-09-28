@@ -1,4 +1,6 @@
-class Link {
+// TODO this should be an interface
+
+export class Link {
 	img;
 	link;
 	txt;
