@@ -1,9 +1,14 @@
 import { Page } from './class/Page.js';
-import { Link } from './class/Link.js';
 import { LineRunner } from './class/LineRunner.js';
 import { fadeIn } from './animations.js';
 import { openPage } from './openPage.js';
 import { newDiv } from './newDiv.js';
+
+interface Link {
+	img: string,
+	link: string,
+	txt: string
+}
 
 // Canvas setup
 
@@ -22,7 +27,7 @@ export let ctx = canvas.getContext("2d");
 document.body.appendChild(canvas);
 
 //data structures
-export let links = [];
+export let links: Link[] = [];
 export let lineRunners = [];
 
 export const clearLineRunners = () => { lineRunners = [] }
@@ -47,9 +52,9 @@ export let pages = {
 	home: new Page('home')
 }; //TODO loopme
 
-links.push(new Link("./img/about.png", "#about", "me"));
-links.push(new Link("./img/work.png", "#portfolio", "work"));
-links.push(new Link("./img/play.png", "#funstuff", "play"));
+links.push({ img: "./img/about.png", link: "#about", txt: "me" });
+links.push({ img: "./img/work.png", link: "#portfolio", txt: "work" });
+links.push({ img: "./img/play.png", link: "#funstuff", txt: "play" });
 
 const scale = 1;
 

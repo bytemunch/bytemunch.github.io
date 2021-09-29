@@ -2,7 +2,7 @@
 
 import { addAllRunners, getPage, height, linew, links, maxh, maxw, minh, minw, width } from "../main.js";
 import { findSpace } from "../findSpace.js";
-import {newDiv} from '../newDiv.js';
+import { newDiv } from '../newDiv.js';
 import { fadeIn, drawLines, finishedAnimation } from "../animations.js";
 
 export class Page {
@@ -49,7 +49,7 @@ export class Page {
 
 			main.style.overflowX = 'hidden';
 			main.style.overflowY = 'auto';
-			
+
 
 			if (main) {
 				let titlediv = document.createElement('div');
@@ -141,11 +141,11 @@ export class Page {
 						let githubLink = document.createElement('a');
 						githubLink.href = link.repo;
 						githubLink.target = '_blank';
-	
+
 						let githubImg = document.createElement('img');
-						githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png':'./img/GitHub-Mark-Light-32px.png';
+						githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png' : './img/GitHub-Mark-Light-32px.png';
 						githubImg.classList.add('linkimg');
-	
+
 						githubLink.appendChild(githubImg);
 						titleDiv.appendChild(githubLink);
 					}
@@ -300,11 +300,11 @@ export class Page {
 						let githubLink = document.createElement('a');
 						githubLink.href = link.repo;
 						githubLink.target = '_blank';
-	
+
 						let githubImg = document.createElement('img');
-						githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png':'./img/GitHub-Mark-Light-32px.png';
+						githubImg.src = linkColor == 'black' ? './img/GitHub-Mark-32px.png' : './img/GitHub-Mark-Light-32px.png';
 						githubImg.classList.add('linkimg');
-	
+
 						githubLink.appendChild(githubImg);
 						titleDiv.appendChild(githubLink);
 					}
@@ -316,7 +316,7 @@ export class Page {
 				}
 
 			}
-			
+
 		}
 
 		//NAV LINKS

@@ -1,5 +1,4 @@
 import { Page } from './class/Page.js';
-import { Link } from './class/Link.js';
 import { LineRunner } from './class/LineRunner.js';
 import { fadeIn } from './animations.js';
 import { openPage } from './openPage.js';
@@ -30,9 +29,9 @@ export let pages = {
     portfolio: new Page('portfolio'),
     home: new Page('home')
 };
-links.push(new Link("./img/about.png", "#about", "me"));
-links.push(new Link("./img/work.png", "#portfolio", "work"));
-links.push(new Link("./img/play.png", "#funstuff", "play"));
+links.push({ img: "./img/about.png", link: "#about", txt: "me" });
+links.push({ img: "./img/work.png", link: "#portfolio", txt: "work" });
+links.push({ img: "./img/play.png", link: "#funstuff", txt: "play" });
 const scale = 1;
 export let width;
 export let height;
