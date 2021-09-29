@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>track my pub crawl</title>
+
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.js'></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <p id='version'>my-pub-crawl prototype 0.0.3</p>
+
+    <div id='page-home' class='page'>
+        <button id='checkin' disabled>Looking for nearby pubs...</button>
+        <button id='different-pub' disabled>Loading...</button>
+        <button id='view-crawl' disabled>Please wait...</button>
+    </div>
+
+    <div id='page-map' class='page'>
+        <div id='map' style='width: 95%; height: 300px; margin:0 auto;'></div>
+        <p>Crawl Count: <p id='count'>0</p></p>
+        <a class='home-link' href='javascript:void(0)'>Back</a>
+
+        <button id='clear-crawl'>Clear Crawl</button>
+    </div>
+
+    <div id='page-nearby' class='page'>
+        <div id='list-nearby'></div>
+        <button id='add-pub'>Add pub at this location</button>
+    </div>
+
+    <div id='page-add-pub' class='page'>
+            <p style='margin-bottom: 50px; margin-top:20px; display: block;'>
+                This pub may be added to this app publicly at your current location. Please ask permission from the owner.
+            </p>
+
+            <div class='fullwidth'>
+                <label for='pub-name'>Pub Name:</label>
+                <br/>
+                <input id='pub-name' />
+            </div>
+
+
+            <button id='add-pub-here'>Add Pub at this location</button>
+
+            <br/>
+            <a class='home-link' href='javascript:void(0)'>Back</a>
+
+        </form>
+    </div>
+
+    <div id='page-construction' class='page'>
+        <h2 style='margin:20px'>Yeah sorry I haven't implemented that yet!</h2>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

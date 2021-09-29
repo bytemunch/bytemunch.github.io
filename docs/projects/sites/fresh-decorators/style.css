@@ -1,0 +1,186 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow-x: hidden;
+  background-color: #d6d6d6;
+  background-image: url(./img/Brick-Smaller.jpg);
+  background-size: 300vw;
+  width: 100%;
+}
+.frosted-glass {
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#bg-filter {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+}
+#bg-logo {
+  position: absolute;
+  width: 300px;
+  z-index: 1;
+  transform: rotate(-30deg) translateY(50vh);
+}
+.fallback-logo {
+  background-image: url(./img/logo_basic_text_fallback.png);
+  background-size: contain;
+  width: 50%;
+  height: 50%;
+  background-repeat: no-repeat;
+}
+.fallback-logo,
+.landing-logo {
+  width: 90%;
+  max-height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+.landing-logo * {
+  cursor: pointer;
+}
+#nav-bar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 10;
+  user-select: none;
+}
+#nav-bar img {
+  height: 56px;
+  background-color: white;
+  padding: 4px 2px;
+  float: left;
+  margin: 3.5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+#nav-bar #nav-menu {
+  float: right;
+}
+#nav-list {
+  visibility: hidden;
+  position: fixed;
+  right: 0;
+  top: 64px;
+  list-style: none;
+}
+#nav-off-click-catcher {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+}
+.nav-link {
+  font-size: x-large;
+  margin: 2px;
+  position: relative;
+  border: 2px solid red;
+  padding: 16px;
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+.page-block {
+  display: block;
+  position: relative;
+  top: 0;
+  height: calc(100vh - 64px);
+  width: 100vw;
+  overflow: hidden;
+}
+.textbox {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 60%;
+  display: block;
+  float: left;
+}
+.imagebox {
+  position: relative;
+  display: block;
+  float: right;
+  width: 40%;
+  height: 100%;
+}
+#page-home {
+  cursor: pointer;
+}
+#page-home .textbox {
+  top: 35vh;
+  transform: translateY(-50%);
+  left: 0;
+  float: left;
+}
+#page-portfolio .textbox,
+#page-contact .textbox {
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+#next-page {
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: white;
+  background-image: url(./img/down_arrow.png);
+  z-index: 10;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  #nav-menu {
+    display: none;
+  }
+  #nav-list {
+    visibility: visible;
+    top: 0;
+    right: 0;
+  }
+  .nav-link {
+    display: inline-block;
+    background: none;
+    height: 100%;
+    border: none;
+  }
+  #nav-off-click-catcher {
+    display: none;
+  }
+}
+@media screen and (max-width: 320px) {
+  body {
+    background: none;
+  }
+  #nav-bar {
+    display: none;
+  }
+  #next-page {
+    display: none;
+  }
+  .landing-logo {
+    width: 200px;
+    max-height: unset;
+    position: absolute;
+    left: unset;
+    top: unset;
+    transform: unset;
+    cursor: pointer;
+  }
+}
