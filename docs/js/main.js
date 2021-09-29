@@ -73,7 +73,6 @@ function resetCanvas() {
     canvas.height = height;
     canvas.width = width;
     width > height ? linew = height * 0.01 : linew = width * 0.01;
-    linew = Math.floor(linew);
     maxw = (width / 4) * scale;
     maxh = (height / 4) * scale;
     minw = (width / 6) * scale;

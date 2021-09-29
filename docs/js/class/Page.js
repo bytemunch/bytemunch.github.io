@@ -15,8 +15,7 @@ export class Page {
         });
         let divs = [];
         if (this.main && this.main !== 'empty') {
-            let mainpos = findSpace(width / 1.5, width / 1.7, height / 1.5, height / 2);
-            mainpos = {
+            let mainpos = {
                 x: width / 24,
                 y: height / 7,
                 width: width / 1.5,
@@ -28,24 +27,12 @@ export class Page {
                 mainpos.y = 25;
             }
             let main = newDiv(mainpos);
-            main.style.overflowX = 'hidden';
-            main.style.overflowY = 'auto';
             if (main) {
                 let titlediv = document.createElement('div');
                 let title = document.createElement('h3');
                 let text = document.createElement('p');
                 titlediv.classList.add('linkbox');
                 titlediv.classList.add('maintitle');
-                titlediv.style.width = 'calc(100% - ' + (linew * 2) + 'px)';
-                titlediv.style.position = 'relative';
-                titlediv.style.marginLeft = -linew + '';
-                titlediv.style.marginTop = -linew + '';
-                titlediv.style.marginBottom = linew;
-                titlediv.style.borderWidth = linew;
-                titlediv.style.paddingLeft = linew;
-                titlediv.style.paddingRight = linew;
-                titlediv.style.backgroundColor = 'white';
-                main.classList.add(this.main.title.replace(' ', '-'));
                 title.textContent = this.main.title || 'TITLE 404';
                 text.textContent = this.main.text || 'TEXT 404';
                 titlediv.appendChild(title);
