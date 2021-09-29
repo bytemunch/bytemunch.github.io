@@ -58,7 +58,7 @@ export class Page {
                 let links = [
                     {
                         text: 'JHE Electrical',
-                        link: 'https://bytemunch.github.io/sites/jhe-draft/',
+                        link: 'https://bytemunch.github.io/projects/sites/jhe-draft/',
                         desc: 'A draft site for a friend. I didn\'t design the logo, but did add the animations.',
                         repo: 'https://github.com/bytemunch/jhe'
                     },
@@ -70,7 +70,7 @@ export class Page {
                     },
                     {
                         text: 'Fresh Decorators',
-                        link: 'https://bytemunch.github.io/sites/fresh-decorators/index.html',
+                        link: 'https://bytemunch.github.io/projects/sites/fresh-decorators/index.html',
                         desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work!',
                         repo: ''
                     },
@@ -118,13 +118,13 @@ export class Page {
                 let links = [
                     {
                         text: 'Shitty Ball Game',
-                        link: 'https://bytemunch.github.io/apps/shitty-ball-game',
+                        link: 'https://bytemunch.github.io/projects/apps/shitty-ball-game',
                         desc: 'September 2021. Does what it says on the tin, it\'s another shitty ball game!.',
                         repo: 'https://github.com/bytemunch/shitty-ball-game'
                     },
                     {
                         text: 'Advertising Game',
-                        link: 'https://bytemunch.github.io/apps/advert',
+                        link: 'https://bytemunch.github.io/projects/apps/advert',
                         desc: 'March 2020. My take on an idle game. Not sure where I was going with it, but I got halfway there! Wherever there is...',
                         repo: ''
                     },
