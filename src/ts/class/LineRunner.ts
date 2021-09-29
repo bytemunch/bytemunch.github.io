@@ -30,7 +30,7 @@ export class LineRunner {
 		this.line = new Line(this);
 	}
 
-	update() {
+	extend() {
 		if (this.axis == 'x') {
 			this.x += this.direction * this.speed;
 			this.line.width += this.speed;

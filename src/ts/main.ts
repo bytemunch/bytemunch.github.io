@@ -28,7 +28,7 @@ document.body.appendChild(canvas);
 
 //data structures
 export let links: Link[] = [];
-export let lineRunners = [];
+export let lineRunners:LineRunner[] = [];
 
 export const clearLineRunners = () => { lineRunners = [] }
 

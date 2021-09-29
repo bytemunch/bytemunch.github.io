@@ -1,11 +1,10 @@
 import { fadeBoxesOut, retractLines } from './animations.js';
 import { pages } from './main.js';
-export function openPage(page) {
-    page = pages[page.replace('#', '')];
-    retractLines(() => {
-        fadeBoxesOut(() => {
-            page.render();
-        });
-    });
+export async function openPage(page) {
+    const pg = pages[page.replace('#', '')];
+    await retractLines();
+    await fadeBoxesOut();
+    pg.render();
+    return;
 }
 //# sourceMappingURL=openPage.js.map

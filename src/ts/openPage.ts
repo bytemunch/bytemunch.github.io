@@ -1,13 +1,14 @@
 import { fadeBoxesOut, retractLines } from './animations.js';
+import { Page } from './class/Page.js';
 import { pages } from './main.js';
 
-export function openPage(page) {
+export async function openPage(page) {
 	//grab page object
-	page = pages[page.replace('#', '')];
+	const pg = pages[page.replace('#', '')] as Page;
 
-	retractLines(() => {
-		fadeBoxesOut(() => {
-			page.render();
-		});
-	});//TODO async/await
+	await retractLines();
+	await fadeBoxesOut();
+	pg.render();
+
+	return;
 }

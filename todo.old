@@ -1,0 +1,54 @@
+https://trello.com/b/GTRkFGLX/samedelstenme
+
+[✔] limit aspect ratio on imaged links
+
+[❌] !IMPORTANTE! dont load dooodles in an iframe, make them auto exec and target a canvas ye
+
+[✔] add title
+[❌] clean up title image/ use transparent bg?
+
+[✔] clean up unused <a> tags 
+
+[✔] design more pages
+[✔] fade boxes out and remove to make way for next page
+[✔] pages system????
+[✔] larger content box with page text, images in boxes around 'painting'
+[✔] links to other pages also around painting
+
+[❌] prevent double clicks of links doing action twice
+
+[❌] async/await everything!!!
+[✔] make main element on page more readable & size better
+[❌] add a little variety to main box location, +/- ~5vw?
+[❌] elegantly pop HTML into page dynamically
+    -define elements in json to be loaded into main container?
+
+[❌] pull animations into own file/folder
+[❌] set duration on animations
+[❌] LERP
+
+[✔] re-add linerunners to title
+
+[✔] terminate lines on some intersections
+[✔] prevent lines terminating on same axis
+[✔] clip lines to size on termination
+[✔] terminate on coloured box?
+[✔] linerunner should have a sense of parentage
+
+[✔] line termination is broken PLZ NO IT WAS SO GOOOOOOOOOOD ;_;
+
+
+[❌] make some better images
+[❌] selfieeeeeeeeeeees
+
+[✔] overlay text
+[✔] beautify text; make fit to box
+[✔] fit text to height as well as width!!
+[❌] rotate text and fit if box sizing is tall
+
+[✔] overlay color instead of filtering for text readability
+
+[❌] canvasy texture mask/overlay
+
+[✔] add movement to images relative to mouse position
+    -relative to div or window? hmm

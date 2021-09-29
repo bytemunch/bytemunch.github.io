@@ -1,93 +1,98 @@
 import { clearLineRunners, ctx, height, lineRunners, width } from "./main.js";
-export function finishedAnimation() {
-}
-export function fadeOut(elements, speed, cb) {
-    if (!elements[0]) {
-        cb();
-    }
-    else {
-        let o = parseFloat(elements[0].style.opacity) || 1;
-        o -= speed;
-        for (let element of elements) {
-            element.style.opacity = o;
+export async function fadeOut(elements, speed) {
+    return new Promise(res => {
+        if (!elements[0]) {
+            console.log('nada');
+            return res(1);
         }
-        if (o > 0) {
-            window.requestAnimationFrame(ts => {
-                fadeOut(elements, speed, cb);
-            });
-        }
-        else {
-            for (let el of elements) {
-                el.parentElement.tagName == 'A' ?
-                    el.parentElement.parentElement.removeChild(el.parentElement) :
-                    el.parentElement.removeChild(el);
+        const rafFn = t => {
+            let o = parseFloat(elements[0].style.opacity) || 0;
+            o -= speed;
+            for (let element of elements) {
+                element.style.opacity = o;
             }
-            if (cb)
-                cb();
-        }
-    }
+            if (o > 0) {
+                requestAnimationFrame(rafFn);
+            }
+            else {
+                for (let el of elements) {
+                    el.parentElement.tagName == 'A' ?
+                        el.parentElement.parentElement.removeChild(el.parentElement) :
+                        el.parentElement.removeChild(el);
+                }
+                res(0);
+            }
+        };
+        requestAnimationFrame(rafFn);
+    });
 }
-export function fadeIn(elements, speed, cb) {
-    let o = parseFloat(elements[0].style.opacity) || 0;
-    o += speed;
-    for (let element of elements) {
-        element.style.opacity = o;
-    }
-    if (o < 1) {
-        window.requestAnimationFrame(ts => {
-            fadeIn(elements, speed, cb);
-        });
-    }
-    else {
-        if (cb)
-            cb();
-    }
+export async function fadeIn(elements, speed) {
+    return new Promise(res => {
+        const rafFn = t => {
+            let o = parseFloat(elements[0].style.opacity) || 0;
+            o += speed;
+            for (let element of elements) {
+                element.style.opacity = o;
+            }
+            if (o < 1) {
+                requestAnimationFrame(rafFn);
+            }
+            else {
+                res(0);
+            }
+        };
+        requestAnimationFrame(rafFn);
+    });
 }
-export function drawLines(cb) {
-    ctx.clearRect(0, 0, width, height);
-    let live = false;
-    for (let lr of lineRunners) {
-        lr.line.draw();
-        if (!lr.dead) {
-            live = true;
-            lr.update();
-        }
-    }
-    if (live) {
-        window.requestAnimationFrame(ts => {
-            drawLines(cb);
-        });
-    }
-    else {
-        if (cb)
-            cb();
-    }
+export async function drawLines() {
+    return new Promise(res => {
+        const rafFn = t => {
+            ctx.clearRect(0, 0, width, height);
+            let live = false;
+            for (let lr of lineRunners) {
+                lr.line.draw();
+                if (!lr.dead) {
+                    live = true;
+                    lr.extend();
+                }
+            }
+            if (live) {
+                requestAnimationFrame(rafFn);
+            }
+            else {
+                res(0);
+            }
+        };
+        requestAnimationFrame(rafFn);
+    });
 }
-export function retractLines(cb) {
-    ctx.clearRect(0, 0, width, height);
-    let live = false;
-    for (let lr of lineRunners) {
-        lr.revive();
-        lr.retract();
-        if (!lr.dead) {
-            lr.line.draw();
-            live = true;
-        }
-    }
-    if (live) {
-        window.requestAnimationFrame(ts => {
-            retractLines(cb);
-        });
-    }
-    else {
-        clearLineRunners();
-        if (cb)
-            cb();
-    }
+export async function retractLines() {
+    return new Promise(res => {
+        const rafFn = t => {
+            ctx.clearRect(0, 0, width, height);
+            let live = false;
+            for (let lr of lineRunners) {
+                lr.revive();
+                lr.retract();
+                if (!lr.dead) {
+                    lr.line.draw();
+                    live = true;
+                }
+            }
+            if (live) {
+                requestAnimationFrame(rafFn);
+            }
+            else {
+                clearLineRunners();
+                res(0);
+            }
+        };
+        requestAnimationFrame(rafFn);
+    });
 }
-export function fadeBoxesOut(cb) {
+export async function fadeBoxesOut() {
     let boxes = Array.from(document.querySelectorAll('.linkbox'));
     boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
-    fadeOut(boxes, 0.05, cb);
+    return fadeOut(boxes, 0.05);
 }
 //# sourceMappingURL=animations.js.map

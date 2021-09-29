@@ -3,7 +3,7 @@
 import { addAllRunners, getPage, height, linew, links, maxh, maxw, minh, minw, width } from "../main.js";
 import { findSpace } from "../findSpace.js";
 import { newDiv } from '../newDiv.js';
-import { fadeIn, drawLines, finishedAnimation } from "../animations.js";
+import { fadeIn, drawLines } from "../animations.js";
 
 export class Page {
 	name;
@@ -359,11 +359,9 @@ export class Page {
 		}
 
 		// ANIMATE
-		fadeIn(divs, 0.05, () => {
-			addAllRunners(() => {
-				drawLines(() => {
-					finishedAnimation();
-				});
+		fadeIn(divs, 0.05).then(() => {
+			addAllRunners(async () => {
+				await drawLines();
 			})
 		});
 	}
