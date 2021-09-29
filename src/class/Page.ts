@@ -86,7 +86,7 @@ export class Page {
 				let links = [
 					{
 						text: 'JHE Electrical',
-						link: 'https://bytemunch.github.io/jhe-draft/',
+						link: 'https://bytemunch.github.io/sites/jhe-draft/',
 						desc: 'A draft site for a friend. I didn\'t design the logo, but did add the animations.',
 						repo: 'https://github.com/bytemunch/jhe'
 					},
@@ -98,7 +98,7 @@ export class Page {
 					},
 					{
 						text: 'Fresh Decorators',
-						link: 'https://bytemunch.github.io/fresh/index.html',
+						link: 'https://bytemunch.github.io/sites/fresh-decorators/index.html',
 						desc: 'A site I was partway through making when the client decided they didn\'t want it anymore. Takeaway: get contracts signed for freelance work!',
 						repo: ''
 					},
