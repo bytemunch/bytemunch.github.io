@@ -80,12 +80,13 @@ export async function drawLines() {
 
 export async function retractLines() {
 	return new Promise(res => {
+		lineRunners.forEach(lr=>lr.revive());
+
 		const rafFn = t => {
 			ctx.clearRect(0, 0, width, height);
 			let live = false;
 
 			for (let lr of lineRunners) {
-				lr.revive();
 				lr.retract();
 				if (!lr.dead) {
 					lr.line.draw();
