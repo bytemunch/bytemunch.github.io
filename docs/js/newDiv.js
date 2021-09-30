@@ -30,6 +30,7 @@ export function newDiv(pos, img, link, txt) {
         title.className = 'linktext';
         title.style.fontSize = '0';
         sizeText(title, pos.width, pos.height);
+        title.style.width = '100%';
         switch (color) {
             case 'white':
             case 'yellow':

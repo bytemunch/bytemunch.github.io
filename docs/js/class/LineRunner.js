@@ -1,5 +1,4 @@
 import { ctx, height, lineRunners, linew, width } from "../main.js";
-import { Line } from "./Line.js";
 import { checkCollision } from "../checkCollision.js";
 export class LineRunner {
     constructor(x, y, axis, direction, parent) {
@@ -11,9 +10,11 @@ export class LineRunner {
         this.direction = direction;
         this.speed = linew * 2;
         this.dead = false;
-        this.color = "#FF0000";
+        this.color = "#000000";
         this.parent = parent;
-        this.line = new Line(this);
+        this.line = {
+            x, y, height: linew, width: linew, startx: x, starty: y
+        };
     }
     extend() {
         if (this.axis == 'x') {
@@ -130,7 +131,7 @@ export class LineRunner {
     }
     draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        ctx.fillRect(this.line.x, this.line.y, this.line.width, this.line.height);
     }
 }
 //# sourceMappingURL=LineRunner.js.map

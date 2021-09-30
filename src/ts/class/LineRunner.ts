@@ -1,6 +1,14 @@
 import { ctx, height, lineRunners, linew, width } from "../main.js";
-import { Line } from "./Line.js";
 import { checkCollision } from "../checkCollision.js";
+
+interface Line {
+	x: number,
+	y: number,
+	startx: number,
+	starty: number,
+	width: number,
+	height: number
+}
 
 export class LineRunner {
 	x;
@@ -13,7 +21,7 @@ export class LineRunner {
 	dead;
 	color;
 	parent;
-	line;
+	line:Line;
 
 	constructor(x, y, axis, direction, parent?) {
 		this.x = x;
@@ -24,10 +32,12 @@ export class LineRunner {
 		this.direction = direction;
 		this.speed = linew * 2;
 		this.dead = false;
-		this.color = "#FF0000";
+		this.color = "#000000";
 		this.parent = parent;
 
-		this.line = new Line(this);
+		this.line = {
+			x, y, height: linew, width: linew, startx: x, starty: y
+		}
 	}
 
 	extend() {
@@ -60,10 +70,8 @@ export class LineRunner {
 			height: this.height - 1
 		};
 
-		//@ts-ignore
-		// Dunno why this is flagging more research needed
 		for (let div of document.querySelectorAll('.linkbox')) {
-			let box2 = div.getBoundingClientRect() as DOMRect;
+			let box2 = div.getBoundingClientRect();
 			box2.y += linew;
 			box2.width -= linew;
 			box2.height -= linew * 2;
@@ -166,6 +174,6 @@ export class LineRunner {
 
 	draw() {
 		ctx.fillStyle = this.color;
-		ctx.fillRect(this.x, this.y, this.width, this.height);
+		ctx.fillRect(this.line.x, this.line.y, this.line.width, this.line.height);
 	}
 }

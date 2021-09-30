@@ -39,6 +39,9 @@ export function newDiv(pos, img?, link?, txt?) {
 
 		sizeText(title, pos.width, pos.height);
 
+		// set 100% width after got appropriate size
+		title.style.width = '100%';
+
 		switch (color) {
 			case 'white':
 			case 'yellow':
@@ -69,7 +72,6 @@ export function newDiv(pos, img?, link?, txt?) {
 		let a = document.createElement('a');
 		a.href = link;
 		a.classList.add('link');
-		//a.style.border = 'none';
 		a.appendChild(div);
 
 		a.addEventListener('click', e => {

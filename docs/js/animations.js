@@ -50,7 +50,7 @@ export async function drawLines() {
             ctx.clearRect(0, 0, width, height);
             let live = false;
             for (let lr of lineRunners) {
-                lr.line.draw();
+                lr.draw();
                 if (!lr.dead) {
                     live = true;
                     lr.extend();
@@ -75,7 +75,7 @@ export async function retractLines() {
             for (let lr of lineRunners) {
                 lr.retract();
                 if (!lr.dead) {
-                    lr.line.draw();
+                    lr.draw();
                     live = true;
                 }
             }
