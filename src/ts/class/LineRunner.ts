@@ -1,5 +1,6 @@
 import { ctx, height, lineRunners, linew, width } from "../main.js";
 import { checkCollision } from "../checkCollision.js";
+import { getBoundingBoxes } from "../getBoundingBoxes.js";
 
 interface Line {
 	x: number,
@@ -70,17 +71,17 @@ export class LineRunner {
 			height: this.height - 1
 		};
 
-		for (let div of document.querySelectorAll('.linkbox')) {
-			let box2 = div.getBoundingClientRect();
+		for (let bb of getBoundingBoxes()) {
+			let box2 = bb;
 			box2.y += linew;
 			box2.width -= linew;
 			box2.height -= linew * 2;
-			//box2.x += linew;
-			if (this.parent.parentElement !== div) { //allows nesting
+			box2.x += linew;
+			// if (this.parent.parentElement !== bb) { //allows nesting
 				if (checkCollision(box1, box2)) this.die(box2);
-			} else {
-				//if (!checkCollision(box1, box2)) this.die(box2, true);
-			}
+			// } else {
+			// 	//if (!checkCollision(box1, box2)) this.die(box2, true);
+			// }
 		}
 
 

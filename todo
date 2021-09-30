@@ -1,2 +1,3 @@
 BUGS:
 Clicking link from homepage doesn't fade out
+Fadein on resize fails occasionally

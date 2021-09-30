@@ -3,6 +3,7 @@ import { LineRunner } from './class/LineRunner.js';
 import { fadeIn } from './animations.js';
 import { openPage } from './openPage.js';
 import { newDiv } from './newDiv.js';
+import './elements/CeMain.js';
 let frameCount = 0;
 const frameRate = 30;
 const rooturi = window.location.hostname;
@@ -41,9 +42,8 @@ export let maxh;
 export let minw;
 export let minh;
 let drawLoopId;
-addAllRunners();
-export function addAllRunners(cb) {
-    let boxes = document.querySelectorAll('.linkbox');
+export function addAllRunners(boxes, cb) {
+    console.log(boxes);
     for (let box of boxes) {
         let bb = box.getBoundingClientRect();
         bb.width -= 2 * linew;

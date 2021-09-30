@@ -4,6 +4,9 @@ import { fadeIn } from './animations.js';
 import { openPage } from './openPage.js';
 import { newDiv } from './newDiv.js';
 
+// Elements
+import './elements/CeMain.js';
+
 interface Link {
 	img: string,
 	link: string,
@@ -28,7 +31,7 @@ document.body.appendChild(canvas);
 
 //data structures
 export let links: Link[] = [];
-export let lineRunners:LineRunner[] = [];
+export let lineRunners: LineRunner[] = [];
 
 export const clearLineRunners = () => { lineRunners = [] }
 
@@ -70,11 +73,11 @@ export let minh;
 // animationstuff
 let drawLoopId;
 
-addAllRunners();
-
 // add linerunners whole page
-export function addAllRunners(cb?) {
-	let boxes = document.querySelectorAll('.linkbox');
+export function addAllRunners(boxes: Array<Element>, cb?) {
+	console.log(boxes);
+
+	// boxes = document.querySelectorAll('.linkbox');
 	//@ts-ignore
 	for (let box of boxes) {
 		let bb = box.getBoundingClientRect() as DOMRect;

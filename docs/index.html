@@ -56,8 +56,37 @@
             top: -0.5%;
             left: -0.5%;
         }
+        /* 
+        			let mainpos = {
+				x: width / 24,
+				y: height / 7,
+				width: width / 1.5,
+				height: height / 1.5
+			}
+
+			// MIN WIDTH 280px
+			if (mainpos.width < 260) {
+				mainpos.width = 260;
+				mainpos.x = 5;
+				mainpos.y = 25;
+			}
+        */
         
-        .maintitle {
+        .main {
+            position: absolute;
+            border-style: solid;
+            border-width: 1.05vmin;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+            left: 4vw;
+            top: 14vh;
+            width: 66vw;
+            min-width: 260px;
+            height: 66vh;
+        }
+        
+        .main-title {
             position: relative;
             width: calc(100% - 2vmin);
             margin: -1vmin 0vmin 0vmin -1vmin;
@@ -71,8 +100,49 @@
 </head>
 
 <body>
-    <div id="invisible"></div>
+    <!-- TEMPLATES -->
+    <template id='main-template'>
+        <style>
+        .main,
+        .main-title {
+            border-style: solid;
+            border-width: 1.0vmin;
+            border-color: black;
+        }
 
+        .main {
+            position: absolute;
+            z-index: 1;
+            background-size: cover;
+            background-position: center;
+            left: 4vw;
+            top: 14vh;
+            width: 66vw;
+            min-width: 260px;
+            height: 66vh;
+        }
+        
+        .main-title {
+            position: relative;
+            width: calc(100% - 2vmin);
+            margin: -1vmin 0vmin 0vmin -1vmin;
+            padding: 0 1vmin;
+            background: white;
+        }
+        </style>
+        <div class="main">
+            <div class="main-title">
+                <h3><slot name='title'>Main Title</slot></h3>
+                <p>
+                <slot name='subtitle'>
+                    Main Subtitle. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, quam corrupti eaque tempore dolore consectetur officiis dolorem a fugit neque fugiat! Ipsa sit vero ex. Impedit aperiam laborum adipisci illum?
+                </slot>
+                </p>
+            </div>
+        </div>
+    </template>
+
+    <div id="invisible"></div>
 </body>
 
 </html>

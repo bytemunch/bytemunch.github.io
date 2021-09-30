@@ -1,5 +1,6 @@
 import { ctx, height, lineRunners, linew, width } from "../main.js";
 import { checkCollision } from "../checkCollision.js";
+import { getBoundingBoxes } from "../getBoundingBoxes.js";
 export class LineRunner {
     constructor(x, y, axis, direction, parent) {
         this.x = x;
@@ -40,17 +41,14 @@ export class LineRunner {
             width: this.width - 1,
             height: this.height - 1
         };
-        for (let div of document.querySelectorAll('.linkbox')) {
-            let box2 = div.getBoundingClientRect();
+        for (let bb of getBoundingBoxes()) {
+            let box2 = bb;
             box2.y += linew;
             box2.width -= linew;
             box2.height -= linew * 2;
-            if (this.parent.parentElement !== div) {
-                if (checkCollision(box1, box2))
-                    this.die(box2);
-            }
-            else {
-            }
+            box2.x += linew;
+            if (checkCollision(box1, box2))
+                this.die(box2);
         }
         for (let lr of lineRunners) {
             if (lr != this && lr.axis != this.axis) {

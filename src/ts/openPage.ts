@@ -8,7 +8,7 @@ export async function openPage(page) {
 
 	await retractLines();
 	await fadeBoxesOut();
-	pg.render();
+	pg.newRender();
 
 	return;
 }

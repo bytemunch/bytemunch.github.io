@@ -1,7 +1,14 @@
 import { linew } from "./main.js";
 
 export function getBoundingBoxes() {
-	let divs = document.querySelectorAll('.linkbox');
+	let divs = Array.from(document.querySelectorAll('.linkbox'));
+
+	let shadowRootElements = document.querySelectorAll('ce-main');
+
+	if (shadowRootElements[0]) {
+		shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('.main')));
+	}
+
 	let bbs = [];
 	let divbb;
 

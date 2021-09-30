@@ -4,7 +4,7 @@ export async function openPage(page) {
     const pg = pages[page.replace('#', '')];
     await retractLines();
     await fadeBoxesOut();
-    pg.render();
+    pg.newRender();
     return;
 }
 //# sourceMappingURL=openPage.js.map
