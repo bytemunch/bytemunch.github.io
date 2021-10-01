@@ -1,4 +1,4 @@
-import { ctx, height, lineRunners, linew, width } from "../main.js";
+import { mondrian } from "../main.js";
 import { checkCollision } from "../functions/checkCollision.js";
 import { getBoundingBoxes } from "../functions/getBoundingBoxes.js";
 
@@ -27,17 +27,17 @@ export class LineRunner {
 	constructor(x, y, axis, direction, parent?) {
 		this.x = x;
 		this.y = y;
-		this.width = linew;
-		this.height = linew;
+		this.width = mondrian.linew;
+		this.height = mondrian.linew;
 		this.axis = axis;
 		this.direction = direction;
-		this.speed = linew * 2;
+		this.speed = mondrian.linew * 2;
 		this.dead = false;
 		this.color = "#000000";
 		this.parent = parent;
 
 		this.line = {
-			x, y, height: linew, width: linew, startx: x, starty: y
+			x, y, height: mondrian.linew, width: mondrian.linew, startx: x, starty: y
 		}
 	}
 
@@ -48,8 +48,8 @@ export class LineRunner {
 
 			if (this.direction < 0) {
 				this.line.x -= this.speed;
+				
 			}
-
 		} else if (this.axis == 'y') {
 			this.y += this.direction * this.speed;
 
@@ -60,7 +60,7 @@ export class LineRunner {
 			}
 		}
 
-		if (this.x > width || this.x < 0 || this.y > height || this.y < 0) {
+		if (this.x > mondrian.width || this.x < 0 || this.y > mondrian.height || this.y < 0) {
 			this.die();
 		}
 
@@ -73,10 +73,10 @@ export class LineRunner {
 
 		for (let bb of getBoundingBoxes()) {
 			let box2 = bb;
-			box2.y += linew;
-			box2.width -= linew;
-			box2.height -= linew * 2;
-			box2.x += linew;
+			box2.y += mondrian.linew;
+			box2.width -= mondrian.linew;
+			box2.height -= mondrian.linew * 2;
+			box2.x += mondrian.linew;
 			// if (this.parent.parentElement !== bb) { //allows nesting
 				if (checkCollision(box1, box2)) this.die(box2);
 			// } else {
@@ -85,7 +85,7 @@ export class LineRunner {
 		}
 
 
-		for (let lr of lineRunners) {
+		for (let lr of mondrian.lineRunners) {
 			if (lr != this && lr.axis != this.axis) {
 				let line = lr.line;
 
@@ -132,7 +132,7 @@ export class LineRunner {
 	die(obstacle?, nested = false) {
 		if (obstacle) {
 			// trim line to fit
-			let offset = linew / 2;
+			let offset = mondrian.linew / 2;
 
 			if (nested) {
 				if (this.direction == 1) {
@@ -174,7 +174,7 @@ export class LineRunner {
 	}
 
 	draw() {
-		ctx.fillStyle = this.color;
-		ctx.fillRect(this.line.x, this.line.y, this.line.width, this.line.height);
+		mondrian.ctx.fillStyle = this.color;
+		mondrian.ctx.fillRect(this.line.x, this.line.y, this.line.width, this.line.height);
 	}
 }

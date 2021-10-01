@@ -1,4 +1,4 @@
-import { linew } from "../main.js";
+import { mondrian } from "../main.js";
 
 export function getBoundingBoxes() {
 	let divs = Array.from(document.querySelectorAll('.linkbox'));
@@ -18,10 +18,10 @@ export function getBoundingBoxes() {
 	for (let div of divs) {
 		divbb = div.getBoundingClientRect();
 		let stripped = {
-			x: divbb.x -= linew,
-			y: divbb.y -= linew,
-			width: divbb.width += linew,
-			height: divbb.height += linew
+			x: divbb.x -= mondrian.linew,
+			y: divbb.y -= mondrian.linew,
+			width: divbb.width += mondrian.linew,
+			height: divbb.height += mondrian.linew
 		};
 		bbs.push(stripped);
 	}

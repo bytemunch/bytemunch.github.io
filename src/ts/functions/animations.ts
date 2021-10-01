@@ -1,4 +1,4 @@
-import { clearLineRunners, ctx, height, lineRunners, width } from "../main.js";
+import { mondrian } from "../main.js";
 
 export async function fadeOut(elements, speed) {
 	return new Promise(res => {
@@ -56,10 +56,10 @@ export async function fadeIn(elements, speed) {
 export async function drawLines() {
 	return new Promise(res => {
 		const rafFn = t => {
-			ctx.clearRect(0, 0, width, height);
+			mondrian.ctx.clearRect(0, 0, mondrian.width, mondrian.height);
 			let live = false;
 
-			for (let lr of lineRunners) {
+			for (let lr of mondrian.lineRunners) {
 				lr.draw();
 				if (!lr.dead) {
 					live = true;
@@ -80,13 +80,13 @@ export async function drawLines() {
 
 export async function retractLines() {
 	return new Promise(res => {
-		lineRunners.forEach(lr=>lr.revive());
+		mondrian.lineRunners.forEach(lr=>lr.revive());
 
 		const rafFn = t => {
-			ctx.clearRect(0, 0, width, height);
+			mondrian.ctx.clearRect(0, 0, mondrian.width, mondrian.height);
 			let live = false;
 
-			for (let lr of lineRunners) {
+			for (let lr of mondrian.lineRunners) {
 				lr.retract();
 				if (!lr.dead) {
 					lr.draw();
@@ -97,7 +97,7 @@ export async function retractLines() {
 			if (live) {
 				requestAnimationFrame(rafFn);
 			} else {
-				clearLineRunners();
+				mondrian.clearLineRunners();
 				res(0);
 			}
 		}

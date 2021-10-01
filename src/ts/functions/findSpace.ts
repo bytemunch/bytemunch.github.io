@@ -1,5 +1,5 @@
 import { checkCollision } from "./checkCollision.js";
-import { height, linew, width } from "../main.js";
+import { mondrian } from "../main.js";
 import { getBoundingBoxes } from './getBoundingBoxes.js';
 
 export function findSpace(maxw, minw, maxh, minh) {
@@ -25,8 +25,8 @@ export function findSpace(maxw, minw, maxh, minh) {
 		// rh = maxh;
 
 		// REGULAR POSITIONING
-		rx = Math.floor(Math.random() * (width - rw - linew * 2));
-		ry = Math.floor(Math.random() * (height - rh - linew * 2));
+		rx = Math.floor(Math.random() * (mondrian.width - rw - mondrian.linew * 2));
+		ry = Math.floor(Math.random() * (mondrian.height - rh - mondrian.linew * 2));
 
 		// DISABLE OVERLAP CHECK BEFORE USE!!!
 
@@ -51,10 +51,8 @@ export function findSpace(maxw, minw, maxh, minh) {
 	}
 
 	if (i >= 1000) {
-		//console.log('Could not find space!');
 		return false;
 	}
 
 	return { x: rx, y: ry, width: rw, height: rh };
-	//[rx, ry, rw, rh];
 }
