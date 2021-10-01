@@ -1,5 +1,5 @@
 import { checkCollision } from "./checkCollision.js";
-import { height, linew, width } from "./main.js";
+import { height, linew, width } from "../main.js";
 import { getBoundingBoxes } from './getBoundingBoxes.js';
 export function findSpace(maxw, minw, maxh, minh) {
     let overlap = true;

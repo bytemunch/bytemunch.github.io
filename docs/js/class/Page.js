@@ -1,7 +1,7 @@
 import { addAllRunners, links, maxh, maxw, minh, minw } from "../main.js";
-import { findSpace } from "../findSpace.js";
-import { newDiv } from '../newDiv.js';
-import { fadeIn, drawLines } from "../animations.js";
+import { findSpace } from "../functions/findSpace.js";
+import { newDiv } from '../functions/newDiv.js';
+import { fadeIn, drawLines } from "../functions/animations.js";
 import { CeMain } from "../elements/CeMain.js";
 export class Page {
     constructor(name) {

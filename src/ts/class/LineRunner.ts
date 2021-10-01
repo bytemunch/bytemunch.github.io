@@ -1,6 +1,6 @@
 import { ctx, height, lineRunners, linew, width } from "../main.js";
-import { checkCollision } from "../checkCollision.js";
-import { getBoundingBoxes } from "../getBoundingBoxes.js";
+import { checkCollision } from "../functions/checkCollision.js";
+import { getBoundingBoxes } from "../functions/getBoundingBoxes.js";
 
 interface Line {
 	x: number,

@@ -1,4 +1,4 @@
-import { clearLineRunners, ctx, height, lineRunners, width } from "./main.js";
+import { clearLineRunners, ctx, height, lineRunners, width } from "../main.js";
 
 export async function fadeOut(elements, speed) {
 	return new Promise(res => {

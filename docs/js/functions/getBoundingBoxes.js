@@ -1,4 +1,4 @@
-import { linew } from "./main.js";
+import { linew } from "../main.js";
 export function getBoundingBoxes() {
     let divs = Array.from(document.querySelectorAll('.linkbox'));
     let shadowRootElements = document.querySelectorAll('ce-main');

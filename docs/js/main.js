@@ -1,8 +1,8 @@
 import { Page } from './class/Page.js';
 import { LineRunner } from './class/LineRunner.js';
-import { fadeIn } from './animations.js';
-import { openPage } from './openPage.js';
-import { newDiv } from './newDiv.js';
+import { fadeIn } from './functions/animations.js';
+import { openPage } from './functions/openPage.js';
+import { newDiv } from './functions/newDiv.js';
 import './elements/CeMain.js';
 let frameCount = 0;
 const frameRate = 30;
