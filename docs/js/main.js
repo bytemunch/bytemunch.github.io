@@ -1,13 +1,16 @@
-import { Page } from './class/Page.js';
 import { fadeIn } from './functions/animations.js';
 import { Mondrian } from './class/Mondrian.js';
 import './elements/CeMain.js';
+import { PageHome } from './class/PageHome.js';
+import { PagePortfolio } from './class/PagePortfolio.js';
+import { PagePlay } from './class/PagePlay.js';
+import { PageAbout } from './class/PageAbout.js';
 export let mondrian;
 export let pages = {
-    about: new Page('about'),
-    funstuff: new Page('funstuff'),
-    portfolio: new Page('portfolio'),
-    home: new Page('home')
+    about: new PageAbout,
+    funstuff: new PagePlay,
+    portfolio: new PagePortfolio,
+    home: new PageHome
 };
 export let links = [];
 await new Promise((res) => {

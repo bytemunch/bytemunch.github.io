@@ -3,7 +3,7 @@ import { mondrian } from "../main.js";
 export async function fadeOut(elements, speed) {
 	return new Promise(res => {
 
-		if (!elements[0]) {console.log('nada');return res(1);} // early return if nothing to fade
+		if (!elements[0]) { console.log('nada'); return res(1); } // early return if nothing to fade
 
 		const rafFn = t => {
 			let o = parseFloat(elements[0].style.opacity) || 0;
@@ -80,7 +80,7 @@ export async function drawLines() {
 
 export async function retractLines() {
 	return new Promise(res => {
-		mondrian.lineRunners.forEach(lr=>lr.revive());
+		mondrian.lineRunners.forEach(lr => lr.revive());
 
 		const rafFn = t => {
 			mondrian.ctx.clearRect(0, 0, mondrian.width, mondrian.height);
@@ -108,6 +108,8 @@ export async function retractLines() {
 
 export async function fadeBoxesOut() {
 	let boxes = Array.from(document.querySelectorAll('.linkbox'));
+	const main = document.querySelector('ce-main');
+	if (main) boxes.push(main);
 	boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
 
 	return fadeOut(boxes, 0.05);

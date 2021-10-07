@@ -20,6 +20,7 @@
         
         body {
             opacity: 0;
+            overflow: hidden;
         }
         
         .linktext {
@@ -56,21 +57,6 @@
             top: -0.5%;
             left: -0.5%;
         }
-        /* 
-        			let mainpos = {
-				x: width / 24,
-				y: height / 7,
-				width: width / 1.5,
-				height: height / 1.5
-			}
-
-			// MIN WIDTH 280px
-			if (mainpos.width < 260) {
-				mainpos.width = 260;
-				mainpos.x = 5;
-				mainpos.y = 25;
-			}
-        */
         
         .main {
             position: absolute;
@@ -103,14 +89,14 @@
     <!-- TEMPLATES -->
     <template id='main-template'>
         <style>
-        .main,
-        .main-title {
+        #main,
+        #main-title {
             border-style: solid;
             border-width: 1.0vmin;
             border-color: black;
         }
 
-        .main {
+        #main {
             position: absolute;
             z-index: 1;
             background-size: cover;
@@ -122,7 +108,7 @@
             height: 66vh;
         }
         
-        .main-title {
+        #main-title {
             position: relative;
             width: calc(100% - 2vmin);
             margin: -1vmin 0vmin 0vmin -1vmin;
@@ -130,15 +116,59 @@
             background: white;
         }
         </style>
-        <div class="main">
-            <div class="main-title">
-                <h3><slot name='title'>Main Title</slot></h3>
-                <p>
-                <slot name='subtitle'>
+        <div id="main">
+            <div id="main-title">
+                <h3 id='title'>TITLE</h3>
+                <p id='subtitle'>
                     Main Subtitle. Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, quam corrupti eaque tempore dolore consectetur officiis dolorem a fugit neque fugiat! Ipsa sit vero ex. Impedit aperiam laborum adipisci illum?
-                </slot>
                 </p>
             </div>
+            <div id="main-content"></div>
+        </div>
+    </template>
+
+    <template id="project-link-template">
+        <style>
+            
+            #repo {
+                display: none;
+            }
+
+            img {
+                position: relative;
+                top: 5px;
+                left: 10px;
+                height: 24px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            a:visited {
+                color: unset;
+            }
+
+            #link {
+                margin: 9px;
+                font-weight: bold;
+            }
+
+            #description {
+                margin: 0 0 18px 18px;
+            }
+
+            #project-name {
+                display: inline;
+            }
+        </style>
+
+        <div id="title">
+        <a href="" id="link">
+            <h4 id='project-name'>PROJECT NAME</h4><img src="img/link-24px-light.png">
+        </a>
+        <a href="" id="repo"><img src="img/GitHub-Mark-Light-32px.png"></a>
+        <p id='description'>PROJECT DESCRIPTION</p>
         </div>
     </template>
 

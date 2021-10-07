@@ -4,18 +4,20 @@ import { newDiv } from '../functions/newDiv.js';
 import { fadeIn, drawLines } from "../functions/animations.js";
 import { CeMain } from "../elements/CeMain.js";
 export class Page {
-    constructor(name) {
-        this.name = name;
+    constructor() {
         this.complexity = 4;
     }
-    async newRender() {
-        this.main = new CeMain('this is a title', 'this is a subtitle');
-        document.body.appendChild(this.main);
-        await this.main.ready;
+    async render() {
+        await this.addMain();
         this.addNavLinks();
         this.addImages();
         this.addEmptyDivs();
         await this.animate();
+    }
+    async addMain() {
+        this.main = new CeMain('this is a title', 'this is a subtitle', 'white', 'black');
+        document.body.appendChild(this.main);
+        await this.main.ready;
     }
     addNavLinks() {
         for (let l of links) {
@@ -56,7 +58,11 @@ export class Page {
         }
     }
     async animate() {
-        let drawBoxes = [...document.querySelectorAll('.linkbox'), this.main.shadowRoot.querySelector('.main')];
+        var _a;
+        const mainDiv = (_a = this.main) === null || _a === void 0 ? void 0 : _a.shadowRoot.querySelector('#main');
+        let drawBoxes = [...document.querySelectorAll('.linkbox')];
+        if (mainDiv)
+            drawBoxes.push(mainDiv);
         await fadeIn(drawBoxes, 0.05);
         mondrian.addAllRunners(drawBoxes);
         await drawLines();

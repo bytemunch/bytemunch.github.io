@@ -1,18 +1,19 @@
 import { CustomElement } from "./CustomElement.js";
 export class CeMain extends CustomElement {
-    constructor(title, subtitle, links) {
+    constructor(title, subtitle, background, textcolor) {
         super();
         const template = document.querySelector('#main-template').content;
         const shadowRoot = this.attachShadow({ mode: 'open' })
             .appendChild(template.cloneNode(true));
-        const spTitle = document.createElement('span');
-        spTitle.textContent = title;
-        spTitle.setAttribute('slot', 'title');
-        const spSubtitle = document.createElement('span');
-        spSubtitle.textContent = subtitle;
-        spTitle.setAttribute('slot', 'subtitle');
-        shadowRoot.appendChild(spTitle);
-        shadowRoot.appendChild(spSubtitle);
+        const t = this.shadowRoot.querySelector('#title');
+        t.textContent = title;
+        const s = this.shadowRoot.querySelector('#subtitle');
+        s.textContent = subtitle;
+        this.shadowRoot.querySelector('#main').style.backgroundColor = background;
+        this.shadowRoot.querySelector('#main-content').style.color = textcolor;
+    }
+    appendToMain(e) {
+        this.shadowRoot.querySelector('#main-content').appendChild(e);
     }
 }
 customElements.define('ce-main', CeMain);

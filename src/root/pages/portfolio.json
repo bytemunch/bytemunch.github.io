@@ -1,9 +1,0 @@
-{
-    "main": {
-        "title": "portfolio",
-        "text": "This is where links to my other works go. The links will be prettier, more plentiful, and repositories will be available once this site's up and running proper. For now they're just boring text."
-    },
-    "images": {
-        "current": "./img/work.png"
-    }
-}

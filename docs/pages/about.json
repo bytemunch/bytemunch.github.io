@@ -1,9 +1,0 @@
-{
-    "main": {
-        "title": "about me",
-        "text": "I'm Sam. This website is incomplete. So a bio about me. I make stuff. I find programming fun, I like playing and experimenting with it. Bit of a hippie. Easily distracted if there's not a good problem to solve. Bad at talking about myself. Occasionally hyperactive, occasionally not. Like travelling. Dislike monotony. Love music. Like art. I'll add my socials and contact info down there later."
-    },
-    "images": {
-        "current": "./img/about.png"
-    }
-}

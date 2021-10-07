@@ -3,7 +3,7 @@ export function getBoundingBoxes() {
     let divs = Array.from(document.querySelectorAll('.linkbox'));
     let shadowRootElements = document.querySelectorAll('ce-main');
     if (shadowRootElements[0]) {
-        shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('.main')));
+        shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('#main')));
     }
     let bbs = [];
     let divbb;

@@ -92,6 +92,9 @@ export async function retractLines() {
 }
 export async function fadeBoxesOut() {
     let boxes = Array.from(document.querySelectorAll('.linkbox'));
+    const main = document.querySelector('ce-main');
+    if (main)
+        boxes.push(main);
     boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
     return fadeOut(boxes, 0.05);
 }

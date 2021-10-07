@@ -1,9 +1,0 @@
-{
-    "main": {
-        "title": "doodles",
-        "text": "The home for the equivalent of shitposting in webdev form."
-    },
-    "images": {
-        "current": "./img/play.png"
-    }
-}

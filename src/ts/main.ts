@@ -4,6 +4,10 @@ import { Mondrian } from './class/Mondrian.js';
 
 // Elements
 import './elements/CeMain.js';
+import { PageHome } from './class/PageHome.js';
+import { PagePortfolio } from './class/PagePortfolio.js';
+import { PagePlay } from './class/PagePlay.js';
+import { PageAbout } from './class/PageAbout.js';
 
 interface Link {
 	img: string,
@@ -14,11 +18,11 @@ interface Link {
 export let mondrian;
 
 export let pages = {
-	about: new Page('about'),
-	funstuff: new Page('funstuff'),
-	portfolio: new Page('portfolio'),
-	home: new Page('home')
-}; //TODO loopme
+	about: new PageAbout,
+	funstuff: new PagePlay,
+	portfolio: new PagePortfolio,
+	home: new PageHome
+};
 
 export let links: Link[] = [];
 
