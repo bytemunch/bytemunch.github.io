@@ -1,3 +1,4 @@
+import { checkCollision } from "../functions/checkCollision.js";
 import { newDiv } from "../functions/newDiv.js";
 import { openPage } from "../functions/openPage.js";
 import { LineRunner } from "./LineRunner.js";
@@ -59,6 +60,50 @@ export class Mondrian {
             header.firstChild.removeChild(header.firstChild.firstChild);
         }
         openPage(location.hash.replace('#', '') || 'home');
+    }
+    findSpace() {
+        let overlap = true;
+        let rw, rh, rx, ry, i = 0;
+        while (overlap && i < 1000) {
+            i++;
+            rw = Math.random() * (this.maxw - this.minw) + this.minw;
+            rh = Math.random() * (this.maxh - this.minh) + this.minh;
+            rx = Math.floor(Math.random() * (this.width - rw - this.linew * 2));
+            ry = Math.floor(Math.random() * (this.height - rh - this.linew * 2));
+            overlap = false;
+            let bbs = this.getBoundingBoxes();
+            for (let bb of bbs) {
+                let thisBb = { x: rx, y: ry, width: rw, height: rh };
+                if (checkCollision(bb, thisBb)) {
+                    overlap = true;
+                    break;
+                }
+            }
+        }
+        if (i >= 1000) {
+            return false;
+        }
+        return { x: rx, y: ry, width: rw, height: rh };
+    }
+    getBoundingBoxes() {
+        let divs = Array.from(document.querySelectorAll('.linkbox'));
+        let shadowRootElements = document.querySelectorAll('ce-main');
+        if (shadowRootElements[0]) {
+            shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('#main')));
+        }
+        let bbs = [];
+        let divbb;
+        for (let div of divs) {
+            divbb = div.getBoundingClientRect();
+            let stripped = {
+                x: divbb.x -= this.linew,
+                y: divbb.y -= this.linew,
+                width: divbb.width += this.linew,
+                height: divbb.height += this.linew
+            };
+            bbs.push(stripped);
+        }
+        return bbs;
     }
 }
 //# sourceMappingURL=Mondrian.js.map

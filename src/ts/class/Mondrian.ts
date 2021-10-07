@@ -1,3 +1,4 @@
+import { checkCollision } from "../functions/checkCollision.js";
 import { newDiv } from "../functions/newDiv.js";
 import { openPage } from "../functions/openPage.js";
 import { LineRunner } from "./LineRunner.js";
@@ -111,5 +112,88 @@ export class Mondrian {
         }
 
         openPage(location.hash.replace('#', '') || 'home');
+    }
+
+    findSpace() {
+        let overlap = true;
+    
+        let rw, rh, rx, ry, i = 0;
+        while (overlap && i < 1000) {
+            i++;
+            // REGULAR SIZING
+            // rw = Math.floor(maxw - Math.random() * minw);
+            // rh = Math.floor(maxh - Math.random() * minh);
+    
+            rw = Math.random() * (this.maxw - this.minw) + this.minw;
+            rh = Math.random() * (this.maxh - this.minh) + this.minh;
+    
+            // MINIMUM SIZE TEST
+            // rw = minw;
+            // rh = minh;
+    
+            // MAX SIZE TEST
+            // rw = maxw;
+            // rh = maxh;
+    
+            // REGULAR POSITIONING
+            rx = Math.floor(Math.random() * (this.width - rw - this.linew * 2));
+            ry = Math.floor(Math.random() * (this.height - rh - this.linew * 2));
+    
+            // DISABLE OVERLAP CHECK BEFORE USE!!!
+    
+            // MIN POSITIONING
+            // rx = 0;
+            // ry = 0;
+    
+            // MAX POSITIONING
+            // rx = 1 * (width - rw - linew*2);
+            // ry = 1 * (height - rh - linew*2);
+    
+            overlap = false;
+    
+            let bbs = this.getBoundingBoxes();
+            for (let bb of bbs) {
+                let thisBb = { x: rx, y: ry, width: rw, height: rh };
+                if (checkCollision(bb, thisBb)) {
+                    overlap = true;
+                    break;
+                }
+            }
+        }
+    
+        if (i >= 1000) {
+            return false;
+        }
+    
+        return { x: rx, y: ry, width: rw, height: rh };
+    }
+
+    getBoundingBoxes() {
+        let divs = Array.from(document.querySelectorAll('.linkbox'));
+    
+        let shadowRootElements = document.querySelectorAll('ce-main');
+    
+        if (shadowRootElements[0]) {
+            shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('#main')));
+        }
+    
+        let bbs = [];
+        let divbb;
+    
+    
+        //@ts-ignore
+        // NodeList is iterable why you say no
+        for (let div of divs) {
+            divbb = div.getBoundingClientRect();
+            let stripped = {
+                x: divbb.x -= this.linew,
+                y: divbb.y -= this.linew,
+                width: divbb.width += this.linew,
+                height: divbb.height += this.linew
+            };
+            bbs.push(stripped);
+        }
+    
+        return bbs;
     }
 }

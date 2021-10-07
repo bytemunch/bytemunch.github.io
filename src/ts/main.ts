@@ -1,4 +1,3 @@
-import { Page } from './class/Page.js';
 import { fadeIn } from './functions/animations.js';
 import { Mondrian } from './class/Mondrian.js';
 
@@ -15,7 +14,7 @@ interface Link {
 	txt: string
 }
 
-export let mondrian;
+export let mondrian:Mondrian;
 
 export let pages = {
 	about: new PageAbout,

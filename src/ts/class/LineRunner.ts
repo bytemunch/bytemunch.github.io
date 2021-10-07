@@ -1,6 +1,5 @@
 import { mondrian } from "../main.js";
 import { checkCollision } from "../functions/checkCollision.js";
-import { getBoundingBoxes } from "../functions/getBoundingBoxes.js";
 
 interface Line {
 	x: number,
@@ -71,7 +70,7 @@ export class LineRunner {
 			height: this.height - 1
 		};
 
-		for (let bb of getBoundingBoxes()) {
+		for (let bb of mondrian.getBoundingBoxes()) {
 			let box2 = bb;
 			box2.y += mondrian.linew;
 			box2.width -= mondrian.linew;

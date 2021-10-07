@@ -1,3 +1,4 @@
 BUGS:
 Fadein on resize fails occasionally
 Fadein is too faaaaaast
+Link doesn't work when lines are expanding
