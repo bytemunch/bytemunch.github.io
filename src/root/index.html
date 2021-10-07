@@ -80,6 +80,18 @@
             padding: 0 1vmin;
             background: white;
         }
+        
+        #overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            background-image: url(img/overlay.png);
+            pointer-events: none;
+            opacity: 0.4;
+        }
     </style>
 
     <script type='module' src='js/main.js'></script>
@@ -173,6 +185,7 @@
     </template>
 
     <div id="invisible"></div>
+    <div id="overlay"></div>
     <canvas id="mondrian-canvas" height='0'></canvas>
 </body>
 
