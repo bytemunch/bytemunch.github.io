@@ -6,3 +6,4 @@ export class ResizeHandler {
         this.sizeRatio = n;
     }
 }
+//# sourceMappingURL=ResizeHandler.js.map

@@ -53,3 +53,4 @@ export class UpgradePanel {
         ctx.fillText('$' + nc2(this.cost), rs(this.pos.x + this.width / 2), rs(this.pos.y + this.height * 0.75));
     }
 }
+//# sourceMappingURL=UpgradePanel.js.map

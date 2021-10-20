@@ -30,3 +30,4 @@ export class CashDrop {
         ctx.fillText(`+$${this.value}`, rs(this.pos.x), rs(this.pos.y + this.offset));
     }
 }
+//# sourceMappingURL=CashDrop.js.map

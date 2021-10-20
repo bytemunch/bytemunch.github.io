@@ -1,0 +1,39 @@
+:root {
+    --background-color: #007899;
+    --text-color: #ffffffd4;
+    --theme-color: #10d275;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+#content {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+canvas {
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

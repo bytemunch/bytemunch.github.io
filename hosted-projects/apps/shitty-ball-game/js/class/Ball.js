@@ -1,5 +1,5 @@
 import { game, rs } from "../main.js";
-import { timestep } from "./BallGame.js";
+import { audioMgr, timestep } from "./BallGame.js";
 import { Particle } from "./Particle.js";
 import { Vector } from "./Vector.js";
 export class Ball {
@@ -58,6 +58,7 @@ export class Ball {
                         b.health -= game.upgrades.ballDamage;
                         this.health--;
                     }
+                    audioMgr.play((this.health > 0) ? 'bounce' : 'explosion2');
                     this.emitParticles(10);
                 };
                 if (leftCollide && b.collisionSides.left) {
@@ -84,6 +85,7 @@ export class Ball {
                     this.vel.y *= -1;
                 this.health--;
                 this.emitParticles(10);
+                audioMgr.play((this.health > 0) ? 'bounce' : 'explosion2');
             }
             if (this.health <= 0)
                 this.emitParticles(10);
@@ -103,3 +105,4 @@ export class Ball {
         ctx.fill();
     }
 }
+//# sourceMappingURL=Ball.js.map

@@ -8,11 +8,14 @@ import { BounceUpgrade } from "./BounceUpgrade.js";
 import { DamageUpgrade } from "./DamageUpgrade.js";
 import { FloorUpgrade } from "./FloorUpgrade.js";
 import { Floor } from "./Floor.js";
+import { AudioManager } from "./AudioManager.js";
 export const lowerGameBound = 500;
 let deltaTime = 0;
 export let prevFrameTime = 0;
 export let timestep = 0;
 export let frameCount = 0;
+export const audioMgr = new AudioManager;
+;
 BigInt.prototype.toJSON = function (b) {
     return this.toString() + "n";
 };
@@ -133,6 +136,7 @@ export class BallGame {
         this.pauseMenu.querySelector('#save-quit').addEventListener('click', this.btnSaveQuit.bind(this));
         this.splashScreen.querySelector('#play').addEventListener('click', this.startGame.bind(this));
         this.splashScreen.querySelector('#clear-data').addEventListener('click', this.btnClearData.bind(this));
+        this.containerDiv.querySelectorAll('.audio-toggle').forEach(e => e.addEventListener('click', this.btnToggleAudio.bind(this)));
     }
     postInit() {
         this.ballBank = new BallBank({ x: 256 });
@@ -199,6 +203,7 @@ export class BallGame {
         });
         await levelLoaded;
         this.loading = false;
+        audioMgr.play('level');
         return;
     }
     parseBigInts(o) {
@@ -256,21 +261,35 @@ export class BallGame {
             this.clearData();
         }
     }
+    btnToggleAudio() {
+        if (audioMgr.muted) {
+            document.querySelectorAll('.audio-toggle').forEach(e => e.classList.remove('disabled'));
+            audioMgr.muted = false;
+        }
+        else {
+            document.querySelectorAll('.audio-toggle').forEach(e => e.classList.add('disabled'));
+            audioMgr.muted = true;
+        }
+    }
     btnClearData() {
+        audioMgr.play('click');
         this.clearData();
         console.log('data cleared!');
     }
     btnSaveQuit() {
+        audioMgr.play('click');
         this.saveData();
         console.log('saved, now quit.');
         this.splashScreen.style.display = 'block';
         this.pauseMenu.style.display = 'none';
     }
-    startGame() {
+    async startGame() {
         this.splashScreen.style.display = 'none';
+        await audioMgr.init();
         this.unpause();
     }
     pause() {
+        audioMgr.play('click');
         for (let fn of this.actionQueue) {
             fn.trigger += 10000000000;
         }
@@ -288,6 +307,7 @@ export class BallGame {
         this.pauseMenu.style.display = 'block';
     }
     unpause() {
+        audioMgr.play('click');
         this.pauseMenu.style.display = 'none';
         for (let fn of this.actionQueue) {
             fn.trigger -= 10000000000 + prevFrameTime;
@@ -310,6 +330,7 @@ export class BallGame {
         const adDiv = this.containerDiv.querySelector('#advert');
         const adTxt = adDiv.querySelector('#countdown');
         adDiv.style.display = 'block';
+        audioMgr.play('lose');
         let adProm = new Promise((res) => {
             let ivl = setInterval(() => { countdown--; adTxt.textContent = `Skipping in ${countdown}...`; if (countdown <= 0) {
                 clearInterval(ivl);
@@ -402,3 +423,4 @@ export class BallGame {
         requestAnimationFrame(this.loop.bind(this));
     }
 }
+//# sourceMappingURL=BallGame.js.map

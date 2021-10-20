@@ -1,4 +1,5 @@
 import { game, nc, nc2, rs, rs2 } from "../main.js";
+import { audioMgr } from "./BallGame.js";
 import { Vector } from "./Vector.js";
 export class BallBank {
     constructor(o) {
@@ -16,7 +17,9 @@ export class BallBank {
         return (x > this.pos.x && x < this.pos.x + this.width &&
             y > this.pos.y && y < this.pos.y + this.height);
     }
-    click() {
+    click(auto) {
+        if (!auto)
+            audioMgr.play('click');
         switch (this.magSize) {
             case 10:
                 this.magSize = 25;
@@ -67,7 +70,7 @@ export class BallBank {
         }
         this.count = this.count - BigInt(amt);
         if (this.count < this.magSize)
-            this.click();
+            this.click(true);
         return true;
     }
     add(amt) {
@@ -89,3 +92,4 @@ export class BallBank {
         ctx.fillText(nc2(this.count), rs(this.pos.x + this.width / 2), rs(this.pos.y + this.height * 0.75));
     }
 }
+//# sourceMappingURL=BallBank.js.map

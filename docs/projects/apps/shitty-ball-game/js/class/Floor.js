@@ -29,3 +29,4 @@ export class Floor extends Block {
         ctx.fillText(nc(this.health), rs(this.pos.x + this.width / 2), rs(this.pos.y + this.height / 2) + txSize.actualBoundingBoxAscent / 2);
     }
 }
+//# sourceMappingURL=Floor.js.map

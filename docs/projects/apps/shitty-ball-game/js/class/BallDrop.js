@@ -32,3 +32,4 @@ export class BallDrop {
         ctx.strokeText(`+⬤${this.value}`, rs(this.pos.x), rs(this.pos.y + this.offset));
     }
 }
+//# sourceMappingURL=BallDrop.js.map

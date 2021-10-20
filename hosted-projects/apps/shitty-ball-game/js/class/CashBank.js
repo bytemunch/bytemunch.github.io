@@ -1,11 +1,12 @@
 import { game, nc2, rs, rs2 } from "../main.js";
+import { audioMgr } from "./BallGame.js";
 import { Vector } from "./Vector.js";
 export class CashBank {
     constructor(o) {
         this.pos = new Vector({ x: o.x, y: game.naturalGameBB.interfaceTop + 6 });
         this.width = 48;
         this.height = 48;
-        this.count = 1000000000000n;
+        this.count = 0n;
     }
     update() {
     }
@@ -21,9 +22,12 @@ export class CashBank {
     use(amt) {
         if (typeof amt == 'number')
             amt = BigInt(Math.floor(amt));
-        if (this.count - amt < 0)
+        if (this.count - amt < 0) {
+            audioMgr.play('nope');
             return false;
+        }
         this.count = this.count - amt;
+        audioMgr.play('coin');
         return true;
     }
     add(amt) {
@@ -45,3 +49,4 @@ export class CashBank {
         ctx.fillText('Pause', rs(this.pos.x + this.width / 2), rs(this.pos.y + this.height * 0.7));
     }
 }
+//# sourceMappingURL=CashBank.js.map

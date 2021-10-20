@@ -25,3 +25,4 @@ export class Wall {
         ctx.fillRect(rs(this.pos.x), rs(this.pos.y), rs(this.width), rs(this.height));
     }
 }
+//# sourceMappingURL=Wall.js.map

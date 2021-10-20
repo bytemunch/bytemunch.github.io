@@ -27,3 +27,4 @@ export class Particle {
         ctx.fill();
     }
 }
+//# sourceMappingURL=Particle.js.map
