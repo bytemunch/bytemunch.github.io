@@ -3,6 +3,7 @@ import { Vector } from "./Vector.js";
 import { CashDrop } from "./CashDrop.js";
 import { BallDrop } from "./BallDrop.js";
 import { Particle } from "./Particle.js";
+import { audioMgr } from "./BallGame.js";
 export class Block {
     constructor(o) {
         if (!o.sizeScale)
@@ -72,6 +73,7 @@ export class Block {
         for (let i = 0; i < this.width; i++) {
             game.particles.push(new Particle({ x: this.cx, y: this.cy }));
         }
+        audioMgr.play('explosion');
     }
     draw(ctx) {
         ctx.fillStyle = '#FFFFFF';
@@ -86,3 +88,4 @@ export class Block {
         ctx.fillText(nc(this.health), rs(this.pos.x + this.width / 2), rs(this.pos.y + this.height / 2) + txSize.actualBoundingBoxAscent / 2);
     }
 }
+//# sourceMappingURL=Block.js.map

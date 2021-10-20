@@ -1,6 +1,6 @@
 import { game, rs, rs2 } from "../main.js";
 import { Ball } from "./Ball.js";
-import { lowerGameBound } from "./BallGame.js";
+import { audioMgr, lowerGameBound } from "./BallGame.js";
 import { Vector } from "./Vector.js";
 export class BallGun {
     constructor() {
@@ -42,6 +42,7 @@ export class BallGun {
                 y: this.pos.y + this.target.y,
                 a: this.fireAngle
             }));
+            audioMgr.play('fire');
         }
         else {
             this.firing = false;
@@ -78,3 +79,4 @@ export class BallGun {
         ctx.stroke();
     }
 }
+//# sourceMappingURL=BallGun.js.map

@@ -14,3 +14,4 @@ export class BounceUpgrade extends UpgradePanel {
         game.upgrades.bounces++;
     }
 }
+//# sourceMappingURL=BounceUpgrade.js.map

@@ -14,3 +14,4 @@ export class FloorUpgrade extends UpgradePanel {
         game.upgrades.floorHealth *= 2n;
     }
 }
+//# sourceMappingURL=FloorUpgrade.js.map

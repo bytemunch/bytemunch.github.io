@@ -14,3 +14,4 @@ export class DamageUpgrade extends UpgradePanel {
         game.upgrades.ballDamage++;
     }
 }
+//# sourceMappingURL=DamageUpgrade.js.map

@@ -61,3 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
     game.postInit();
     console.log(game);
 });
+//# sourceMappingURL=main.js.map
