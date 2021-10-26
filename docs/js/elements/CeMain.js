@@ -11,6 +11,7 @@ export class CeMain extends CustomElement {
         s.textContent = subtitle;
         this.shadowRoot.querySelector('#main').style.backgroundColor = background;
         this.shadowRoot.querySelector('#main-content').style.color = textcolor;
+        this.classList.add('main-div');
     }
     appendToMain(e) {
         this.shadowRoot.querySelector('#main-content').appendChild(e);

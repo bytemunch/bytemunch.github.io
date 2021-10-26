@@ -11,3 +11,6 @@ rsync -a ./src/root/* ./docs/
 
 echo "Adding hosted projects..."
 rsync -a ./hosted-projects/* ./docs/projects
+
+echo "Adding blog..."
+rsync -a ./src/posts/* ./docs/posts/

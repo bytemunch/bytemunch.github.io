@@ -15,6 +15,8 @@ export class CeMain extends CustomElement {
 
         (<HTMLElement>this.shadowRoot.querySelector('#main')).style.backgroundColor = background;
         (<HTMLElement>this.shadowRoot.querySelector('#main-content')).style.color = textcolor;
+
+        this.classList.add('main-div');
     }
 
     appendToMain(e:Element) {

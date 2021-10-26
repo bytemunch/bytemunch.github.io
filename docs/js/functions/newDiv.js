@@ -14,6 +14,9 @@ export function newDiv(pos, img, link, txt) {
         case 'play':
             color = 'yellow';
             break;
+        case 'blog':
+            color = 'white';
+            break;
         default:
             color = pickColor();
             break;

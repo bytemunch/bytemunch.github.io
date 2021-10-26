@@ -5,19 +5,25 @@ const projects = [
     {
         name: 'Shitty Ball Game',
         link: 'https://bytemunch.github.io/projects/apps/shitty-ball-game',
-        description: 'September 2021. Does what it says on the tin, it\'s another shitty ball game!.',
+        description: 'Does what it says on the tin, it\'s another shitty ball game!.',
         repo: 'https://github.com/bytemunch/shitty-ball-game'
+    },
+    {
+        name: 'Fertiliser Farmer',
+        link: 'https://bytemunch.github.io/projects/apps/fertiliser-farmer',
+        description: 'It\'s a mobile merging game! There was intention to flesh this out but the joke got old and my passion for manure-based tile merging games kinda died.',
+        repo: 'https://github.com/bytemunch/fertiliser-farmer'
     },
     {
         name: 'Advertising Game',
         link: 'https://bytemunch.github.io/projects/apps/advert',
-        description: 'March 2020. My take on an idle game. Not sure where I was going with it, but I got halfway there! Wherever there is...',
+        description: 'My take on an idle game. Not sure where I was going with it, but I got halfway there! Wherever there is...',
         repo: ''
     },
     {
         name: 'Meme Man Facebook App',
         link: 'https://meme-man-test.web.app/',
-        description: 'March 2020. A zero effort facebook test. Made one morning to get a better handle on Facebook APIs. Since removed Facebook APIs because apparently the app was "too low quality" or something.',
+        description: 'A zero effort facebook test. Made one morning to get a better handle on Facebook APIs. Since removed Facebook APIs because apparently the app was "too low quality" or something.',
         repo: 'https://github.com/bytemunch/meme-man-test'
     },
 ];

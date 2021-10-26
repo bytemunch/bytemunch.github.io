@@ -30,7 +30,7 @@ export class Mondrian {
         }
     }
     resetCanvas() {
-        console.log('cnvreset');
+        console.log('cnvreset', this);
         this.width = window.innerWidth;
         this.height = window.innerHeight;
         console.log(this.canvas);
@@ -87,7 +87,7 @@ export class Mondrian {
     }
     getBoundingBoxes() {
         let divs = Array.from(document.querySelectorAll('.linkbox'));
-        let shadowRootElements = document.querySelectorAll('ce-main');
+        let shadowRootElements = document.querySelectorAll('.main-div');
         if (shadowRootElements[0]) {
             shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('#main')));
         }

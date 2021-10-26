@@ -1,0 +1,30 @@
+<h1 id="dodgeyballdevlog1">Dodgey Ball Devlog #1</h1>
+<h2 id="multiplayergame">Multiplayer Game</h2>
+<p>Dodgey Ball is supposed to be a multiplayer game. So far we have player and ball. So we need player 2. And a game.</p>
+<h3 id="themultiplayer">The Multiplayer</h3>
+<p>Adding this was simple enough. Another player object in the scene, and let the players track their team. Give the second player a controler and done.</p>
+<p><img src="img/blog/2-players.gif" alt="two players!" /></p>
+<p>However after doing this and throwing a few balls, I noticed a couple things. Mainly that landing a shot is difficult, which is not ideal for the game's aim of being a quick bit of pick up and play fun.</p>
+<p><img src="img/blog/hard-to-aim.gif" alt="it's hard to aim" /></p>
+<p>This could be down to either the reticle not projecting in 3d correctly, or that the target and projectile are too small. Let's fix both of these things!</p>
+<p><img src="img/blog/easy-throw.gif" alt="bigger target easier game" /></p>
+<p>Much better.</p>
+<h3 id="thegame">The Game</h3>
+<p>So here we have a multiplayer ball-throwing simulator. Let's add some game logic, starting with a scoreboard.</p>
+<p><em>and then I resized the window, realized my camera didn't scale correctly, and spent a couple hours rejigging the camera until it resized correctly again</em> but we don't talk about that.</p>
+<h3 id="scoreboard">Scoreboard</h3>
+<p>First let's make a new camera <em>(please no)</em> for drawing without perspective and throw a box up on the canvas, making sure to give the UI elements a Z value of <code>Infinity</code> to allow for appropriate z-sorting.</p>
+<p><img src="img/blog/BOX.png" alt="yes, box" /></p>
+<blockquote>
+    <p>ah yes, box. refreshing to do something slightly useful after pissing about with that camera.</p>
+</blockquote>
+<p>Track score, make a UI object for the canvas to display said score, project 'em with our XY camera, and edit the collision logic on players.</p>
+<p><img src="img/blog/scoreboard.gif" alt="scoreboard in action" /></p>
+<p>Ready to test the prototype! Getting an initial playtest done fast was important for me to gauge whether there's a point in continuing development.</p>
+<p><img src="img/blog/playtest2.gif" alt="playtest" /></p>
+<p>Helpfully it was fun to play! Though there are some new issues that have arisen, given that my opponent doesn't play games that use aiming and firing, she struggled to aim and shoot at the same time. My planned remedy for this will be for the player's
+    last aim position to be kept if the stick returns to neutral. Also there seemed to be a couple collision issues when firing, which I think on watching the game back was due to the thrown ball colliding with a stationary ball on the floor. Or maybe
+    it was a neutral throw.</p>
+<p>But that's all tomorrow's problem now.</p>
+<p>Blog done. Bye.
+</p>

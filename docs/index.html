@@ -115,10 +115,10 @@
             background-size: cover;
             background-position: center;
             left: 4vw;
-            top: 14vh;
+            top: 10vh;
             width: 66vw;
             min-width: 260px;
-            height: 66vh;
+            height: 86vh;
         }
         
         #main-title {
@@ -127,6 +127,42 @@
             margin: -1vmin 0vmin 0vmin -1vmin;
             padding: 0 1vmin;
             background: white;
+            height: 15%;
+        }
+
+        #main-content {
+            overflow: hidden;
+            overflow-y: scroll;
+            height: 85%;
+            padding: 0 1vmin;
+        }
+
+        #main-title a,
+        #main-title p {
+            display: inline;
+        }
+
+        #main-title a {
+            float: right;
+            margin-right: 5vw;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        #main-title h3 {
+            margin: 0;
+        }
+
+        img {
+            max-width: 100%;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        pre {
+            word-wrap: break-word;
+            white-space: pre-wrap;
         }
         </style>
         <div id="main">

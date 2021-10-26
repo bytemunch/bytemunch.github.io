@@ -16,9 +16,7 @@ export async function fadeOut(elements, speed) {
             }
             else {
                 for (let el of elements) {
-                    el.parentElement.tagName == 'A' ?
-                        el.parentElement.parentElement.removeChild(el.parentElement) :
-                        el.parentElement.removeChild(el);
+                    el.parentElement.tagName == 'A' ? el.parentElement.parentElement.removeChild(el.parentElement) : el.parentElement.removeChild(el);
                 }
                 res(0);
             }
@@ -92,7 +90,7 @@ export async function retractLines() {
 }
 export async function fadeBoxesOut() {
     let boxes = Array.from(document.querySelectorAll('.linkbox'));
-    const main = document.querySelector('ce-main');
+    const main = document.querySelector('.main-div');
     if (main)
         boxes.push(main);
     boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);

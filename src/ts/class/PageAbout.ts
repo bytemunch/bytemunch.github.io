@@ -8,5 +8,8 @@ export class PageAbout extends Page {
         document.body.appendChild(this.main);
 
         await this.main.ready;
+
+        // TODO add contact infoooooooooo
+        // TODO and socialsssssss
     }
 }
