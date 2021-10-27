@@ -60,7 +60,12 @@ setTimeout(() => {
 	fadeIn([document.body], 0.05);
 }, 150);
 
-// TODO debouuuuuunce alreeeeeeady
-// window.addEventListener('resize', mondrian.resetCanvas.bind(mondrian));
-// Disabled because flashing images
+let resizeDebounceTimeout;
+window.addEventListener('resize', () => {
+	clearTimeout(resizeDebounceTimeout);
+	resizeDebounceTimeout = setTimeout(() => {
+		mondrian.resetCanvas();
+	}, 300)
+})
+
 document.addEventListener('DOMContentLoaded', () => { });

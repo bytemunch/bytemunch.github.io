@@ -38,5 +38,12 @@ links.push({ img: "./img/blog.png", link: "#blog", txt: "blog" });
 setTimeout(() => {
     fadeIn([document.body], 0.05);
 }, 150);
+let resizeDebounceTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeDebounceTimeout);
+    resizeDebounceTimeout = setTimeout(() => {
+        mondrian.resetCanvas();
+    }, 300);
+});
 document.addEventListener('DOMContentLoaded', () => { });
 //# sourceMappingURL=main.js.map
