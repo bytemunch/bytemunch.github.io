@@ -6,8 +6,13 @@ export class PageAbout extends Page {
         this.name = 'about';
     }
     async addMain() {
-        this.main = new CeMain('about me', 'i make stuff online', 'blue', 'white');
+        this.main = new CeMain('about me', 'i make stuff online. more deets to be added once they\'re all on-brand and that.', 'blue', 'white');
         document.body.appendChild(this.main);
+        const email = document.createElement('a');
+        email.style.color = 'white';
+        email.href = 'mailto:sam@edelsten.me';
+        email.textContent = 'Email me!';
+        this.main.appendToMain(email);
         await this.main.ready;
     }
 }
