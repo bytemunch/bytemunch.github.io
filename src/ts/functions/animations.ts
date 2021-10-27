@@ -35,7 +35,6 @@ export async function fadeIn(elements, speed) {
 		let o = 0;
 
 		const rafFn = t => {
-			console.log(o);
 			o += speed;
 
 			for (let element of elements) {

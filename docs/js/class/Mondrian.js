@@ -34,8 +34,8 @@ export class Mondrian {
         this.canvas.height = this.height;
         this.canvas.width = this.width;
         this.width > this.height ? this.linew = this.height * 0.01 : this.linew = this.width * 0.01;
-        this.maxw = (this.width / 4) * this.scale;
-        this.maxh = (this.height / 4) * this.scale;
+        this.maxw = (this.width / 5) * this.scale;
+        this.maxh = (this.height / 5) * this.scale;
         this.minw = (this.width / 6) * this.scale;
         this.minh = (this.height / 6) * this.scale;
         let oldHeader = document.querySelector('#header');
@@ -60,8 +60,9 @@ export class Mondrian {
     }
     findSpace() {
         let overlap = true;
+        let maxTriesToPlace = 10000;
         let rw, rh, rx, ry, i = 0;
-        while (overlap && i < 1000) {
+        while (overlap && i < maxTriesToPlace) {
             i++;
             rw = Math.random() * (this.maxw - this.minw) + this.minw;
             rh = Math.random() * (this.maxh - this.minh) + this.minh;
@@ -77,7 +78,7 @@ export class Mondrian {
                 }
             }
         }
-        if (i >= 1000) {
+        if (i >= maxTriesToPlace) {
             return false;
         }
         return { x: rx, y: ry, width: rw, height: rh };

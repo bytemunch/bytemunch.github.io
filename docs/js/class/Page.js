@@ -69,7 +69,7 @@ export class Page {
         if (homeLink)
             drawBoxes.splice(drawBoxes.indexOf(homeLink), 1);
         await fadeIn(drawBoxes, 0.04);
-        mondrian.addAllRunners(drawBoxes);
+        mondrian.addAllRunners([...drawBoxes, homeLink]);
         await drawLines();
     }
 }

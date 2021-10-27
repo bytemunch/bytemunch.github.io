@@ -79,11 +79,11 @@ export abstract class Page {
 		let drawBoxes = [...document.querySelectorAll('.linkbox')];
 		if (main) drawBoxes.push(main);
 		if (mainDiv) drawBoxes.push(mainDiv);
-		if (homeLink) drawBoxes.splice(drawBoxes.indexOf(homeLink),1);
+		if (homeLink) drawBoxes.splice(drawBoxes.indexOf(homeLink), 1);
 
 		await fadeIn(drawBoxes, 0.04);
-		
-		mondrian.addAllRunners(drawBoxes);
+
+		mondrian.addAllRunners([...drawBoxes, homeLink]);
 		await drawLines();
 	}
 }
