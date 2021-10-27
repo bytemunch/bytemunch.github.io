@@ -58,11 +58,17 @@ export class Page {
     }
     async animate() {
         var _a;
-        const mainDiv = (_a = this.main) === null || _a === void 0 ? void 0 : _a.shadowRoot.querySelector('#main');
+        const mainDiv = document.querySelector('.main-div');
+        const main = (_a = this.main) === null || _a === void 0 ? void 0 : _a.shadowRoot.querySelector('#main');
+        const homeLink = document.querySelector('.home');
         let drawBoxes = [...document.querySelectorAll('.linkbox')];
+        if (main)
+            drawBoxes.push(main);
         if (mainDiv)
             drawBoxes.push(mainDiv);
-        await fadeIn(drawBoxes, 0.05);
+        if (homeLink)
+            drawBoxes.splice(drawBoxes.indexOf(homeLink), 1);
+        await fadeIn(drawBoxes, 0.04);
         mondrian.addAllRunners(drawBoxes);
         await drawLines();
     }

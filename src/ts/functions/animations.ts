@@ -32,8 +32,10 @@ export async function fadeOut(elements, speed) {
 
 export async function fadeIn(elements, speed) {
 	return new Promise(res => {
+		let o = 0;
+
 		const rafFn = t => {
-			let o = parseFloat(elements[0].style.opacity) || 0;
+			console.log(o);
 			o += speed;
 
 			for (let element of elements) {

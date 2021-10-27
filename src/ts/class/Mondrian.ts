@@ -53,10 +53,6 @@ export class Mondrian {
 
     // add linerunners whole page
     addAllRunners(boxes: Array<Element>) {
-        console.log(boxes);
-
-        // boxes = document.querySelectorAll('.linkbox');
-        //@ts-ignore
         for (let box of boxes) {
             let bb = box.getBoundingClientRect() as DOMRect;
             //modify to fit
@@ -67,12 +63,8 @@ export class Mondrian {
     }
 
     resetCanvas() {
-        console.log('cnvreset', this);
-
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-
-        console.log(this.canvas);
 
         this.canvas.height = this.height;
         this.canvas.width = this.width;

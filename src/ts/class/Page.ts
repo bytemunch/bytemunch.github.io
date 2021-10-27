@@ -73,11 +73,15 @@ export abstract class Page {
 	}
 
 	async animate() {
-		const mainDiv = this.main?.shadowRoot.querySelector('#main');
+		const mainDiv = document.querySelector('.main-div');
+		const main = this.main?.shadowRoot.querySelector('#main');
+		const homeLink = document.querySelector('.home');
 		let drawBoxes = [...document.querySelectorAll('.linkbox')];
+		if (main) drawBoxes.push(main);
 		if (mainDiv) drawBoxes.push(mainDiv);
+		if (homeLink) drawBoxes.splice(drawBoxes.indexOf(homeLink),1);
 
-		await fadeIn(drawBoxes, 0.05);
+		await fadeIn(drawBoxes, 0.04);
 		
 		mondrian.addAllRunners(drawBoxes);
 		await drawLines();

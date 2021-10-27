@@ -21,7 +21,6 @@ export class Mondrian {
         this.lineRunners.push(new LineRunner(pos.x + pos.width + this.linew, pos.y + pos.height + this.linew, 'x', 1, parent));
     }
     addAllRunners(boxes) {
-        console.log(boxes);
         for (let box of boxes) {
             let bb = box.getBoundingClientRect();
             bb.width -= 2 * this.linew;
@@ -30,10 +29,8 @@ export class Mondrian {
         }
     }
     resetCanvas() {
-        console.log('cnvreset', this);
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        console.log(this.canvas);
         this.canvas.height = this.height;
         this.canvas.width = this.width;
         this.width > this.height ? this.linew = this.height * 0.01 : this.linew = this.width * 0.01;
