@@ -2,7 +2,6 @@ import { mondrian } from "../main.js";
 export async function fadeOut(elements, speed) {
     return new Promise(res => {
         if (!elements[0]) {
-            console.log('nada');
             return res(1);
         }
         const rafFn = t => {

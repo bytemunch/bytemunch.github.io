@@ -3,7 +3,7 @@ import { mondrian } from "../main.js";
 export async function fadeOut(elements, speed) {
 	return new Promise(res => {
 
-		if (!elements[0]) { console.log('nada'); return res(1); } // early return if nothing to fade
+		if (!elements[0]) { return res(1); } // early return if nothing to fade
 
 		const rafFn = t => {
 			let o = parseFloat(elements[0].style.opacity) || 0;

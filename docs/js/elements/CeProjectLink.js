@@ -17,7 +17,6 @@ export class CeProjectLink extends CustomElement {
             repoLink.style.display = 'inline';
         }
         if (textcolor == 'black') {
-            console.log(this.shadowRoot.querySelector('#main'));
             this.shadowRoot.querySelector('#link img').src = 'img/link-24px.png';
             this.shadowRoot.querySelector('#repo img').src = 'img/GitHub-Mark-32px.png';
         }

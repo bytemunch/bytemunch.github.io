@@ -24,9 +24,6 @@ export class CeProjectLink extends CustomElement {
         }
 
         if (textcolor == 'black') {
-
-            console.log(this.shadowRoot.querySelector('#main'));
-
             (<HTMLImageElement>this.shadowRoot.querySelector('#link img')).src = 'img/link-24px.png';
             (<HTMLImageElement>this.shadowRoot.querySelector('#repo img')).src = 'img/GitHub-Mark-32px.png';
         }
