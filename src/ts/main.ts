@@ -71,10 +71,7 @@ window.addEventListener('resize', () => {
 
 let oldHash;
 window.addEventListener('hashchange', e => {
-	console.log('HASHCHANGED');
-	
 	if (location.hash == oldHash) return;
-	console.log(oldHash, location.hash)
 	openPage(location.hash);
 	oldHash = location.hash;
 })

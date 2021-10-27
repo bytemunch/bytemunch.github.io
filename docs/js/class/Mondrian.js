@@ -45,8 +45,8 @@ export class Mondrian {
         let headerPos = {
             x: -this.linew * 2,
             y: -this.linew * 2,
-            width: headerWidth,
-            height: headerWidth * 0.1
+            width: '',
+            height: ''
         };
         let header = newDiv(headerPos, './img/home.png', '#home');
         if (header) {
