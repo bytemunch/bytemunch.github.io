@@ -8,6 +8,7 @@ import { PagePortfolio } from './class/PagePortfolio.js';
 import { PagePlay } from './class/PagePlay.js';
 import { PageAbout } from './class/PageAbout.js';
 import { PageBlog } from './class/PageBlog.js';
+import { openPage } from './functions/openPage.js';
 
 interface Link {
 	img: string,
@@ -68,4 +69,12 @@ window.addEventListener('resize', () => {
 	}, 300)
 })
 
-document.addEventListener('DOMContentLoaded', () => { });
+let oldHash;
+window.addEventListener('hashchange', e => {
+	console.log('HASHCHANGED');
+	
+	if (location.hash == oldHash) return;
+	console.log(oldHash, location.hash)
+	openPage(location.hash);
+	oldHash = location.hash;
+})

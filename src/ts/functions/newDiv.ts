@@ -78,7 +78,11 @@ export function newDiv(pos, img?, link?, txt?) {
 		a.appendChild(div);
 
 		a.addEventListener('click', e => {
-			openPage(link);
+			// openPage(link);
+			// clear search params
+
+			let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + location.hash;
+			window.history.pushState({path: newurl}, '', newurl);
 		});
 
 		return a;

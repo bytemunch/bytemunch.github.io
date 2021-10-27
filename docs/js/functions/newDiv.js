@@ -1,4 +1,3 @@
-import { openPage } from './openPage.js';
 import { pickColor } from './pickColor.js';
 import { sizeText } from './sizeText.js';
 export function newDiv(pos, img, link, txt) {
@@ -61,7 +60,8 @@ export function newDiv(pos, img, link, txt) {
         a.classList.add('link');
         a.appendChild(div);
         a.addEventListener('click', e => {
-            openPage(link);
+            let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + location.hash;
+            window.history.pushState({ path: newurl }, '', newurl);
         });
         return a;
     }
