@@ -1,0 +1,21 @@
+<h1 id="dodgeyballdevlog5">Dodgey Ball Devlog #5</h1>
+<h2 id="controllerselection">Controller Selection</h2>
+<p>So if you've been reading along you may have noticed I've implemented full-screen touchscreen controls for one player, in a multiplayer game. Why? Online play. But before we get into all that I need to get the controller select screen working, doing controller
+    detection and such on the way. In future I intend to allow 4-player couch play, but I'll keep working with only 2 for now for simplicity's sake.</p>
+<h3 id="anewcustomelement">A new Custom Element</h3>
+<p>To get the behaviour I want I'll again be making use of a custom element.</p>
+<p><img src="img/blog/control-select.gif" alt="controller selection screen" /></p>
+<p>Yup, that's what I'm looking for! Now to let the player objects pull from these elements' states, and that's controller selection functioning. Though in practise one player selecting all the control schemes is a bit clunky. I'm thinking that setting touch
+    or keyboard controls should be done manually, while controllers auto-assign to their players and then go to team/character selection after. Or maybe make team/character/controller selection one screen? Market research time! What's everyone else doing?</p>
+<p><img src="img/blog/notes-research.jpg" alt="image of notes 1" /></p>
+<p>After looking at a few other games' controller setup screens, I have a better idea of what I want mine to be. Controllers should populate the next available player slot when the primary face button is pressed and free it up with the secondary face button.
+    The same screen and element will be used to select a profile or character when it's populated, and all controllers but player 1's will be locked into their elements. I'll add a new screen after controller setup for team setup, à la FIFA, as keeping
+    the two seperated will be better for adding online play later, where all players will be locked to one team. Team setup will also be where desicions about AI players will be made. Keyboard and touch controls will be selectable by clicking or tapping
+    the join elements, and players should be colour coded.</p>
+<p>Well that's a lot of words. Time for some actual coding to get it all up and running!</p>
+<p><img src="img/blog/controller-setup-4player.gif" alt="controller joining and player character selection" /></p>
+<p>Needs some touchup work on the CSS side and some button prompts, but this screen's looking good functionally. I'll need to make (or pinch) a manifest of friendlier controller names to limit the space required to display controller types too, as names
+    like <code>Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 05c4)</code> and <code>Xbox 360 Controller (XInput STANDARD GAMEPAD)</code> aren't the nicest to look at.</p>
+<p><img src="img/blog/controllers-friendly.png" alt="friendly controller names" /></p>
+<p>Fab. I'm glad to be moving on from that screen, not had much time to focus on the project recently so it's been a long time tweaking bits and bobs here and there. Very ready to move on to something less design-oriented!</p>
+<p>Done for now. Cya.</p>
