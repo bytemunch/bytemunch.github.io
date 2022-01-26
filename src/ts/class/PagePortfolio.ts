@@ -2,7 +2,7 @@ import { CeMain } from "../elements/CeMain.js";
 import { CeProjectLink } from "../elements/CeProjectLink.js";
 import { Page } from "./Page.js";
 
-interface Proj {
+export interface Proj {
     name: string,
     description: string,
     link: string,

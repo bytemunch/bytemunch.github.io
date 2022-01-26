@@ -1,13 +1,7 @@
 import { CeMain } from "../elements/CeMain.js";
 import { CeProjectLink } from "../elements/CeProjectLink.js";
 import { Page } from "./Page.js";
-
-interface Proj {
-    name: string,
-    description: string,
-    link: string,
-    repo?: string
-}
+import { Proj } from "./PagePortfolio.js";
 
 const projects: Proj[] = [
     {
