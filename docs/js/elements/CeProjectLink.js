@@ -3,7 +3,7 @@ export class CeProjectLink extends CustomElement {
     constructor(title, description, link, repo, textcolor) {
         super();
         const template = document.querySelector('#project-link-template').content;
-        const shadowRoot = this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' })
             .appendChild(template.cloneNode(true));
         const t = this.shadowRoot.querySelector('#project-name');
         t.textContent = title;

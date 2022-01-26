@@ -1,4 +1,3 @@
-import { CeMain } from "../elements/CeMain.js";
 import { updateURLParameter } from "../functions/updateURLParameter.js";
 
 export class BlogBrowser extends HTMLElement {

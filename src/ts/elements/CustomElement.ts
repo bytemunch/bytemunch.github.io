@@ -1,6 +1,6 @@
 export abstract class CustomElement extends HTMLElement {
     ready: Promise<any>;
-    readyRes;
+    readyRes: (val: any) => void;
     constructor() {
         super();
         this.ready = new Promise(res => this.readyRes = res);
@@ -11,6 +11,6 @@ export abstract class CustomElement extends HTMLElement {
     }
 
     connectedCallback() {
-        this.readyRes();
+        this.readyRes(0);
     }
 }

@@ -41,12 +41,11 @@ export class Mondrian {
         let oldHeader = document.querySelector('#header');
         if (oldHeader)
             oldHeader.parentElement.removeChild(oldHeader);
-        let headerWidth = this.width < this.height ? this.width * 0.7 : this.width * 0.55;
         let headerPos = {
             x: -this.linew * 2,
             y: -this.linew * 2,
-            width: '',
-            height: ''
+            width: 0,
+            height: 0
         };
         let header = newDiv(headerPos, './img/home.png', '#home');
         if (header) {

@@ -6,7 +6,7 @@ export function sizeText(text, maxWidth, maxHeight) {
     let currentSize;
     text.style.fontSize ? currentSize = parseInt(text.style.fontSize, 10) : currentSize = 0;
     if (maxWidth > currentWidth && maxHeight > currentHeight) {
-        text.style.fontSize = 1 + currentSize;
+        text.style.fontSize = (1 + currentSize).toString();
         return sizeText(text, maxWidth, maxHeight);
     }
     else {

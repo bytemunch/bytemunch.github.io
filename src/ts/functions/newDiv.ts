@@ -1,9 +1,9 @@
-import { openPage } from './openPage.js';
+import { XYWH } from '../class/Mondrian.js';
 import { pickColor } from './pickColor.js';
 import { sizeText } from './sizeText.js';
 
-export function newDiv(pos, img?, link?, txt?) {
-	let div = document.createElement('div');
+export function newDiv(pos: XYWH, img?: string, link?: string, txt?: string) {
+	let div = document.createElement('div') as HTMLDivElement;
 	let color = '';
 
 	switch (txt) {
@@ -24,10 +24,12 @@ export function newDiv(pos, img?, link?, txt?) {
 			break;
 	}
 
-	div.style.left = pos.x;
-	div.style.top = pos.y;
-	div.style.width = pos.width;
-	div.style.height = pos.height;
+	div.style.left = pos.x.toString();
+	div.style.top = pos.y.toString();
+
+	if (pos.width) div.style.width = pos.width.toString();
+	if (pos.height) div.style.height = pos.height.toString();
+
 	div.style.backgroundColor = color;
 
 	div.classList.add('linkbox');
@@ -82,7 +84,7 @@ export function newDiv(pos, img?, link?, txt?) {
 			// clear search params
 
 			let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + location.hash;
-			window.history.pushState({path: newurl}, '', newurl);
+			window.history.pushState({ path: newurl }, '', newurl);
 		});
 
 		return a;

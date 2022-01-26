@@ -4,7 +4,7 @@ import { pages } from '../main.js';
 import { getAnimatableBoxes } from './getAnimatableBoxes.js';
 import { wait } from './wait.js';
 
-export async function openPage(page) {
+export async function openPage(page:string) {
 	//grab page object
 	page = page.split('&')[0];
 	const pg = pages[page.replace('#', '')] as Page;

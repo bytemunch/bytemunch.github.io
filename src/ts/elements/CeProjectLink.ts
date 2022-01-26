@@ -1,11 +1,11 @@
 import { CustomElement } from "./CustomElement.js";
 
 export class CeProjectLink extends CustomElement {
-    constructor(title, description, link, repo?, textcolor?) {
+    constructor(title:string, description:string, link:string, repo?:string, textcolor?:string) {
         super();
         const template = (<HTMLTemplateElement>document.querySelector('#project-link-template')).content;
 
-        const shadowRoot = this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' })
             .appendChild(template.cloneNode(true));
 
         const t = this.shadowRoot.querySelector('#project-name');

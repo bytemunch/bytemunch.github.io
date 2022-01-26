@@ -23,7 +23,7 @@ export class LineRunner {
 	parent;
 	line:Line;
 
-	constructor(x, y, axis, direction, parent?) {
+	constructor(x: number, y: number, axis: string, direction: number, parent?: Element) {
 		this.x = x;
 		this.y = y;
 		this.width = mondrian.linew;
@@ -128,7 +128,7 @@ export class LineRunner {
 		this.dead = false;
 	}
 
-	die(obstacle?, nested = false) {
+	die(obstacle?: { x: number; y: number; width: number; height: number; }, nested = false) {
 		if (obstacle) {
 			// trim line to fit
 			let offset = mondrian.linew / 2;

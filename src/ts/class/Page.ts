@@ -4,10 +4,10 @@ import { fadeIn, drawLines } from "../functions/animations.js";
 import { CeMain } from "../elements/CeMain.js";
 
 export abstract class Page {
-	name;
+	name:string;
 	complexity;
 	main: CeMain;
-	images;
+	images:string[];
 
 	constructor() {
 		this.complexity = 4;
@@ -36,7 +36,8 @@ export abstract class Page {
 		for (let l of links) {
 			if (l.link.replace('#', '') !== this.name) {
 				let pos = mondrian.findSpace();
-				let div = newDiv(pos, l.img, l.link, l.txt);
+				let div;
+				if (pos) div = newDiv(pos, l.img, l.link, l.txt);
 				if (div) {
 					document.body.appendChild(div);
 				}
@@ -45,10 +46,11 @@ export abstract class Page {
 	}
 
 	addImages() {
-		if (this.images !== 'empty') {
+		if (this.images) {
 			for (let i in this.images) {
 				let ipos = mondrian.findSpace();
-				let image = newDiv(ipos, this.images[i]);
+				let image;
+				if (ipos) image = newDiv(ipos, this.images[i]);
 				if (image) {
 					document.body.appendChild(image);
 				}
@@ -76,10 +78,10 @@ export abstract class Page {
 		const mainDiv = document.querySelector('.main-div');
 		const main = this.main?.shadowRoot.querySelector('#main');
 		const homeLink = document.querySelector('.home');
-		let drawBoxes = [...document.querySelectorAll('.linkbox')];
-		if (main) drawBoxes.push(main);
-		if (mainDiv) drawBoxes.push(mainDiv);
-		if (homeLink) drawBoxes.splice(drawBoxes.indexOf(homeLink), 1);
+		let drawBoxes = [...document.querySelectorAll('.linkbox')] as HTMLElement[];
+		if (main) drawBoxes.push(main as HTMLElement);
+		if (mainDiv) drawBoxes.push(mainDiv as HTMLElement);
+		if (homeLink) drawBoxes.splice(drawBoxes.indexOf(homeLink as HTMLElement), 1);
 
 		await fadeIn(drawBoxes, 0.04);
 

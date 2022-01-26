@@ -1,11 +1,11 @@
 import { CustomElement } from "./CustomElement.js";
 
 export class CeMain extends CustomElement {
-    constructor(title, subtitle, background, textcolor) {
+    constructor(title:string, subtitle:string, background:string, textcolor:string) {
         super();
         const template = (<HTMLTemplateElement>document.querySelector('#main-template')).content;
 
-        const shadowRoot = this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' })
             .appendChild(template.cloneNode(true));
 
         const t = this.shadowRoot.querySelector('#title');

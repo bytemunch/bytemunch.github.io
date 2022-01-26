@@ -6,7 +6,7 @@ export class CustomElement extends HTMLElement {
     applyStyle() {
     }
     connectedCallback() {
-        this.readyRes();
+        this.readyRes(0);
     }
 }
 //# sourceMappingURL=CustomElement.js.map

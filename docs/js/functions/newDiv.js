@@ -20,10 +20,12 @@ export function newDiv(pos, img, link, txt) {
             color = pickColor();
             break;
     }
-    div.style.left = pos.x;
-    div.style.top = pos.y;
-    div.style.width = pos.width;
-    div.style.height = pos.height;
+    div.style.left = pos.x.toString();
+    div.style.top = pos.y.toString();
+    if (pos.width)
+        div.style.width = pos.width.toString();
+    if (pos.height)
+        div.style.height = pos.height.toString();
     div.style.backgroundColor = color;
     div.classList.add('linkbox');
     if (txt) {

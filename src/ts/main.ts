@@ -9,6 +9,7 @@ import { PagePlay } from './class/PagePlay.js';
 import { PageAbout } from './class/PageAbout.js';
 import { PageBlog } from './class/PageBlog.js';
 import { openPage } from './functions/openPage.js';
+import { Page } from './class/Page.js';
 
 interface Link {
 	img: string,
@@ -19,7 +20,7 @@ interface Link {
 export let mondrian: Mondrian;
 
 // Why on earth did I write this like I did?
-export let pages = {
+export let pages: { [id: string]: Page } = {
 	about: new PageAbout,
 	funstuff: new PagePlay,
 	portfolio: new PagePortfolio,
@@ -39,12 +40,12 @@ await new Promise((res) => {
 
 //data structures
 
-export async function getPage(page) {
+export async function getPage(page: string) {
 	const res = await fetch('./pages/' + page + '.json')
 	return res.json();
 }
 
-export function reRange(val, min1, max1, min2, max2) {
+export function reRange(val: number, min1: number, max1: number, min2: number, max2: number) {
 	let percent = (val - min1) / (max1 - min1);
 
 	let newVal = min2 + ((max2 - min2) * percent);
@@ -61,7 +62,7 @@ setTimeout(() => {
 	fadeIn([document.body], 0.05);
 }, 150);
 
-let resizeDebounceTimeout;
+let resizeDebounceTimeout: number;
 window.addEventListener('resize', () => {
 	clearTimeout(resizeDebounceTimeout);
 	resizeDebounceTimeout = setTimeout(() => {
@@ -69,7 +70,7 @@ window.addEventListener('resize', () => {
 	}, 300)
 })
 
-let oldHash;
+let oldHash: string;
 window.addEventListener('hashchange', e => {
 	if (location.hash == oldHash) return;
 	openPage(location.hash);

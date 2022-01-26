@@ -3,14 +3,15 @@
     "compilerOptions": {
         "module": "ESNext",
         "target": "ES2017",
-        "noImplicitAny": false,
+        "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "outDir": "./docs/js/",
         "sourceMap": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "allowJs": true
+        "allowJs": true,
+        "noUnusedLocals": true
     },
     "include": [
         "./src/ts/*.ts", 

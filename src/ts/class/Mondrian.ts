@@ -79,13 +79,14 @@ export class Mondrian {
         let oldHeader = document.querySelector('#header');
         if (oldHeader) oldHeader.parentElement.removeChild(oldHeader);
 
+        // let headerWidth = this.width < this.height ? this.width * 0.7 : this.width * 0.55;
+
         // add title
-        let headerWidth = this.width < this.height ? this.width * 0.7 : this.width * 0.55;
         let headerPos = {
             x: -this.linew * 2,
             y: -this.linew * 2,
-            width: '',
-            height: ''
+            width: 0,
+            height: 0
         }
         let header = newDiv(headerPos, './img/home.png', '#home');
 
@@ -109,41 +110,41 @@ export class Mondrian {
     findSpace() {
         let overlap = true;
         let maxTriesToPlace = 10000;
-    
+
         let rw, rh, rx, ry, i = 0;
         while (overlap && i < maxTriesToPlace) {
             i++;
             // REGULAR SIZING
             // rw = Math.floor(maxw - Math.random() * minw);
             // rh = Math.floor(maxh - Math.random() * minh);
-    
+
             rw = Math.random() * (this.maxw - this.minw) + this.minw;
             rh = Math.random() * (this.maxh - this.minh) + this.minh;
-    
+
             // MINIMUM SIZE TEST
             // rw = minw;
             // rh = minh;
-    
+
             // MAX SIZE TEST
             // rw = maxw;
             // rh = maxh;
-    
+
             // REGULAR POSITIONING
             rx = Math.floor(Math.random() * (this.width - rw - this.linew * 2));
             ry = Math.floor(Math.random() * (this.height - rh - this.linew * 2));
-    
+
             // DISABLE OVERLAP CHECK BEFORE USE!!!
-    
+
             // MIN POSITIONING
             // rx = 0;
             // ry = 0;
-    
+
             // MAX POSITIONING
             // rx = 1 * (width - rw - linew*2);
             // ry = 1 * (height - rh - linew*2);
-    
+
             overlap = false;
-    
+
             let bbs = this.getBoundingBoxes();
             for (let bb of bbs) {
                 let thisBb = { x: rx, y: ry, width: rw, height: rh };
@@ -153,27 +154,27 @@ export class Mondrian {
                 }
             }
         }
-    
+
         if (i >= maxTriesToPlace) {
             return false;
         }
-    
+
         return { x: rx, y: ry, width: rw, height: rh };
     }
 
-    getBoundingBoxes() {
+    getBoundingBoxes():XYWH[] {
         let divs = Array.from(document.querySelectorAll('.linkbox'));
-    
+
         let shadowRootElements = document.querySelectorAll('.main-div');
-    
+
         if (shadowRootElements[0]) {
             shadowRootElements.forEach(el => divs.push(el.shadowRoot.querySelector('#main')));
         }
-    
+
         let bbs = [];
         let divbb;
-    
-    
+
+
         //@ts-ignore
         // NodeList is iterable why you say no
         for (let div of divs) {
@@ -186,7 +187,14 @@ export class Mondrian {
             };
             bbs.push(stripped);
         }
-    
+
         return bbs;
     }
+}
+
+export interface XYWH {
+    x: number,
+    y: number,
+    width: number,
+    height: number
 }

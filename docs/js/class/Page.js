@@ -22,7 +22,9 @@ export class Page {
         for (let l of links) {
             if (l.link.replace('#', '') !== this.name) {
                 let pos = mondrian.findSpace();
-                let div = newDiv(pos, l.img, l.link, l.txt);
+                let div;
+                if (pos)
+                    div = newDiv(pos, l.img, l.link, l.txt);
                 if (div) {
                     document.body.appendChild(div);
                 }
@@ -30,10 +32,12 @@ export class Page {
         }
     }
     addImages() {
-        if (this.images !== 'empty') {
+        if (this.images) {
             for (let i in this.images) {
                 let ipos = mondrian.findSpace();
-                let image = newDiv(ipos, this.images[i]);
+                let image;
+                if (ipos)
+                    image = newDiv(ipos, this.images[i]);
                 if (image) {
                     document.body.appendChild(image);
                 }

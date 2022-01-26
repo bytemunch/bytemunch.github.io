@@ -4,11 +4,11 @@ export async function fadeOut(elements, speed) {
         if (!elements[0]) {
             return res(1);
         }
-        const rafFn = t => {
+        const rafFn = (t) => {
             let o = parseFloat(elements[0].style.opacity) || 0;
             o -= speed;
             for (let element of elements) {
-                element.style.opacity = o;
+                element.style.opacity = o.toString();
             }
             if (o > 0) {
                 requestAnimationFrame(rafFn);
@@ -23,10 +23,10 @@ export async function fadeOut(elements, speed) {
 export async function fadeIn(elements, speed) {
     return new Promise(res => {
         let o = 0;
-        const rafFn = t => {
+        const rafFn = (t) => {
             o += speed;
             for (let element of elements) {
-                element.style.opacity = o;
+                element.style.opacity = o.toString();
             }
             if (o < 1) {
                 requestAnimationFrame(rafFn);
@@ -40,7 +40,7 @@ export async function fadeIn(elements, speed) {
 }
 export async function drawLines() {
     return new Promise(res => {
-        const rafFn = t => {
+        const rafFn = (t) => {
             mondrian.ctx.clearRect(0, 0, mondrian.width, mondrian.height);
             let live = false;
             for (let lr of mondrian.lineRunners) {
@@ -63,7 +63,7 @@ export async function drawLines() {
 export async function retractLines() {
     return new Promise(res => {
         mondrian.lineRunners.forEach(lr => lr.revive());
-        const rafFn = t => {
+        const rafFn = (t) => {
             mondrian.ctx.clearRect(0, 0, mondrian.width, mondrian.height);
             let live = false;
             for (let lr of mondrian.lineRunners) {
