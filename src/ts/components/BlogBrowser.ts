@@ -9,6 +9,12 @@ export class BlogBrowser extends HTMLElement {
 
     currentId = '';
 
+    resConnectedOnce: (v: any) => void;
+
+    connectedOnce = new Promise(res => {
+        this.resConnectedOnce = res;
+    })
+
     constructor() {
         super();
 
@@ -16,7 +22,9 @@ export class BlogBrowser extends HTMLElement {
 
         this.db = fetch('./posts/db.json').then(res => res.json());
 
-        this.loaded = fetch('/js/components/BlogBrowser.html').then(res => res.text()).then(html => sr.innerHTML = html);
+        this.loaded = fetch('/js/components/BlogBrowser.html')
+            .then(res => res.text())
+            .then(html => sr.innerHTML = html);
 
 
         // permlinks
@@ -31,10 +39,6 @@ export class BlogBrowser extends HTMLElement {
         } else if (sQ) {
             this.search(sQ);
         }
-    }
-
-    async init() {
-        await this.connectedCallback();
     }
 
     async applyStyles() {
@@ -61,7 +65,7 @@ export class BlogBrowser extends HTMLElement {
             this.search(searchInput.value);
         });
 
-        searchInput.addEventListener('keydown', e => {
+        searchInput?.addEventListener('keydown', e => {
             if (e.key == 'Enter') {
                 e.preventDefault();
                 this.search(searchInput.value);
@@ -73,6 +77,8 @@ export class BlogBrowser extends HTMLElement {
 
         nextButton.addEventListener('click', () => this.moveThroughPostsByAmount(1));
         prevButton.addEventListener('click', () => this.moveThroughPostsByAmount(-1));
+
+        this.resConnectedOnce(0);
     }
 
     async moveThroughPostsByAmount(dist: number) {
@@ -100,7 +106,7 @@ export class BlogBrowser extends HTMLElement {
     }
 
     async search(query: string) {
-        await this.loaded;
+        await this.connectedOnce;
 
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', query));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', ''));
@@ -213,7 +219,7 @@ export class BlogBrowser extends HTMLElement {
     }
 
     async openBlog(blogId: string) {
-        await this.loaded;
+        await this.connectedOnce;
 
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', blogId));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', ''));

@@ -3,9 +3,14 @@ export class BlogBrowser extends HTMLElement {
     constructor() {
         super();
         this.currentId = '';
+        this.connectedOnce = new Promise(res => {
+            this.resConnectedOnce = res;
+        });
         const sr = this.attachShadow({ mode: 'open' });
         this.db = fetch('./posts/db.json').then(res => res.json());
-        this.loaded = fetch('/js/components/BlogBrowser.html').then(res => res.text()).then(html => sr.innerHTML = html);
+        this.loaded = fetch('/js/components/BlogBrowser.html')
+            .then(res => res.text())
+            .then(html => sr.innerHTML = html);
         const params = new URLSearchParams(window.location.search);
         const bID = params.get('blog');
         const sQ = params.get('query');
@@ -16,9 +21,6 @@ export class BlogBrowser extends HTMLElement {
         else if (sQ) {
             this.search(sQ);
         }
-    }
-    async init() {
-        await this.connectedCallback();
     }
     async applyStyles() {
         var _a;
@@ -39,7 +41,7 @@ export class BlogBrowser extends HTMLElement {
             e.preventDefault();
             this.search(searchInput.value);
         });
-        searchInput.addEventListener('keydown', e => {
+        searchInput === null || searchInput === void 0 ? void 0 : searchInput.addEventListener('keydown', e => {
             if (e.key == 'Enter') {
                 e.preventDefault();
                 this.search(searchInput.value);
@@ -49,6 +51,7 @@ export class BlogBrowser extends HTMLElement {
         const prevButton = (_f = this.shadowRoot) === null || _f === void 0 ? void 0 : _f.querySelector('#btn-blog-prev');
         nextButton.addEventListener('click', () => this.moveThroughPostsByAmount(1));
         prevButton.addEventListener('click', () => this.moveThroughPostsByAmount(-1));
+        this.resConnectedOnce(0);
     }
     async moveThroughPostsByAmount(dist) {
         const orderedIds = await this.orderDbKeysByDate();
@@ -68,7 +71,7 @@ export class BlogBrowser extends HTMLElement {
         return idArr;
     }
     async search(query) {
-        await this.loaded;
+        await this.connectedOnce;
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', query));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', ''));
         query = query.toLowerCase();
@@ -146,7 +149,7 @@ export class BlogBrowser extends HTMLElement {
         return tagLink;
     }
     async openBlog(blogId) {
-        await this.loaded;
+        await this.connectedOnce;
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', blogId));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', ''));
         this.currentId = blogId;

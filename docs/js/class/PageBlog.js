@@ -12,7 +12,8 @@ export class PageBlog extends Page {
         await this.main.ready;
         const blogBrowser = new BlogBrowser;
         await blogBrowser.loaded;
-        await blogBrowser.init();
+        await blogBrowser.connectedCallback();
+        await blogBrowser.connectedOnce;
         this.main.appendToTitle(blogBrowser.navDiv);
         this.main.appendToMain(blogBrowser.blogDiv);
     }
