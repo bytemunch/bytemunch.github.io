@@ -101,6 +101,9 @@ const md = require('markdown-it')();
     // Write edited postString to blog-staging-temp
     fs.writeFileSync('./blog-staging-temp/main.md', postString);
 
+    // move main.md to blog-staging/posts/blogID.md
+    fs.copyFileSync('./blog-staging/main.md', `./blog-staging/posts/${blogId}.md`);
+
     // Convert md to html
     const html = md.render(postString);
 
@@ -123,9 +126,9 @@ const md = require('markdown-it')();
     // cleanup 
     fs.rmSync('./blog-staging-temp', { recursive: true });
 
-    console.log(`Added ${db[blogId].title} to /src/root/posts/${blogId}.html`);
+    console.log(`\nAdded ${db[blogId].title} to /src/root/posts/${blogId}.html`);
 
-    console.log('Remember to build the project and test the update!')
+    console.log('\nRemember to build the project and test the update!')
 })();
 
 async function pQuestion(text) {
