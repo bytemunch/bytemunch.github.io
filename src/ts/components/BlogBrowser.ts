@@ -18,10 +18,13 @@ export class BlogBrowser extends HTMLElement {
 
         this.loaded = fetch('/js/components/BlogBrowser.html').then(res => res.text()).then(html => sr.innerHTML = html);
 
+
         // permlinks
         const params = new URLSearchParams(window.location.search);
         const bID = params.get('blog');
         const sQ = params.get('query');
+
+        console.log(params);
 
         if (bID) {
             this.openBlog(bID);
@@ -210,6 +213,7 @@ export class BlogBrowser extends HTMLElement {
     }
 
     async openBlog(blogId: string) {
+        await this.loaded;
 
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', blogId));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', ''));

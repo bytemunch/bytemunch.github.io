@@ -5,7 +5,7 @@ import { wait } from './wait.js';
 export async function openPage(page) {
     page = page.split('&')[0];
     const pg = pages[page.replace('#', '')];
-    let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + location.hash;
+    let newurl = window.location.href;
     window.history.pushState({ path: newurl }, '', newurl);
     await retractLines();
     const elements = getAnimatableBoxes();
