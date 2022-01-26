@@ -14,7 +14,6 @@ export class BlogBrowser extends HTMLElement {
         const params = new URLSearchParams(window.location.search);
         const bID = params.get('blog');
         const sQ = params.get('query');
-        console.log(params);
         if (bID) {
             this.openBlog(bID);
         }
@@ -24,9 +23,9 @@ export class BlogBrowser extends HTMLElement {
     }
     async applyStyles() {
         var _a;
-        const ss = document.createElement('style');
-        const ssDone = fetch('/js/components/BlogBrowser.css').then(res => res.text()).then(css => ss.innerHTML = css);
-        (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.appendChild(ss);
+        this.stylesheet = document.createElement('style');
+        const ssDone = fetch('/js/components/BlogBrowser.css').then(res => res.text()).then(css => this.stylesheet.innerHTML = css);
+        (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.appendChild(this.stylesheet);
         return ssDone;
     }
     async connectedCallback() {
@@ -80,6 +79,7 @@ export class BlogBrowser extends HTMLElement {
         this.currentId = '';
         const db = await this.db;
         const results = document.createElement('ul');
+        results.classList.add('blog-results');
         let resultArray = [];
         for (let id in db) {
             if (db[id].tags.includes(query) || id.toLowerCase().includes(query) || db[id].title.toLowerCase().includes(query)) {
@@ -100,9 +100,11 @@ export class BlogBrowser extends HTMLElement {
             result.appendChild(resLink);
             const dObj = new Date(db[id].date);
             const resDate = document.createElement('span');
-            resDate.innerText = dObj.toUTCString();
+            resDate.classList.add('blog-date');
+            resDate.innerText = dObj.toLocaleDateString('en-GB', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' });
             result.appendChild(resDate);
             const tagList = document.createElement('ul');
+            tagList.classList.add('blog-taglist');
             tagList.innerText = 'tags: ';
             for (let tag of db[id].tags) {
                 const tagLi = document.createElement('li');
@@ -140,6 +142,7 @@ export class BlogBrowser extends HTMLElement {
     }
     createTagLink(tag) {
         const tagLink = document.createElement('a');
+        tagLink.classList.add('blog-tag');
         tagLink.href = 'javascript:void(0);';
         tagLink.innerText = tag;
         tagLink.addEventListener('click', e => {

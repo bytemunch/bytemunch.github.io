@@ -15,6 +15,8 @@ export class BlogBrowser extends HTMLElement {
         this.resConnectedOnce = res;
     })
 
+    stylesheet!:HTMLStyleElement;
+
     constructor() {
         super();
 
@@ -32,8 +34,6 @@ export class BlogBrowser extends HTMLElement {
         const bID = params.get('blog');
         const sQ = params.get('query');
 
-        console.log(params);
-
         if (bID) {
             this.openBlog(bID);
         } else if (sQ) {
@@ -42,10 +42,10 @@ export class BlogBrowser extends HTMLElement {
     }
 
     async applyStyles() {
-        const ss = document.createElement('style');
-        const ssDone = fetch('/js/components/BlogBrowser.css').then(res => res.text()).then(css => ss.innerHTML = css);
+        this.stylesheet = document.createElement('style');
+        const ssDone = fetch('/js/components/BlogBrowser.css').then(res => res.text()).then(css => this.stylesheet.innerHTML = css);
 
-        this.shadowRoot?.appendChild(ss);
+        this.shadowRoot?.appendChild(this.stylesheet);
 
         return ssDone;
     }
@@ -120,6 +120,7 @@ export class BlogBrowser extends HTMLElement {
         const db = await this.db;
 
         const results = document.createElement('ul');
+        results.classList.add('blog-results');
 
         let resultArray: string[] = [];
 
@@ -149,12 +150,16 @@ export class BlogBrowser extends HTMLElement {
             const dObj = new Date(db[id].date);
 
             const resDate = document.createElement('span');
-            resDate.innerText = dObj.toUTCString();
+            resDate.classList.add('blog-date');
+            // 12 Feb 2020
+            resDate.innerText = dObj.toLocaleDateString('en-GB',{ weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
 
             result.appendChild(resDate);
 
             // add tags
             const tagList = document.createElement('ul');
+
+            tagList.classList.add('blog-taglist');
 
             tagList.innerText = 'tags: ';
 
@@ -209,6 +214,7 @@ export class BlogBrowser extends HTMLElement {
 
     createTagLink(tag: string) {
         const tagLink = document.createElement('a');
+        tagLink.classList.add('blog-tag');
         tagLink.href = 'javascript:void(0);';
         tagLink.innerText = tag;
         tagLink.addEventListener('click', e => {
