@@ -14,9 +14,6 @@ export async function fadeOut(elements, speed) {
                 requestAnimationFrame(rafFn);
             }
             else {
-                for (let el of elements) {
-                    el.parentElement.tagName == 'A' ? el.parentElement.parentElement.removeChild(el.parentElement) : el.parentElement.removeChild(el);
-                }
                 res(0);
             }
         };
@@ -86,13 +83,5 @@ export async function retractLines() {
         };
         requestAnimationFrame(rafFn);
     });
-}
-export async function fadeBoxesOut() {
-    let boxes = Array.from(document.querySelectorAll('.linkbox'));
-    const main = document.querySelector('.main-div');
-    if (main)
-        boxes.push(main);
-    boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
-    return fadeOut(boxes, 0.05);
 }
 //# sourceMappingURL=animations.js.map

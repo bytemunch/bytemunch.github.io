@@ -16,12 +16,6 @@ export async function fadeOut(elements, speed) {
 			if (o > 0) {
 				requestAnimationFrame(rafFn);
 			} else {
-				// remove from page
-				// TODO this ugly, shoudn't be in scope of an animation function
-				for (let el of elements) {
-					el.parentElement.tagName == 'A' ? el.parentElement.parentElement.removeChild(el.parentElement) : el.parentElement.removeChild(el);
-				}
-
 				res(0);
 			}
 		}
@@ -103,12 +97,4 @@ export async function retractLines() {
 
 		requestAnimationFrame(rafFn);
 	})
-}
-
-export async function fadeBoxesOut() {
-	let boxes = Array.from(document.querySelectorAll('.linkbox'));
-	const main = document.querySelector('.main-div');
-	if (main) boxes.push(main);
-	boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);	
-	return fadeOut(boxes, 0.05);
 }
