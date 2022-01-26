@@ -108,6 +108,8 @@ export class BlogBrowser extends HTMLElement {
     async search(query: string) {
         await this.connectedOnce;
 
+        if (query == '') query = '*';
+
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', query));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', ''));
 

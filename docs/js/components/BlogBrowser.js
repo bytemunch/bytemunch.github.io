@@ -71,6 +71,8 @@ export class BlogBrowser extends HTMLElement {
     }
     async search(query) {
         await this.connectedOnce;
+        if (query == '')
+            query = '*';
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', query));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', ''));
         query = query.toLowerCase();
