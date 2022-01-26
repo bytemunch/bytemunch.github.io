@@ -123,7 +123,6 @@ export class BlogBrowser extends HTMLElement {
 
         // order results by date
         for (let id of (await this.orderDbKeysByDate(true))) {
-            console.log(id);
             if (!resultArray.includes(id)) continue;
 
             const result = document.createElement('li');
@@ -189,8 +188,6 @@ export class BlogBrowser extends HTMLElement {
             let sortedTags = Object.keys(tags);
 
             sortedTags.sort((a, b) => tags[b] - tags[a]);
-
-            console.log(tags, sortedTags);
 
             for (let tag of sortedTags) {
                 const tagLi = document.createElement('li');
