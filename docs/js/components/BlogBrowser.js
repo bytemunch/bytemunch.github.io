@@ -151,6 +151,7 @@ export class BlogBrowser extends HTMLElement {
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', ''));
         this.currentId = blogId;
         await fetch(`/posts/${blogId}.html`).then(res => res.text()).then(html => this.blogDiv.innerHTML = html);
+        document.querySelector('.main-div').shadowRoot.querySelector('#main-content').scrollTo(0, 0);
     }
 }
 customElements.define('nce-blog-browser', BlogBrowser);

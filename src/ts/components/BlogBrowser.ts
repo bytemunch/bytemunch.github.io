@@ -1,3 +1,4 @@
+import { CeMain } from "../elements/CeMain.js";
 import { updateURLParameter } from "../functions/updateURLParameter.js";
 
 export class BlogBrowser extends HTMLElement {
@@ -36,7 +37,7 @@ export class BlogBrowser extends HTMLElement {
 
     async applyStyles() {
         const ss = document.createElement('style');
-        const ssDone = fetch('/js/components/BlogBrowser.css').then(res=>res.text()).then(css=>ss.innerHTML = css);
+        const ssDone = fetch('/js/components/BlogBrowser.css').then(res => res.text()).then(css => ss.innerHTML = css);
 
         this.shadowRoot?.appendChild(ss);
 
@@ -213,10 +214,14 @@ export class BlogBrowser extends HTMLElement {
     }
 
     async openBlog(blogId: string) {
+
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'blog', blogId));
         window.history.replaceState('', '', updateURLParameter(window.location.href, 'query', ''));
         this.currentId = blogId;
         await fetch(`/posts/${blogId}.html`).then(res => res.text()).then(html => this.blogDiv.innerHTML = html);
+
+        // scroll blog view to top
+        document.querySelector('.main-div').shadowRoot.querySelector('#main-content').scrollTo(0, 0);
     }
 }
 
