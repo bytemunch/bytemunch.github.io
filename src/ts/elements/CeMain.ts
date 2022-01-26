@@ -23,6 +23,10 @@ export class CeMain extends CustomElement {
         this.shadowRoot.querySelector('#main-content').appendChild(e);
     }
 
+    appendToTitle(e:Element) {
+        this.shadowRoot.querySelector('#main-title').appendChild(e);
+    }
+
 }
 
 customElements.define('ce-main', CeMain);

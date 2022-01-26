@@ -8,8 +8,16 @@ export class PageBlog extends Page {
         this.main = new CeMain('the blog', 'i write about stuff', 'white', 'black');
         document.body.appendChild(this.main);
 
-        this.main.appendToMain(new BlogBrowser);
-
         await this.main.ready;
+
+        const blogBrowser = new BlogBrowser;
+
+        await blogBrowser.loaded;
+
+        await blogBrowser.init();
+
+        this.main.appendToTitle(blogBrowser.navDiv);
+
+        this.main.appendToMain(blogBrowser.blogDiv);
     }
 }

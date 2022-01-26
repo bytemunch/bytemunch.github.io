@@ -16,6 +16,9 @@ export class BlogBrowser extends HTMLElement {
             this.search(sQ);
         }
     }
+    async init() {
+        await this.connectedCallback();
+    }
     async applyStyles() {
         var _a;
         const ss = document.createElement('style');
@@ -24,12 +27,13 @@ export class BlogBrowser extends HTMLElement {
         return ssDone;
     }
     async connectedCallback() {
-        var _a, _b, _c, _d, _e;
+        var _a, _b, _c, _d, _e, _f;
         await this.loaded;
         await this.applyStyles();
         this.blogDiv = (_a = this.shadowRoot) === null || _a === void 0 ? void 0 : _a.querySelector('#blog-div');
-        const searchButton = (_b = this.shadowRoot) === null || _b === void 0 ? void 0 : _b.querySelector('#btn-blog-search');
-        const searchInput = (_c = this.shadowRoot) === null || _c === void 0 ? void 0 : _c.querySelector('#blog-search');
+        this.navDiv = (_b = this.shadowRoot) === null || _b === void 0 ? void 0 : _b.querySelector('#nav-div');
+        const searchButton = (_c = this.shadowRoot) === null || _c === void 0 ? void 0 : _c.querySelector('#btn-blog-search');
+        const searchInput = (_d = this.shadowRoot) === null || _d === void 0 ? void 0 : _d.querySelector('#blog-search');
         searchButton === null || searchButton === void 0 ? void 0 : searchButton.addEventListener('click', e => {
             e.preventDefault();
             this.search(searchInput.value);
@@ -40,8 +44,8 @@ export class BlogBrowser extends HTMLElement {
                 this.search(searchInput.value);
             }
         });
-        const nextButton = (_d = this.shadowRoot) === null || _d === void 0 ? void 0 : _d.querySelector('#btn-blog-next');
-        const prevButton = (_e = this.shadowRoot) === null || _e === void 0 ? void 0 : _e.querySelector('#btn-blog-prev');
+        const nextButton = (_e = this.shadowRoot) === null || _e === void 0 ? void 0 : _e.querySelector('#btn-blog-next');
+        const prevButton = (_f = this.shadowRoot) === null || _f === void 0 ? void 0 : _f.querySelector('#btn-blog-prev');
         nextButton.addEventListener('click', () => this.moveThroughPostsByAmount(1));
         prevButton.addEventListener('click', () => this.moveThroughPostsByAmount(-1));
     }

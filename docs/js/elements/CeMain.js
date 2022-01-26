@@ -16,6 +16,9 @@ export class CeMain extends CustomElement {
     appendToMain(e) {
         this.shadowRoot.querySelector('#main-content').appendChild(e);
     }
+    appendToTitle(e) {
+        this.shadowRoot.querySelector('#main-title').appendChild(e);
+    }
 }
 customElements.define('ce-main', CeMain);
 //# sourceMappingURL=CeMain.js.map

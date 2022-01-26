@@ -5,6 +5,7 @@ export class BlogBrowser extends HTMLElement {
     loaded: Promise<any>;
 
     blogDiv!: HTMLDivElement;
+    navDiv!: HTMLDivElement;
 
     currentId = '';
 
@@ -29,6 +30,10 @@ export class BlogBrowser extends HTMLElement {
         }
     }
 
+    async init() {
+        await this.connectedCallback();
+    }
+
     async applyStyles() {
         const ss = document.createElement('style');
         const ssDone = fetch('/js/components/BlogBrowser.css').then(res=>res.text()).then(css=>ss.innerHTML = css);
@@ -42,6 +47,8 @@ export class BlogBrowser extends HTMLElement {
         await this.loaded;
         await this.applyStyles();
         this.blogDiv = this.shadowRoot?.querySelector('#blog-div') as HTMLDivElement;
+
+        this.navDiv = this.shadowRoot?.querySelector('#nav-div') as HTMLDivElement;
 
         const searchButton = this.shadowRoot?.querySelector('#btn-blog-search') as HTMLButtonElement;
         const searchInput = this.shadowRoot?.querySelector('#blog-search') as HTMLInputElement;
