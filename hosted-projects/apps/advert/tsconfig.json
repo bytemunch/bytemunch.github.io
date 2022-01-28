@@ -1,8 +1,0 @@
-{
-    "compilerOptions": {
-        "target": "ESNext",
-        "outDir": "./",
-        "sourceMap": true
-    },
-    "files": ["ts/main.ts"]
-}
