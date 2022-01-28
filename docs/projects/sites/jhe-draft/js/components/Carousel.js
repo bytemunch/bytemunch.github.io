@@ -9,7 +9,7 @@ export class Carousel extends HTMLElement {
         this.currentSrc = 0;
         this.onImageA = true;
         for (let i = 0; i < o.count; i++) {
-            this.sources.push(o.sourceFolder + '/' + (i + 1) + '.png');
+            this.sources.push(o.sourceFolder + '/' + (i + 1) + '.jpg');
         }
         this.currentSrc = this.arrWrap(Math.floor(Math.random() * o.count));
     }
