@@ -1,0 +1,39 @@
+<h1>Dodgey Ball Devlog #6</h1>
+<p>Been a long time since my last devlog, whoopsie. Let's see if I can remember how to write.</p>
+<h2>Beginning Again</h2>
+<p>I've moved all the progress made so far into a <a href="https://github.com/bytemunch/dodgey-ball-prototype">prototype repo</a> and started a fresh codebase. Once I started trying to add multiplayer logic I realised that so many changes would need to be made that starting fresh would be less effort. In the switch I also decided to move to a proper 3D renderer and physics library, and chose to use a framework for the frontend.</p>
+<p>The driving force behind the restart was the desire to use P2P game hosting over WebRTC. The tech wasn't quite as easy to understand as other web APIs, and a lot needed to change in order to make use of it.</p>
+<p>I'm also going to be using the Internal Server trick Minecraft switched to in update 1.3.1, but from the get-go, to limit code fragmentation.</p>
+<h2>Technologies</h2>
+<p>Here's all the tech I'm going to be utilising from this point on.</p>
+<h3><a href="https://vuejs.org/">Vue</a></h3>
+<p>I'm usually opposed to frameworks for frontend stuff, but in using Vue a little I've understood the benefits of Webpack (not that I understand Webpack itself). Also not having the headache of maintaining states as much and just using a router is pretty nice. Learning the Vue way of making CustomElements is going to take some trial and error, but hopefully it'll pay off in the long run.</p>
+<h3><a href="https://www.babylonjs.com/">BabylonJS</a></h3>
+<p>Babylon renders 3D with WebGl and WebGPU. I'm using Babylon over Three because someone on reddit said that Three has an inconsistent API and everything's a plugin, whereas Babylon is a complete cohesive solution. I've no experience with either so I can't say whether they're right or wrong, but I'll roll with it for now.</p>
+<h3><a href="http://www.cannonjs.org/">CannonJS</a></h3>
+<p>Cannon is a 3D physics library for the web actually written in JS. I'm not aboard the WASM train just yet, and from my experience with Box2D on the web (ported from C++) I feel that a pure JS solution will work much better for me. It also integrates well with Babylon, which is a plus.</p>
+<h3><a href="https://webrtc.org/">WebRTC</a></h3>
+<p>WebRTC allows peer-to-peer realtime connections between devices on the web. I've not seen too much online about using a data channel for games, at least to a polished production-ready standard, so it'll be interesting trying to solve all the problems that will undoubtedly pop up. I'm not looking forward to figuring out lag compensation.</p>
+<h3><a href="https://firebase.google.com/">Firebase</a></h3>
+<p>I'm going to use Firebase as a backend for Auth and Account Settings, Hosting, dynamic Storage and WebRTC signalling.</p>
+<h4>Auth</h4>
+<p>God knows I don't want any responsibility for people's login info! Google and OAuth2 can handle all of that, I'll just poke their APIs.</p>
+<h4>Account Settings</h4>
+<p>Each authed account will need some metadata associated with it to allow persistent state across devices and sessions (e.g. character choice, cosmetics, etc.). This will be stored in the project's Firestore.</p>
+<h4>Hosting</h4>
+<p>Why host anything anymore? Firebase will be infinitely more reliable than me running a VPS, and staying in the ecosystem will make maintenance easier in future.</p>
+<h4>WebRTC Signalling</h4>
+<p>WebRTC needs a signalling channel, like a messageboard for available connections. I'll use Firestore for this.</p>
+<h2>Progress</h2>
+<p>WebRTC is the tech that has taken most of my time from the previous devlog to this one, the API is pretty involved! But by the magic of copy-pasting a Google codelab and hacking it to work with the new Firebase API, adding in some event emitters to hook into and wrapping it in a module, I've got something up and running.</p>
+<p>With a basic understanding of four new technologies I've so far managed to get networked games with players moving about in 3D space, with balls, pickup, throw, and points added on collision with a thrown ball. All localhost though.</p>
+<p><video controls preload="metadata">
+<source type="video/webm" src="posts/img/6214a90326205d44d17942d4c203250380b4b5ad02c0d162e5019da2ee3cfa3e.webm"></source>
+Your browser does not support playing HTML5 video. You can <a href="posts/img/6214a90326205d44d17942d4c203250380b4b5ad02c0d162e5019da2ee3cfa3e.webm" download>download a copy of the video file</a> instead.
+Here is a description of the content: current game state
+</video></p>
+<p>So the plan now is to grab some of the code from the prototype and get it to work with the new Internal Server coding pattern.</p>
+<p>To get back to where the prototype got to I still need to reintroduce Controller support, touch input, aiming and aim indicators, restricting players to their court half, ball holding timeout, and the countdown timer.</p>
+<p>So I'll get to doing that.</p>
+<p>Blog done!</p>
+<p>Seeya.</p>
