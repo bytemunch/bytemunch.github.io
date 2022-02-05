@@ -9,4 +9,3 @@ export class CustomElement extends HTMLElement {
         this.readyRes(0);
     }
 }
-//# sourceMappingURL=CustomElement.js.map

@@ -13,4 +13,3 @@ export function sizeText(text, maxWidth, maxHeight) {
         return currentSize;
     }
 }
-//# sourceMappingURL=sizeText.js.map

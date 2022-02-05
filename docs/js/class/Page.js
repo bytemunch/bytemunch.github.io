@@ -77,4 +77,3 @@ export class Page {
         await drawLines();
     }
 }
-//# sourceMappingURL=Page.js.map

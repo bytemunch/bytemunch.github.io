@@ -16,4 +16,3 @@ export class PageAbout extends Page {
         await this.main.ready;
     }
 }
-//# sourceMappingURL=PageAbout.js.map

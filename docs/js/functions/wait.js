@@ -3,4 +3,3 @@ export async function wait(ms) {
         setTimeout(() => { res(0); }, ms);
     });
 }
-//# sourceMappingURL=wait.js.map

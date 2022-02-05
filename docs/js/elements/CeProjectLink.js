@@ -23,4 +23,3 @@ export class CeProjectLink extends CustomElement {
     }
 }
 customElements.define('ce-project-link', CeProjectLink);
-//# sourceMappingURL=CeProjectLink.js.map

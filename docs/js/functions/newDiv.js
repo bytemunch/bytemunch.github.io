@@ -71,4 +71,3 @@ export function newDiv(pos, img, link, txt) {
         return div;
     }
 }
-//# sourceMappingURL=newDiv.js.map

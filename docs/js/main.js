@@ -50,4 +50,3 @@ window.addEventListener('hashchange', e => {
     openPage(location.hash);
     oldHash = location.hash;
 });
-//# sourceMappingURL=main.js.map

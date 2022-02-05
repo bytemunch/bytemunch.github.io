@@ -131,4 +131,3 @@ export class LineRunner {
         mondrian.ctx.fillRect(this.line.x, this.line.y, this.line.width, this.line.height);
     }
 }
-//# sourceMappingURL=LineRunner.js.map

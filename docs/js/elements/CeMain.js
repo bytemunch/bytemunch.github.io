@@ -21,4 +21,3 @@ export class CeMain extends CustomElement {
     }
 }
 customElements.define('ce-main', CeMain);
-//# sourceMappingURL=CeMain.js.map

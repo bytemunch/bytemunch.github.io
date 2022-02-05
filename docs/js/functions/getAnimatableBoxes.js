@@ -6,4 +6,3 @@ export function getAnimatableBoxes() {
     boxes.splice(boxes.indexOf(document.querySelector('.home')), 1);
     return boxes;
 }
-//# sourceMappingURL=getAnimatableBoxes.js.map

@@ -17,4 +17,3 @@ export async function openPage(page) {
     pg.render();
     return;
 }
-//# sourceMappingURL=openPage.js.map

@@ -13,4 +13,3 @@ export function pickColor() {
         return 'black';
     return 'red';
 }
-//# sourceMappingURL=pickColor.js.map

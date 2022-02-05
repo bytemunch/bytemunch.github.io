@@ -84,4 +84,3 @@ export async function retractLines() {
         requestAnimationFrame(rafFn);
     });
 }
-//# sourceMappingURL=animations.js.map

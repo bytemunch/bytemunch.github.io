@@ -19,4 +19,3 @@ export class PageBlog extends Page {
         this.main.appendToMain(blogBrowser.blogDiv);
     }
 }
-//# sourceMappingURL=PageBlog.js.map

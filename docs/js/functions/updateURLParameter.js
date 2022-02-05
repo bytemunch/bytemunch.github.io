@@ -22,4 +22,3 @@ export function updateURLParameter(url, param, paramVal) {
     var rows_txt = paramVal ? temp + "" + param + "=" + paramVal + hash : '';
     return baseURL + "?" + newAdditionalURL + rows_txt;
 }
-//# sourceMappingURL=updateURLParameter.js.map

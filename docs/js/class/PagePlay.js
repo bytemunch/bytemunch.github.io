@@ -41,4 +41,3 @@ export class PagePlay extends Page {
         await this.main.ready;
     }
 }
-//# sourceMappingURL=PagePlay.js.map

@@ -5,4 +5,3 @@ export function checkCollision(b1, b2) {
     }
     return false;
 }
-//# sourceMappingURL=checkCollision.js.map

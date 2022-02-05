@@ -7,4 +7,3 @@ export class PageHome extends Page {
         await this.animate();
     }
 }
-//# sourceMappingURL=PageHome.js.map
