@@ -16,12 +16,9 @@ export let pages = {
     blog: new PageBlog
 };
 export let links = [];
-await new Promise((res) => {
-    document.addEventListener('DOMContentLoaded', () => {
-        mondrian = new Mondrian;
-        mondrian.resetCanvas();
-        res(0);
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    mondrian = new Mondrian;
+    mondrian.resetCanvas();
 });
 export async function getPage(page) {
     const res = await fetch('./pages/' + page + '.json');
